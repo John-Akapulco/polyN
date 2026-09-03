@@ -1,5 +1,7 @@
 # PolyNAdapt
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/John-Akapulco/polyN/blob/main/LICENSE)
+
 Surrogate adaptatif pour la génération d'isomères métastables de clusters
 polyazotés (Nx, charge q fixée) — neutre, mono/di-cation, mono/di-anion...
 
