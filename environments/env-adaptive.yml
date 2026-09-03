@@ -1,0 +1,18 @@
+name: polyN-adapt
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - networkx
+  - numpy
+  - scikit-learn
+  - ase
+  - nauty            # fournit nauty-geng
+  - pip
+  - pip:
+      - tblite       # calculateur GFN2-xTB, via tblite.ase.TBLite
+# Notes:
+# - polynitrogen_charged_explore.py N'EST PAS inclus dans ce package : c'est
+#   une dependance externe, a copier a cote de polyN_adapt/ ou a ajouter au
+#   PYTHONPATH (cf. README.md, section "Dependance externe").
+# - DFTB+ n'est plus une dependance depuis le passage a xtb_bridge.py.
