@@ -155,6 +155,17 @@ par étape. Portée délibérément limitée : ce module écrit les entrées et 
 script `run.sh` par candidat, il n'intègre pas de scheduler de cluster
 (SLURM/PBS).
 
+Une étape peut être réservée aux petites molécules via `max_n_atoms`
+(ex: un étage CCSD(T)-F12 coûteux, réservé aux candidats de moins de 10
+atomes) -- les étapes en aval qui en dépendent sont alors écartées en
+cascade pour les candidats trop gros, tracées dans un `SKIPPED_STEPS.txt`
+par candidat plutôt que silencieusement omises. Voir
+`refinement_config_production.yaml` pour un protocole réel : optimisation
++ fréquences DFT dispersion-corrigée (ωB97X-D ou B3LYP-D3(BJ),
+aug-cc-pVTZ), puis, uniquement si <10 atomes, single-point puis
+optimisation complète DLPNO-CCSD(T)-F12/aug-cc-pVTZ-F12 (TightPNO) sur la
+géométrie DFT optimisée.
+
 ## Ce qui a été testé RÉELLEMENT dans cet environnement de développement
 
 - `nauty-geng` réel (installé via apt) : streaming, comptage, règle de parité

@@ -42,6 +42,27 @@ def _candidate_id(entry: dict) -> str:
     return entry.get("wl_hash") or "candidate"
 
 
+def _select_applicable_steps(steps, n_atoms: int):
+    """Filtre les étapes selon `max_n_atoms` (ex: réserver DLPNO-CCSD(T)-F12
+    aux molécules < 10 atomes) et la disponibilité de leur prérequis
+    (`depends_on`) : une étape dont le prérequis a été écartée pour ce
+    candidat est écartée aussi, en cascade -- le chaînage étant strictement
+    linéaire (cf. config.RefinementConfig), ceci écarte simplement tout
+    suffixe de la séquence à partir du premier dépassement de taille.
+    Retourne (etapes_applicables, etapes_ecartees)."""
+    applicable, skipped = [], []
+    available_names: set[str] = set()
+    for step in steps:
+        gated_out = step.max_n_atoms is not None and n_atoms > step.max_n_atoms
+        prereq_missing = step.depends_on is not None and step.depends_on not in available_names
+        if gated_out or prereq_missing:
+            skipped.append(step)
+            continue
+        applicable.append(step)
+        available_names.add(step.name)
+    return applicable, skipped
+
+
 def build_jobs_from_queue(
     queue: list[dict],
     config: RefinementConfig,
@@ -77,10 +98,15 @@ def build_jobs_from_queue(
         if not xyz_path:
             continue  # candidat sans geometrie sauvegardee -- rien a soumettre
         atoms = read_xyz_atoms(xyz_path)
+        n_atoms = entry.get("n_atoms") or len(atoms)
 
         multiplicity = entry.get("multiplicity_guess")
         if multiplicity is None:
             multiplicity = guess_multiplicity(len(atoms), charge)
+
+        applicable_steps, skipped_steps = _select_applicable_steps(config.steps, n_atoms)
+        if not applicable_steps:
+            continue  # aucune etape applicable pour ce candidat (taille au-dela de toute etape)
 
         cand_id = _candidate_id(entry)
         cand_dir = out_dir / cand_id
@@ -89,7 +115,7 @@ def build_jobs_from_queue(
         if config.backend == "gaussian":
             input_path = cand_dir / f"{cand_id}.com"
             input_path.write_text(render_gaussian_input(
-                config.steps, atoms, charge, multiplicity, config.resources,
+                applicable_steps, atoms, charge, multiplicity, config.resources,
                 chk_name=cand_id, title_prefix=f"{cand_id} -- ",
             ))
             input_paths = [input_path]
@@ -97,7 +123,7 @@ def build_jobs_from_queue(
         elif config.backend == "orca":
             input_paths = []
             previous_xyz: str | None = None
-            for step in config.steps:
+            for step in applicable_steps:
                 step_atoms = atoms if previous_xyz is None else None
                 content = render_orca_input(
                     step, step_atoms, charge, multiplicity, config.resources,
@@ -111,6 +137,13 @@ def build_jobs_from_queue(
 
         else:
             raise ValueError(f"backend non gere: {config.backend}")
+
+        if skipped_steps:
+            (cand_dir / "SKIPPED_STEPS.txt").write_text(
+                f"Etapes non generees pour ce candidat (n_atoms={n_atoms}) :\n"
+                + "\n".join(f"- {s.name} (max_n_atoms={s.max_n_atoms})" for s in skipped_steps)
+                + "\n"
+            )
 
         run_script = cand_dir / "run.sh"
         run_script.write_text(_render_run_script(config, input_paths))

@@ -1,0 +1,50 @@
+# Protocole de raffinement post-xTB "production" :
+#   1) optimisation de geometrie + frequences, niveau DFT dispersion-
+#      corrigee (wB97X-D ou B3LYP-D3(BJ) -- alternative commentee
+#      ci-dessous), base aug-cc-pVTZ ;
+#   2) sur la geometrie DFT optimisee : single-point puis optimisation
+#      complete a un niveau DLPNO-CCSD(T)-F12/aug-cc-pVTZ-F12 (TightPNO),
+#      reserve aux molecules de moins de 10 atomes (max_n_atoms: 9).
+#      DLPNO-CCSD(T)-F12 est une methode ORCA -- ce protocole est donc
+#      backend: orca (pas d'equivalent direct cote Gaussian).
+#
+# NOTE : les mots-cles ORCA exacts pour F12 (base auxiliaire CABS, RI/JK,
+# etc.) restent a confirmer une fois les scripts de lancement et formats
+# d'input reels (IRENE/TGCC, Adastra Genoa/CINES) fournis par ailleurs --
+# `aux_basis` ci-dessous est une valeur de depart plausible, a ajuster.
+
+backend: orca
+
+resources:
+  n_proc: 16
+  memory_mb: 32000
+
+steps:
+  - name: opt_freq_dft
+    job_type: geometry_optimization # Opt + Freq combines en une seule etape via extra_keywords
+    method: wB97X-D3
+    # Alternative : method: "B3LYP D3BJ"   (dispersion D3(BJ), mot-cle ORCA simple)
+    basis: aug-cc-pVTZ
+    extra_keywords: ["Freq", "TightSCF"]
+
+  - name: sp_ccsdt_f12
+    job_type: single_point
+    method: DLPNO-CCSD(T)-F12
+    basis: aug-cc-pVTZ-F12
+    aux_basis: aug-cc-pVTZ-F12-CABS # base auxiliaire CABS pour F12 -- a confirmer
+    extra_keywords: ["TightPNO"]
+    depends_on: opt_freq_dft
+    max_n_atoms: 9 # "< 10 atomes"
+
+  - name: opt_ccsdt_f12
+    job_type: geometry_optimization
+    method: DLPNO-CCSD(T)-F12
+    basis: aug-cc-pVTZ-F12
+    aux_basis: aug-cc-pVTZ-F12-CABS
+    extra_keywords: ["TightPNO"]
+    depends_on: sp_ccsdt_f12
+    max_n_atoms: 9
+
+submission:
+  mode: dry_run
+  command_template: "orca {input} > {output}"

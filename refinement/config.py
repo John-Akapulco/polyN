@@ -32,6 +32,12 @@ class CalculationStep:
     aux_basis: str | None = None  # base auxiliaire RIJCOSX/DLPNO (ORCA) -- ignoree par le backend gaussian
     extra_keywords: list[str] = field(default_factory=list)  # tokens passes tels quels au backend (ex: "TightSCF", "Int=UltraFine")
     multiplicity_override: int | None = None  # None = utilise la valeur devinee/fournie pour la structure
+    max_n_atoms: int | None = None  # None = etape appliquee a tout candidat ; sinon
+                                      # sautee (et toute etape en aval qui en depend,
+                                      # cf. submit._select_applicable_steps) pour les
+                                      # candidats de plus de max_n_atoms atomes -- utile
+                                      # pour reserver un etage couteux (ex: CCSD(T)-F12)
+                                      # aux petites molecules
 
     def __post_init__(self):
         if self.job_type not in VALID_JOB_TYPES:
