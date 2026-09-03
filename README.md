@@ -56,6 +56,18 @@ polyN_adapt/
                               # glissante recalculee sur le meilleur connu
   pipeline/
     population_loop.py          # orchestrateur generation par generation
+  refinement/
+    config.py                  # RefinementConfig charge depuis YAML -- backend
+                                 # (gaussian/orca), sequence d'etapes (methode,
+                                 # base, type de job), ressources, soumission ;
+                                 # AUCUN parametre de calcul code en dur
+    backends/gaussian.py         # rendu .com, etapes chainees via Link1/%chk
+    backends/orca.py             # rendu .inp, un fichier par etape, chainees
+                                 # via `* xyzfile` (geometrie optimisee ecrite
+                                 # automatiquement par ORCA)
+    submit.py                    # consomme Archive.export_refinement_queue(),
+                                 # ecrit les inputs + un run.sh par candidat
+    refinement_config_example.yaml
   environments/
     env-adaptive.yml
 ```
@@ -110,6 +122,39 @@ Praticable confortablement jusqu'à n≈14-16 sur une machine de bureau ; au-del
 `candidate_source_per_generation` doit passer d'un générateur `geng` à un
 générateur basé sur `generators.mutation` (voisinage de l'archive).
 
+## Raffinement post-xTB (Gaussian/ORCA)
+
+GFN2-xTB sert au criblage haut-débit, pas au classement fin des quelques
+isomères bas en énergie qui survivent à la fenêtre -- ceux-là méritent une
+revérification à un niveau ab initio/DFT/CCSD(T) supérieur. `refinement/`
+prépare ces jobs (Gaussian ou ORCA) à partir de
+`Archive.export_refinement_queue(charge)`, sans qu'aucun paramètre de
+calcul (méthode, base, type de job) ne soit codé en dur -- tout vient d'un
+fichier YAML (`refinement_config_example.yaml`) : backend, séquence
+d'étapes (optimisation de géométrie -> fréquences -> single-point
+CCSD(T), ou toute autre séquence), ressources, mode de soumission.
+
+```python
+from polyN_adapt.refinement.config import load_config
+from polyN_adapt.refinement.submit import build_jobs_from_queue, submit_jobs
+
+config = load_config("polyN_adapt/refinement/refinement_config_example.yaml")
+queue = archive.export_refinement_queue(charge=0)
+jobs = build_jobs_from_queue(queue, config, out_dir="refine_out", charge=0, max_jobs=10)
+submit_jobs(jobs, dry_run=True)  # dry_run=False pour executer reellement (local, bloquant)
+```
+
+Les étapes sont chaînées automatiquement (Gaussian : Link1/`%chk` ; ORCA :
+`* xyzfile` vers la géométrie optimisée par l'étape précédente), sans
+parsing de sortie intermédiaire. La charge n'est pas stockée dans
+`Archive` (une campagne est menée à charge fixée) : elle est passée
+explicitement à `export_refinement_queue` et propagée jusqu'aux fichiers
+d'entrée ; la multiplicité de spin par défaut est devinée par parité du
+nombre d'électrons (`archive.guess_multiplicity`), toujours surchageable
+par étape. Portée délibérément limitée : ce module écrit les entrées et un
+script `run.sh` par candidat, il n'intègre pas de scheduler de cluster
+(SLURM/PBS).
+
 ## Ce qui a été testé RÉELLEMENT dans cet environnement de développement
 
 - `nauty-geng` réel (installé via apt) : streaming, comptage, règle de parité
@@ -119,6 +164,16 @@ générateur basé sur `generators.mutation` (voisinage de l'archive).
   correctement cycle tendu vs chaîne stable) + `select_batch` actif
 - `Archive` : dédoublonnage par isomorphisme + tolérance d'énergie, fenêtre
   glissante recalculée sur mise à jour de la référence
+- `refinement/` : chargement + validation de config YAML (backend invalide,
+  `job_type` invalide, `depends_on` non adjacent -- toutes rejetées avec un
+  message clair) ; génération d'entrées Gaussian (chaînage Link1/`%chk`,
+  charge/multiplicité correctement propagées) et ORCA (chaînage `*
+  xyzfile`, `sp_ccsdt` référence bien la géométrie de `opt_dft` à travers
+  `freq_dft`) sur une géométrie `.xyz` synthétique ; `guess_multiplicity`
+  vérifié sur N4/N4⁺/N5⁺/N5⁻. **Pas de calcul Gaussian/ORCA réel lancé**
+  (aucun des deux n'est installé dans cet environnement de développement)
+  -- seule la génération des fichiers d'entrée est validée, pas leur
+  exécution effective par le solveur.
 - `embed_graph_3d_ff` (import réel depuis `polynitrogen_charged_explore.py`)
   sur un vrai graphe `geng`
 - **`xtb_bridge.relax_and_evaluate` avec un VRAI calculateur GFN2-xTB

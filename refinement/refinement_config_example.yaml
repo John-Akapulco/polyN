@@ -1,0 +1,43 @@
+# Configuration du raffinement post-xTB (Gaussian ou ORCA). Consomme
+# Archive.export_refinement_queue(charge) -- reserve a quelques isomeres
+# bas en energie (cf. README.md du package), pas au criblage haut-debit.
+#
+# AUCUN parametre de calcul (methode, base, type de job) n'est code en dur
+# dans refinement/ : tout se regle ici. Dupliquer/adapter ce fichier pour
+# changer de backend, de methode, de base, etc. sans toucher au code.
+
+backend: orca # "orca" ou "gaussian"
+
+resources:
+  n_proc: 8
+  memory_mb: 16000 # memoire totale (repartie par coeur pour ORCA %maxcore)
+
+# Sequence d'etapes, executees dans l'ordre de la liste. Chaque etape est
+# chainee a la precedente : geometrie optimisee reutilisee automatiquement
+# via %chk/Geom=Check (Gaussian) ou `* xyzfile` (ORCA) -- pas de parsing
+# de sortie intermediaire necessaire.
+steps:
+  - name: opt_dft
+    job_type: geometry_optimization # geometry_optimization | frequency | single_point
+    method: wB97X-D3
+    basis: def2-TZVP
+    extra_keywords: ["TightSCF"]
+
+  - name: freq_dft
+    job_type: frequency
+    method: wB97X-D3
+    basis: def2-TZVP
+    depends_on: opt_dft
+
+  - name: sp_ccsdt
+    job_type: single_point
+    method: DLPNO-CCSD(T)
+    basis: def2-TZVP
+    aux_basis: def2-TZVP/C # ORCA uniquement (RIJCOSX/DLPNO) -- ignore si backend=gaussian
+    extra_keywords: ["TightPNO"]
+    depends_on: freq_dft
+
+submission:
+  mode: dry_run # "dry_run" (ecrit les .inp/.com seulement) | "command" (genere aussi les commandes d'execution dans run.sh)
+  # command_template pour Gaussian : "g16 < {input} > {output}"
+  command_template: "orca {input} > {output}"

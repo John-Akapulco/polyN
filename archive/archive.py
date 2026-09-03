@@ -15,6 +15,18 @@ from dataclasses import dataclass, field
 import networkx as nx
 
 
+def guess_multiplicity(n_atoms: int, charge: int, atomic_number: int = 7) -> int:
+    """Multiplicite de spin par defaut pour un cluster homonucleaire de
+    n_atoms atomes de numero atomique atomic_number (7 = azote) et de
+    charge donnee : nombre d'electrons pair -> singulet (1), impair ->
+    doublet (2). C'est une estimation de repli, pas une determination
+    physique (un vrai etat fondamental ouvert-couche peut differer) --
+    utilisee par export_refinement_queue et refinement.submit comme valeur
+    par defaut, toujours surchageable (CalculationStep.multiplicity_override)."""
+    n_electrons = atomic_number * n_atoms - charge
+    return 2 if n_electrons % 2 else 1
+
+
 @dataclass
 class ArchiveEntry:
     candidate_graph: nx.Graph  # graphe d'origine (geng/mutation) -- utilisé UNIQUEMENT
@@ -186,7 +198,7 @@ class Archive:
         y = [e.energy_ev_per_atom for e in self.entries]
         return X, y
 
-    def export_refinement_queue(self) -> list[dict]:
+    def export_refinement_queue(self, charge: int) -> list[dict]:
         """
         Correction #4 : file de priorité pour la re-vérification à un niveau
         de théorie supérieur (ORCA/DFT). GFN2-xTB borne la fiabilité du
@@ -202,6 +214,13 @@ class Archive:
         Score = somme pondérée normalisée ; tri décroissant. Retourne une
         liste de dicts consommable directement comme file d'attente (avec
         les chemins .xyz déjà sauvegardés sur disque).
+
+        charge : une campagne polyN_adapt est menée à charge FIXÉE ;
+            l'Archive elle-même ne la stocke pas (cf. run_campaign), donc
+            elle doit être fournie explicitement ici -- nécessaire pour
+            construire des entrées Gaussian/ORCA valides en aval
+            (refinement.submit), qui ont besoin de charge ET de
+            multiplicité, pas seulement de la géométrie.
         """
         if not self.entries or self.best_energy_per_atom is None:
             return []
@@ -219,6 +238,7 @@ class Archive:
             strain_score = 1.0 if 0 < min_cycle <= 4 else 0.0
 
             priority = 2.0 * spread + 1.0 * boundary_score + 0.5 * strain_score
+            n_atoms = e.final_graph.number_of_nodes() if e.final_graph is not None else None
             queue.append({
                 "priority_score": priority,
                 "energy_ev_per_atom": e.energy_ev_per_atom,
@@ -227,6 +247,11 @@ class Archive:
                 "multiseed_spread": spread,
                 "optimized_xyz_path": e.optimized_xyz_path,
                 "generation": e.generation,
+                "charge": charge,
+                "n_atoms": n_atoms,
+                "multiplicity_guess": (
+                    guess_multiplicity(n_atoms, charge) if n_atoms is not None else None
+                ),
             })
         queue.sort(key=lambda d: d["priority_score"], reverse=True)
         return queue

@@ -8,6 +8,7 @@ dependencies:
   - scikit-learn
   - ase
   - nauty            # fournit nauty-geng
+  - pyyaml           # config du module refinement/ (parametres Gaussian/ORCA)
   - pip
   - pip:
       - tblite       # calculateur GFN2-xTB, via tblite.ase.TBLite
