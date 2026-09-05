@@ -1,0 +1,25 @@
+# Campaign run data and proprietary/large binaries -- never commit these.
+# Only the orchestration scripts + lightweight manifests are tracked.
+orca
+orca.tar
+orca6.1
+jobs/
+bench/
+logs/
+reference/
+xyz_gfn2xtb/
+xyz_dft_wb97xd4/
+__pycache__/
+*.pyc
+dispatch_stdout.log
+dispatch_events.log
+dispatch_submitted.txt
+results_*.csv
+reaction_energetics.csv
+
+# One-off manual test files, not part of the DFT screening campaign.
+PMe3.inp
+test.inp
+submit_script.sh
+ωB97X.inp
+.test.inp.swp
