@@ -131,6 +131,31 @@ génération ne l'appelle encore) ; enrichissement des descripteurs
 (charge, ordre de liaison, groupe ponctuel) qui expliquerait
 probablement le signal manquant pour neutres/anions.
 
+## Pool 2 opérationnel de bout en bout (2026-09-06)
+
+Prérequis résolus : `ase`+`tblite` installés (`/usr/bin/python3.11 -m pip
+install --user ase tblite`) ; `polynitrogen_charged_explore.py`
+(dépendance externe requise par `evaluation/xtb_bridge.py`, introuvable
+sur ce cluster ni sur les 7 dépôts GitHub publics de Gilles) récupéré via
+une session Claude Code sur son Mac M5 (`/Users/akapulco/polyN_study/`),
+transmis par message inter-sessions (Remote Control) et installé à
+`/home/gilles/polynitrogen_charged_explore.py` (à côté du package
+`polyN`, conforme au README -- **ne jamais le committer dans le dépôt**,
+le README dit explicitement "NE DUPLIQUE PAS" ce script).
+
+Validé end-to-end : `evaluation.xtb_bridge.default_multiseed_evaluate_fn`
+sur un candidat N5⁻ cyclique (graphe `nx.cycle_graph(5)`, charge -1)
+donne `integrity_status=OK`, `topology_label=ring-5`, et une énergie qui
+reproduit **exactement** (écart 1e-7 Ha) la référence xTB déjà établie
+pour `N5_anion_anion_001` (`-14.760899219951 Ha`) -- confirme que toute
+la chaîne (embed FF -> relaxation GFN2-xTB via tblite -> intégrité ->
+classification) est correctement branchée et cohérente avec le reste du
+projet.
+
+**Utilisable maintenant** : `run_campaign(n=15, charge=-1, ...)` avec
+`stream_geng_graphs` (N15⁻, seul vrai trou de couverture identifié en
+§10 du rapport) est prêt à tourner, y compris avec `n_workers>1`.
+
 ## Parallélisation de l'évaluation (pool 2, 2026-09-06)
 
 `pipeline/population_loop.py` (`run_campaign` et `run_campaign_mutation`)
