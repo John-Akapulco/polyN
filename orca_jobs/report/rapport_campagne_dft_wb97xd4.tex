@@ -56,7 +56,7 @@ ancres de r\'ef\'erence pour les $\Delta H_f$ ioniques (N$_5^-$ cyclique,
 N$_5^+$ coud\'e) ont \'et\'e retrouv\'ees dans
 \texttt{biblio\_polyN/final\_report\_isodesmic.csv} et permettent
 d\'esormais de calculer un $\Delta H_f$ absolu (niveau GFN2-xTB) pour les
-193 candidats -- table~\ref{tab:provenance}.
+193 candidats -- tables~\ref{tab:provenance-neutral}--\ref{tab:provenance-anion}.
 \end{abstract}
 
 \tableofcontents
@@ -72,7 +72,7 @@ graphes \texttt{geng}/nauty + substitution isolobale C$\to$N +
 stoechiom\'etrie et v\'erification de fr\'equences \`a ce niveau. Aucune
 contribution du second d\'ep\^ot compagnon \texttt{polyN\_adapt}
 (g\'en\'eration adaptative/surrogate) n'a \'et\'e identifi\'ee dans ce
-jeu -- voir la note sous la table~\ref{tab:provenance}, \`a confirmer.
+jeu -- voir \S\ref{sec:provenance}, \`a confirmer.
 Les formules \`a N impair (N$_5$, N$_7$, N$_9$, N$_{11}$, N$_{13}$,
 N$_{15}$) ne sont repr\'esent\'ees qu'en cation/anion (contrainte de
 parit\'e \'electronique), les formules paires principalement en neutre.
@@ -129,10 +129,24 @@ $E$(N$_5^+$, C$_{2v}$, = \texttt{N5\_cation\_cation\_001})$=-13{,}985267$~Ha.
 Point notable~: la r\'ef\'erence interne du pipeline pour la famille
 cation n'est pas ce dernier mais \texttt{N5\_cation\_cation\_004}
 (isom\`ere C$_1$ diff\'erent, $E=-13{,}816935$~Ha, $105{,}6$~kcal/mol moins
-stable) -- les $\Delta H_f$ de la table~\ref{tab:provenance} sont
-recal\'es sur le C$_{2v}$ qui correspond \`a la structure litt\'erature.
+stable) -- les $\Delta H$ ci-dessous sont recal\'es sur le C$_{2v}$ qui
+correspond \`a la structure litt\'erature.
 
-\input{table_provenance.tex}
+Trois tableaux distincts (neutres, cations, anions), tri\'es par nombre
+d'atomes croissant puis par stabilit\'e au sein de chaque formule
+($\Delta H = 0$ pour l'isom\`ere le plus stable, DFT quand disponible sinon
+GFN2-xTB). La r\'ef\'erence est soit un num\'ero d'article (liste en
+Annexe~B), soit \emph{our work} quand la structure ne correspond \`a
+aucune entr\'ee de la biblio actuelle -- ce qui inclut, par choix
+explicite, les correspondances aux bases externes \texttt{N\_csp} et
+\texttt{polyN\_study} (candidats, pas des articles publi\'es) aussi bien
+que les topologies r\'eellement in\'edites. Un seul candidat de tout le
+jeu correspond effectivement \`a un article publi\'e~: \texttt{N8\_neutral\_neutral\_001}
+$=$ \texttt{N8\_C2v\_ring}, r\'ef\'erence~[1].
+
+\input{table_provenance_neutre.tex}
+\input{table_provenance_cation.tex}
+\input{table_provenance_anion.tex}
 
 \section{Classement de stabilit\'e~: DFT contre xTB}
 \label{sec:ranking}
@@ -248,9 +262,26 @@ D\'etail complet et graphique interactif : voir l'artefact
 \section{Structures optimis\'ees (DFT, minima confirm\'es)}
 
 Les 73 candidats confirm\'es comme vrais minima au moment de la
-r\'edaction (aucune fr\'equence imaginaire), deux par ligne, avec nom et
-groupe ponctuel.
+r\'edaction (aucune fr\'equence imaginaire), deux par ligne. Trois
+figures, class\'ees par nombre d'atomes croissant puis par stabilit\'e au
+sein de chaque formule~: Figure~S1 (neutres), Figure~S2 (cations),
+Figure~S3 (anions). Chaque structure porte son nom, son groupe ponctuel,
+son $\Delta H$ (kcal/mol, isom\`ere le plus stable de sa formule
+$=0$), le niveau de th\'eorie de ce $\Delta H$ (DFT ou xTB si le DFT
+n'est pas encore termin\'e), sa r\'ef\'erence (num\'ero d'article ou
+\emph{our work}), et un indicateur si une distance N--N d\'epasse
+1,7~\AA.
 
 \input{annexe_structures.tex}
+
+\clearpage
+\section{R\'ef\'erences}
+
+Articles cit\'es dans les tableaux de la section~\ref{sec:provenance}
+(num\'erotation propre \`a ce rapport ; correspondance avec les codes de
+\texttt{biblio\_polyN/table\_references.tex} de \texttt{polyN-pipeline}
+en annotation).
+
+\input{annexe_references.tex}
 
 \end{document}
