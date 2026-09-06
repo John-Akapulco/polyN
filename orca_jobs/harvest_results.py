@@ -96,11 +96,27 @@ DFT_XYZ_OUT_DIR = "xyz_dft_wb97xd4"
 # absolute dHf out of `reactions` rather than just step-wise reaction
 # energies. Left as None => reactions command reports relative energies only
 # for ions; neutrals never need this (anchored at N2, dHf=0).
-N5_ANION_REF_NAME = None   # e.g. "N5_anion_anion_001" (expected: cyclic, D5h)
-N5_ANION_REF_DHF_KCAL = None  # literature dHf(cyclic N5-), kcal/mol
+# Found 2026-09-06 in polyN-pipeline's biblio_polyN/final_report_isodesmic.csv
+# (CCSD(T)-level literature values, "B" reference):
+#   N5-_pentagon (D5h)        dHf = -106.4 kcal/mol
+#   N5+_Vchain   (C2v, bent)  dHf =  195.9 kcal/mol (195.8 experimental X-ray)
+# Our N5_anion_anion_001 IS that D5h pentagon (confirmed by point group and by
+# GFN2-xTB energy matching to 6 decimals -- see XTB_E_N5_ANION_HARTREE) and is
+# also this run's own internal xTB reference (E_react=-0.00), so no rescaling
+# needed there. Our N5_cation_cation_001 is C2v and matches the Vchain -- but
+# this run's internal xTB reference for the cation family is
+# N5_cation_cation_004 (E_react=0.00 there, a *different*, higher-energy C1
+# isomer), so E_react values as printed in xyz_gfn2xtb/*.xyz are relative to
+# THAT, not to the Vchain -- rescale by N5_CATION_INTERNAL_REF_OFFSET_KCAL
+# (= E_react_as_reported for N5_cation_cation_001, i.e. how far the internal
+# reference sits from the literature-matched structure) before adding the
+# literature anchor.
+N5_ANION_REF_NAME = "N5_anion_anion_001"    # cyclic, D5h -- matches literature exactly
+N5_ANION_REF_DHF_KCAL = -106.4               # literature dHf(cyclic N5-), kcal/mol
 
-N5_CATION_REF_NAME = None  # e.g. "N5_cation_cation_001" (expected: bent/V, Cs)
-N5_CATION_REF_DHF_KCAL = None  # literature dHf(bent N5+), kcal/mol
+N5_CATION_REF_NAME = "N5_cation_cation_001"  # bent/V, C2v -- matches literature Vchain
+N5_CATION_REF_DHF_KCAL = 195.9               # literature dHf(bent N5+ Vchain), kcal/mol
+N5_CATION_INTERNAL_REF_OFFSET_KCAL = -105.63  # E_react(N5_cation_cation_001) as printed
 
 # GFN2-xTB anchors behind the E_react convention polyN_pipeline.py uses
 # (README: neutral Nx -> (x/2) N2; charged Nx+/- -> (x-5)/2 N2 + N5+/-).
@@ -372,9 +388,16 @@ def harvest(jobs_root, out_summary, out_bonds, out_charges, out_imaginary, xyz_o
     if xyz_out_dir:
         os.makedirs(xyz_out_dir, exist_ok=True)
 
-    for prop_path in sorted(glob.glob(os.path.join(jobs_root, "*", "*.property.txt"))):
-        job_dir = os.path.dirname(prop_path)
+    for job_dir in sorted(glob.glob(os.path.join(jobs_root, "*"))):
         name = os.path.basename(job_dir)
+        # Chained (big-cluster) job dirs also contain _s1/_s2/_s3.property.txt
+        # from the intermediate steps -- only the finalize-copied <name>.property.txt
+        # is the canonical result; a bare glob("*.property.txt") would match all
+        # of them under the same directory-derived `name` and silently duplicate
+        # every row downstream.
+        prop_path = os.path.join(job_dir, name + ".property.txt")
+        if not os.path.isfile(prop_path):
+            continue
         data = parse_property_file(prop_path)
         if data is None:
             n_skip += 1
