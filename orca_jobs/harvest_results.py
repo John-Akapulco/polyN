@@ -102,6 +102,35 @@ N5_ANION_REF_DHF_KCAL = None  # literature dHf(cyclic N5-), kcal/mol
 N5_CATION_REF_NAME = None  # e.g. "N5_cation_cation_001" (expected: bent/V, Cs)
 N5_CATION_REF_DHF_KCAL = None  # literature dHf(bent N5+), kcal/mol
 
+# GFN2-xTB anchors behind the E_react convention polyN_pipeline.py uses
+# (README: neutral Nx -> (x/2) N2; charged Nx+/- -> (x-5)/2 N2 + N5+/-).
+# Re-derived independently 2026-09-06 (xtb 6.7.1) rather than trusted blind:
+#   - E(N2) matched config_example.yaml's -5.763935 Ha to 6 decimals.
+#   - E(N5-) matched -14.7609 Ha to 4 decimals, from OUR OWN
+#     xyz_gfn2xtb/N5_anion_anion_001.xyz (its own E_react=-0.00, i.e. this
+#     run's anion reference candidate IS that structure).
+#   - E(N5+) matched -13.8169 Ha to 4 decimals, but NOT from our rank-1 --
+#     from N5_cation_cation_004 (E_react=0.00 there, not at rank 1;
+#     apparently later frequency-hop re-optimization promoted other
+#     candidates past the frozen reference). Ranks 1-3 are genuinely more
+#     stable than this anchor by construction.
+# This lets xtb_Erel_kcal in compare-xtb be a real absolute-energy
+# difference instead of the ambiguous as-reported E_react.
+XTB_E_N2_HARTREE = -5.763935420175
+XTB_E_N5_ANION_HARTREE = -14.760899219951
+XTB_E_N5_CATION_HARTREE = -13.816934622594
+
+
+def reconstruct_xtb_energy_hartree(n_atoms, family, e_react_kcal):
+    """E_react (as printed in xyz_gfn2xtb/*.xyz comments, kcal/mol) -> the
+    absolute GFN2-xTB total energy (Hartree) it was computed from."""
+    e_react_ha = e_react_kcal / HARTREE_TO_KCAL
+    if family == "neutral":
+        return e_react_ha + (n_atoms / 2.0) * XTB_E_N2_HARTREE
+    coeff_n2 = (n_atoms - 5) / 2.0
+    ref = XTB_E_N5_CATION_HARTREE if family == "cation" else XTB_E_N5_ANION_HARTREE
+    return e_react_ha + coeff_n2 * XTB_E_N2_HARTREE + ref
+
 
 def reaction_step(n, charge):
     """Nx^q -> N(x-2)^q + N2. Edit here if the real decomposition path differs
@@ -303,18 +332,19 @@ def parse_final_xyz(xyz_path):
     return atoms
 
 
-def parse_xtb_erel(xyz_path):
+def parse_xtb_absolute_energy_hartree(xyz_path, n_atoms, family):
     """xyz_gfn2xtb/*.xyz comment line looks like:
-    'N9_anion anion rank 1 E_react=-67.24 kcal/mol'
-    NOTE: the exact reference reaction behind E_react is defined in the
-    polyN-pipeline generator (not present on this machine) -- treat this as
-    an as-reported relative screening energy, not a verified absolute
-    quantity, until cross-checked against the pipeline source."""
+    'N9_anion anion rank 1 E_react=-67.24 kcal/mol' -- a reaction energy, not
+    an absolute one. Converted to an absolute GFN2-xTB Hartree energy via
+    reconstruct_xtb_energy_hartree() (see CONFIG for the re-derived anchors
+    and how they were verified against polyN_pipeline.py's own convention)."""
     if not os.path.exists(xyz_path):
         return None
     comment = read_text(xyz_path).splitlines()[1]
     m = re.search(r"E_react=(-?[\d.]+)", comment)
-    return float(m.group(1)) if m else None
+    if not m:
+        return None
+    return reconstruct_xtb_energy_hartree(n_atoms, family, float(m.group(1)))
 
 
 def classify_bond_length(d):
@@ -482,16 +512,16 @@ def compare_xtb(summary_csv, xyz_dir, out_dir):
     for (family, n_count), recs in families.items():
         for r in recs:
             xyz_path = os.path.join(xyz_dir, r["name"] + ".xyz")
-            r["xtb_Erel_asreported"] = parse_xtb_erel(xyz_path)
+            r["xtb_absolute_Eh"] = parse_xtb_absolute_energy_hartree(xyz_path, n_count, family)
         dft_min = min(float(r["electronic_Eh"]) for r in recs)
-        xtb_vals = [r["xtb_Erel_asreported"] for r in recs if r["xtb_Erel_asreported"] is not None]
+        xtb_vals = [r["xtb_absolute_Eh"] for r in recs if r["xtb_absolute_Eh"] is not None]
         xtb_min = min(xtb_vals) if xtb_vals else None
 
         recs_sorted = sorted(recs, key=lambda r: float(r["electronic_Eh"]))
         for dft_rank, r in enumerate(recs_sorted, start=1):
             dft_rel_kcal = (float(r["electronic_Eh"]) - dft_min) * HARTREE_TO_KCAL
-            xtb_rel_kcal = (r["xtb_Erel_asreported"] - xtb_min) if (
-                r["xtb_Erel_asreported"] is not None and xtb_min is not None) else None
+            xtb_rel_kcal = ((r["xtb_absolute_Eh"] - xtb_min) * HARTREE_TO_KCAL) if (
+                r["xtb_absolute_Eh"] is not None and xtb_min is not None) else None
             per_charge[family].append({
                 "n_count": n_count,
                 "name": r["name"],
@@ -502,7 +532,7 @@ def compare_xtb(summary_csv, xyz_dir, out_dir):
                 "delta_xtb_minus_dft_kcal": (
                     round(xtb_rel_kcal - dft_rel_kcal, 3) if xtb_rel_kcal is not None else ""
                 ),
-                "xtb_and_dft_agree_on_gs": (r["xtb_Erel_asreported"] == xtb_min) == (dft_rank == 1),
+                "xtb_and_dft_agree_on_gs": (r["xtb_absolute_Eh"] == xtb_min) == (dft_rank == 1),
             })
 
     os.makedirs(out_dir, exist_ok=True)
