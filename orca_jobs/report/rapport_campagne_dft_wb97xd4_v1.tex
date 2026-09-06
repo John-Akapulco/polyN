@@ -428,24 +428,37 @@ leur devenir apr\`es DFT.
 
 \input{coverage_summary.tex}
 
-Ces deux constats appellent des r\'eponses diff\'erentes. Les groupes \`a
-z\'ero candidat sont, pour la plupart, des charges paires (N$_x^{+}$/N$_x^{-}$,
-$x$ pair) jamais \'echantillonn\'ees par le pool~1 sur toute la gamme
-N$_4$--N$_{16}$, ainsi que les charges impaires aux tailles $\ge$14
-(N$_{14}^{\pm}$, N$_{15}^-$, N$_{16}^{\pm}$) -- une zone o\`u l'\'enum\'eration
-combinatoire exhaustive (\texttt{geng}/nauty) devient co\^uteuse
-(\`a partir de $n{\sim}14$--16 selon le README de \texttt{polyN\_adapt})
-et o\`u le pool~2, con\c{c}u pour peupler une fen\^etre d'\'energie par
-mutation locale de l'archive plut\^ot que par \'enum\'eration compl\`ete,
-est l'outil naturel pour combler ces cases sans exploser le co\^ut de
-calcul. \`A l'inverse, les groupes \`a rendement faible (N$_5^-$, N$_7^+$,
-N$_9^+$, N$_{11}^-$, N$_{13}^-$) restent dans la zone confortable du
-pool~1 (N$\le$13) mais souffrent d'un fort taux d'attrition apr\`es DFT
-(fragmentation, fr\'equence imaginaire, non-convergence) -- signe que les
-g\'eom\'etries de d\'epart g\'en\'er\'ees pour ces formules sont
-chimiquement peu viables plut\^ot qu'un simple manque de volume~: un
-r\'e-\'echantillonnage pool~1 cibl\'e sur ces groupes pr\'ecis (plut\^ot
-qu'un changement de g\'en\'erateur) est la piste la plus directe.
+La quasi-totalit\'e des groupes \`a z\'ero candidat (19 sur 20) sont en
+fait \textbf{hors de port\'ee de tout g\'en\'erateur singulet}, pool~1
+comme pool~2~: \texttt{core.geng\_interface.validate\_n\_for\_charge}
+(pool~2) formalise la r\`egle d\'ej\`a \`a l'oeuvre dans ce criblage
+(\S\ref{sec:origine})~: un \'etat singulet n'existe que si $7N-\mathrm{charge}$
+est pair, soit $N$ pair pour les neutres et $N$ impair pour les
+cations/anions. Les charges paires (N$_x^{+}$/N$_x^{-}$, $x$ pair) et les
+neutres \`a $N$ impair sont donc chimiquement exclus en singulet quelle
+que soit la m\'ethode de g\'en\'eration -- il faudrait un doublet, hors
+p\'erim\`etre des deux pools actuels (\texttt{evaluation/xtb\_bridge.py}
+fixe explicitement la multiplicit\'e \`a 1). \textbf{Un seul groupe est
+un vrai trou de couverture accessible en singulet~: N$_{15}^-$}, jamais
+\'echantillonn\'e par le pool~1. C'est l\`a, et sur les autres tailles
+$\ge$14 compatibles (charges impaires, \texttt{geng}/nauty devenant
+co\^uteux \`a partir de $n{\sim}14$--16 selon le README de
+\texttt{polyN\_adapt}), que le pool~2 (mutation locale de l'archive
+plut\^ot qu'\'enum\'eration compl\`ete) apporte une valeur r\'eelle --
+pas en ouvrant de nouvelles charges, mais en couvrant plus efficacement
+la m\^eme grille aux grandes tailles. \`A l'inverse, les groupes \`a
+rendement faible (N$_5^-$, N$_7^+$, N$_9^+$, N$_{11}^-$, N$_{13}^-$)
+restent dans la zone confortable du pool~1 (N$\le$13) mais souffrent
+d'un fort taux d'attrition apr\`es DFT (fragmentation, fr\'equence
+imaginaire, non-convergence) -- signe que les g\'eom\'etries de d\'epart
+g\'en\'er\'ees pour ces formules sont chimiquement peu viables plut\^ot
+qu'un simple manque de volume~: un r\'e-\'echantillonnage pool~1 cibl\'e
+sur ces groupes pr\'ecis (plut\^ot qu'un changement de g\'en\'erateur)
+est la piste la plus directe. Note d'\'echelle~: le pool~2 \'evalue
+chaque candidat en Python, en s\'erie, sur un seul c\oe ur (TBLite/GFN2-xTB
+in-process, aucune parall\'elisation par candidat n'est encore
+impl\'ement\'ee) -- sans commune mesure avec l'infrastructure
+SLURM/MPI des campagnes DFT/CCSD(T) de ce rapport.
 
 \section{Limites et prochaines \'etapes}
 \label{sec:limites}

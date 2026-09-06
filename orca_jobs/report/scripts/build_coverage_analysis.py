@@ -51,7 +51,17 @@ lines = [r"{\scriptsize", r"\begin{longtable}{@{}ccrrrrrr@{}}",
          r"\multicolumn{8}{c}{\small (suite)}\\ \toprule\endhead",
          r"\bottomrule\endfoot", r"\bottomrule\endlastfoot"]
 
-missing, low_yield = [], []
+def singlet_compatible(n, fam):
+    """Regle de core.geng_interface.validate_n_for_charge (pool 2) : un
+    etat singulet (7n - charge pair) n'existe que si n est pair a charge
+    paire (neutre) ou n impair a charge impaire (cation/anion). Les
+    groupes incompatibles sont a 0 candidat POUR TOUJOURS avec un
+    generateur singulet -- pool 1 comme pool 2 -- ce n'est pas un trou de
+    couverture a combler mais une exclusion chimique (necessiterait un
+    doublet, hors perimetre des deux generateurs actuels)."""
+    return (n % 2 == 0) if fam == "neutral" else (n % 2 == 1)
+
+missing_excluded, missing_reachable, low_yield = [], [], []
 last_n = None
 for n, fam in sorted(all_keys, key=lambda k: (k[0], {"neutral": 0, "cation": 1, "anion": 2}[k[1]])):
     key = (n, fam)
@@ -67,10 +77,12 @@ for n, fam in sorted(all_keys, key=lambda k: (k[0], {"neutral": 0, "cation": 1, 
     if yield_pct < 40:
         low_yield.append((n, fam, g, conf, yield_pct))
 for n, fam in all_keys:
-    if fam == "neutral" and n % 2 == 1:
-        continue  # N impair neutre = radical, exclu par construction (parite electronique) -- pas un trou de couverture
-    if total_gen.get((n, fam), 0) == 0:
-        missing.append((n, fam))
+    if total_gen.get((n, fam), 0) > 0:
+        continue
+    if not singlet_compatible(n, fam):
+        missing_excluded.append((n, fam))
+    else:
+        missing_reachable.append((n, fam))
 
 lines.append(r"\end{longtable}")
 lines.append(r"}")
@@ -81,20 +93,27 @@ with open(f"{REPORT_DIR}/table_coverage.tex", "w") as fh:
 def fmt_group(n, fam):
     return f"N$_{{{n}}}^{{{FAM_SIGN[fam].replace('0','')}}}$" if fam != "neutral" else f"N$_{{{n}}}$"
 
-missing_str = ", ".join(fmt_group(n, f) for n, f in missing)
+excluded_str = ", ".join(fmt_group(n, f) for n, f in sorted(missing_excluded))
+reachable_str = ", ".join(fmt_group(n, f) for n, f in sorted(missing_reachable)) or "aucun"
 low_yield_str = ", ".join(f"{fmt_group(n,f)} ({c}/{g}, {p:.0f}\\%)" for n, f, g, c, p in
                           sorted(low_yield, key=lambda x: x[4]))
 
 with open(f"{REPORT_DIR}/coverage_summary.tex", "w") as fh:
     fh.write(
-        r"\textbf{Absence totale de candidat} (0 g\'en\'er\'e~: hors de "
-        r"port\'ee pratique de l'\'enum\'eration exhaustive pool~1 \`a "
-        r"cette taille/charge, ou simplement jamais \'echantillonn\'e)~: "
-        + missing_str + r".\\[4pt]\textbf{Rendement faible} ($<$40\%, "
+        r"\textbf{Hors p\'erim\`etre singulet} (0 candidat, et cela ne "
+        r"changera pas avec un g\'en\'erateur singulet -- pool~1 ou "
+        r"pool~2 : $7N-\mathrm{charge}$ impair, aucun \'etat singulet "
+        r"n'existe \`a cette taille/charge, il faudrait un doublet)~: "
+        + excluded_str + r".\\[4pt]"
+        r"\textbf{Trou de couverture r\'eellement accessible} (0 "
+        r"candidat mais compatible singulet -- cible l\'egitime pour un "
+        r"compl\'ement pool~1 ou pool~2)~: " + reachable_str + r".\\[4pt]"
+        r"\textbf{Rendement faible} ($<$40\%, "
         r"beaucoup de candidats g\'en\'er\'es mais peu confirm\'es -- "
         r"g\'eom\'etries de d\'epart chimiquement peu viables plut\^ot "
         r"qu'un manque de volume)~: " + low_yield_str + "."
     )
 
-print(f"table_coverage.tex : {len(all_keys)-len(missing)} groupes non-vides, "
-      f"{len(missing)} groupes absents, {len(low_yield)} a rendement <40%")
+print(f"table_coverage.tex : {len(all_keys)-len(missing_excluded)-len(missing_reachable)} groupes non-vides, "
+      f"{len(missing_excluded)} hors perimetre singulet, {len(missing_reachable)} trous accessibles, "
+      f"{len(low_yield)} a rendement <40%")
