@@ -14,6 +14,7 @@
 \usepackage{hyperref}
 \usepackage{parskip}
 \usepackage{helvet}
+\usepackage{caption}
 \renewcommand{\familydefault}{\sfdefault}
 
 \definecolor{accent}{HTML}{1F4E78}
@@ -183,19 +184,35 @@ apparaissent.
 \input{table_ranking_anion.tex}
 
 \section{V\'erification des minima}
+\label{sec:minima}
 
-Sur les 92 structures termin\'ees avec un bloc de thermochimie complet,
-\textbf{19 pr\'esentent au moins une fr\'equence imaginaire} et ne sont
-donc pas, en l'\'etat, de vrais minima locaux -- concentr\'ees de mani\`ere
-frappante sur N$_{11}^-$ et N$_{14}$ neutre. Contrairement au protocole
+Sur les 120 structures termin\'ees avec un bloc de thermochimie complet,
+\textbf{30 pr\'esentent au moins une fr\'equence imaginaire} et ne sont
+donc pas, en l'\'etat, de vrais minima locaux. Contrairement au protocole
 gros-cluster, aucune red\'esym\'etrisation automatique n'est appliqu\'ee~:
 chaque candidat flagg\'e devra \^etre repris manuellement (distorsion le
 long du mode imaginaire puis r\'eoptimisation) avant d'\^etre retenu comme
 candidat final -- exactement la logique de la colonne
 \texttt{is\_true\_minimum} / \texttt{n\_freq\_hops} d\'ej\`a impl\'ement\'ee
 dans \texttt{polyN\_pipeline.py} au niveau GFN2-xTB, appliqu\'ee ici au
-niveau DFT. Le d\'etail (fr\'equence, intensit\'e IR) est dans
-\texttt{results\_imaginary\_modes.csv}.
+niveau DFT. Liste compl\`ete avec la fr\'equence imaginaire dominante
+(la plus n\'egative), son intensit\'e IR et l'\'energie relative au
+ground-state DFT de la m\^eme composition~: Tableau~S2 (Annexe) -- cette
+derni\`ere colonne permet de v\'erifier si l'instabilit\'e vibrationnelle
+concentre sur les isom\`eres d\'ej\`a tr\`es haut en \'energie (attendu)
+ou touche aussi des candidats proches du ground-state (auquel cas ce
+serait plus pr\'eoccupant pour le classement de stabilit\'e).
+
+Un contr\^ole s\'epar\'e de connectivit\'e (composantes connexes du
+graphe N--N \`a 1,70~\AA) identifie par ailleurs \textbf{19 candidats
+fragment\'es} -- deux ou plusieurs esp\`eces mol\'eculaires distinctes
+(ex.\ N$_2$ + N$_3^-$) plut\^ot qu'un cluster N$_x$ li\'e unique. Ils
+sont retir\'es de tous les tableaux d'analyse ci-dessous et de la
+comparaison de stabilit\'e (une esp\`ece dissoci\'ee est souvent plus
+basse en \'energie qu'un vrai cluster li\'e, ce qui fausserait tout
+classement) et regroup\'es \`a part~: Tableau~S1 et Figure~S4 (Annexe),
+avec repr\'esentation avant (g\'eom\'etrie xTB de d\'epart, topologie
+intacte) / apr\`es (r\'esultat DFT fragment\'e).
 
 \section{Orbitales fronti\`eres}
 
@@ -287,25 +304,58 @@ D\'etail complet et graphique interactif : voir l'artefact
 
 \clearpage
 \appendix
-\section{Structures optimis\'ees (DFT, minima confirm\'es)}
+\renewcommand{\thesection}{\Alph{section}}
+\section{Supporting Information}
 
-Les 90 candidats confirm\'es comme vrais minima au moment de la
-r\'edaction (aucune fr\'equence imaginaire -- y compris, le cas \'ech\'eant,
-des candidats fragment\'es en plusieurs esp\`eces, chaque fragment \'etant
-lui-m\^eme un minimum), deux par ligne. Trois figures, class\'ees par
-nombre d'atomes croissant puis par stabilit\'e au sein de chaque
+Mat\'eriel supl\'ementaire~: tableaux (Table~S1, S2) et figures
+(Figure~S1--S4) num\'erot\'es \`a la suite, s\'epar\'ement des tables et
+sections du corps principal.
+
+\subsection{Structures fragment\'ees}
+\label{sec:si-fragmented}
+
+Les 19 candidats identifi\'es comme fragment\'es (\S\ref{sec:minima}) --
+retir\'es de tous les tableaux et comparaisons du corps du rapport.
+
+\input{table_S1_fragmented.tex}
+
+Repr\'esentation avant (g\'eom\'etrie de d\'epart, criblage GFN2-xTB,
+topologie N$_x$ intacte) / apr\`es (r\'esultat de l'optimisation DFT
+WB97X-D4, s\'epar\'e en plusieurs esp\`eces) pour les 13 candidats dont
+le calcul DFT est termin\'e (les 6 autres ne sont, pour l'instant,
+identifi\'es fragment\'es qu'au niveau xTB -- pas encore de g\'eom\'etrie
+DFT \`a montrer).
+
+\input{annexe_fragmented.tex}
+
+\subsection{Structures avec fr\'equence imaginaire}
+\label{sec:si-imaginary}
+
+Les 30 candidats pas encore confirm\'es comme vrais minima
+(\S\ref{sec:minima}), avec la fr\'equence imaginaire dominante,
+son intensit\'e IR, et l'\'energie relative au ground-state DFT de la
+m\^eme composition (pour rep\'erer une \'eventuelle corr\'elation entre
+instabilit\'e vibrationnelle et haute \'energie relative).
+
+\input{table_S2_imaginary.tex}
+
+\subsection{Structures optimis\'ees confirm\'ees}
+\label{sec:si-confirmed}
+
+Les 81 candidats confirm\'es comme vrais minima \textbf{non-fragment\'es}
+au moment de la r\'edaction, deux par ligne. Trois figures, class\'ees
+par nombre d'atomes croissant puis par stabilit\'e au sein de chaque
 formule~: Figure~S1 (neutres), Figure~S2 (cations), Figure~S3 (anions).
 Chaque structure porte son nom, son groupe ponctuel, son $\Delta H$
-(kcal/mol, isom\`ere le plus stable \emph{non-fragment\'e} de sa formule
-$=0$), le niveau de th\'eorie de ce $\Delta H$ (DFT ou xTB si le DFT n'est
-pas encore termin\'e), sa r\'ef\'erence (num\'ero(s) d'article ou
-\emph{our work}), et la mention \emph{fragment\'ee} avec la taille des
-morceaux si la structure n'est pas un cluster li\'e unique.
+(kcal/mol, isom\`ere le plus stable non-fragment\'e de sa formule $=0$),
+le niveau de th\'eorie de ce $\Delta H$ (DFT ou xTB si le DFT n'est pas
+encore termin\'e), et sa r\'ef\'erence (num\'ero(s) d'article ou
+\emph{our work}).
 
 \input{annexe_structures.tex}
 
 \clearpage
-\section{R\'ef\'erences}
+\subsection{R\'ef\'erences}
 
 Articles cit\'es dans les tableaux de la section~\ref{sec:provenance}
 (num\'erotation propre \`a ce rapport ; correspondance avec les codes de

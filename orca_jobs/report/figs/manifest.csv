@@ -20,10 +20,8 @@ N10_neutral_neutral_022,D5h
 N11_anion_anion_006,C1
 N11_anion_anion_007,Cs
 N11_anion_anion_008,C1
-N11_anion_anion_011,C1
 N11_anion_anion_013,C1
 N11_anion_anion_017,C1
-N11_anion_anion_018,C1
 N11_cation_cation_001,C2v
 N11_cation_cation_004,C1
 N11_cation_cation_006,C1
@@ -47,12 +45,6 @@ N15_cation_cation_002,C1
 N4_neutral_neutral_001,Td
 N4_neutral_neutral_004,D2h
 N5_anion_anion_001,D5h
-N5_anion_anion_002,C1
-N5_anion_anion_003,C1
-N5_anion_anion_004,C1
-N5_anion_anion_005,C1
-N5_anion_anion_007,C1
-N5_anion_anion_008,C1
 N5_anion_anion_010,C2v
 N5_cation_cation_001,C2v
 N5_cation_cation_002,Cs
@@ -88,4 +80,3 @@ N8_neutral_neutral_016,Cs
 N8_neutral_neutral_019,D2d
 N8_neutral_neutral_024,D2h
 N9_anion_anion_001,C1
-N9_cation_cation_001,C1
