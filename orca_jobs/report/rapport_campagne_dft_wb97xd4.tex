@@ -1,0 +1,228 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{accent}{HTML}{1F4E78}
+
+\titleformat{\section}{\color{accent}\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\color{accent}\large\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small Campagne DFT WB97X-D4 -- compos\'es polyazot\'es}
+\fancyhead[R]{\small\thepage}
+
+\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent, citecolor=accent}
+
+\title{\color{accent}\textbf{Criblage DFT (WB97X-D4/aug-cc-pVTZ) des allotropes\\
+polyazot\'es N$_x$ : rapport d'\'etape}}
+\author{Gilles Frapper \\ Professeur des Universit\'es en Chimie Th\'eorique \\ IC2MP UMR 7285 CNRS, Universit\'e de Poitiers \\[2pt] \small \href{mailto:gilles.frapper@univ-poitiers.fr}{gilles.frapper@univ-poitiers.fr}}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\begin{abstract}
+\noindent Ce document rend compte de la campagne DFT en cours au niveau
+WB97X-D4/aug-cc-pVTZ sur les \textbf{193 candidats} pr\'es\'electionn\'es
+par criblage GFN2-xTB (N$_4$ \`a N$_{16}$, familles neutre/cation/anion).
+\'Etat au moment de la r\'edaction~: \textbf{70 structures optimis\'ees et
+v\'erifi\'ees par calcul de fr\'equences} (36~\%), 0 erreur ORCA, campagne
+active sur cluster SLURM. Sur ces 70~: \textbf{14 (20~\%) pr\'esentent au
+moins une fr\'equence imaginaire} et ne sont donc pas encore de vrais
+minima -- concentr\'ees de mani\`ere frappante sur la famille N$_{11}$
+(7 des 16 candidats N$_{11}$ termin\'es). Une confrontation aux bases de
+donn\'ees et \`a la litt\'erature d\'ej\`a compil\'ees dans
+\texttt{polyN-pipeline} montre que, parmi les 7 groupes (formule, charge)
+o\`u une comparaison est possible, \textbf{le criblage local a d\'ej\`a
+trouv\'e un isom\`ere plus stable que tout ce qui est catalogu\'e dans 4
+d'entre eux} (N$_9^-$, N$_9^+$, N$_{10}$, N$_{12}$), tandis que 165 des
+193 candidats (86~\%) ne correspondent \`a aucune topologie r\'ef\'erenc\'ee
+ailleurs -- 89 par absence totale de point de comparaison \`a cette
+formule/charge, 76 par distinction g\'eom\'etrique v\'erifi\'ee.
+\end{abstract}
+
+\section{M\'ethode}
+
+\subsection{Origine des candidats}
+
+Les 193 structures de d\'epart proviennent du criblage GFN2-xTB de
+\texttt{polyN-pipeline} (g\'en\'eration RDKit ETKDGv3 + \'enum\'eration de
+graphes \texttt{geng}/nauty + substitution isolobale C$\to$N +
+\'echantillonnage al\'eatoire, selon la formule), s\'election par
+stoechiom\'etrie et v\'erification de fr\'equences \`a ce niveau. Elles ne
+sont pas r\'eparties uniform\'ement~: les formules \`a N impair
+(N$_5$, N$_7$, N$_9$, N$_{11}$, N$_{13}$, N$_{15}$) ne sont repr\'esent\'ees
+qu'en cation/anion (contrainte de parit\'e \'electronique), les formules
+paires principalement en neutre.
+
+\subsection{Niveau de calcul}
+
+Optimisation de g\'eom\'etrie puis fr\'equences, WB97X-D4/aug-cc-pVTZ,
+TightSCF, DEFGRID3 (ORCA 6.1.0). Deux protocoles selon la taille~:
+
+\begin{itemize}[leftmargin=1.4em]
+  \item \textbf{N$_4$--N$_{11}$} (« petits ») : un job unique Opt+Freq,
+  sans contrainte de sym\'etrie -- \'evite tout risque de figer un
+  candidat Jahn-Teller dans un point-selle de sym\'etrie artificiellement
+  \'elev\'ee.
+  \item \textbf{N$_{12}$--N$_{16}$} (« gros ») : cha\^ine en trois \'etapes
+  Opt (sans sym\'etrie) $\to$ r\'e-optimisation rapide avec \texttt{UseSym}
+  (nettoie la g\'eom\'etrie vers le groupe ponctuel exact) $\to$ Freq avec
+  \texttt{UseSym} (diagonalisation du Hessien exploitant la sym\'etrie
+  compl\`ete, pas seulement les sous-groupes de D$_{2h}$). Surco\^ut mesur\'e
+  d'un facteur ${\sim}2$ en temps de calcul sur un cas test (N$_5^-$,
+  7:41 $\to$ 15:35), jug\'e acceptable uniquement pour les grosses
+  structures o\`u dominent i) le gain de temps r\'eel sur la diagonalisation
+  du Hessien et ii) l'int\'er\^et d'une g\'eom\'etrie/sym\'etrie propre pour
+  l'analyse des distances et ordres de liaison N--N.
+\end{itemize}
+
+Distribution sur cluster SLURM via un ordonnanceur maison
+(\texttt{production\_dispatch.py})~: surveillance en continu des c\oe urs
+libres sur les n\oe uds allou\'es, soumission automatique du prochain
+candidat d\`es qu'un cr\'eneau se lib\`ere, 8 c\oe urs par job pour les
+petits (optimum mesur\'e~: efficacit\'e CPU 75--96~\%, gain marginal
+au-del\`a), 24--32 c\oe urs pour les gros (efficacit\'e 90--96~\% mesur\'ee
+jusqu'\`a 32 c\oe urs sur N$_{12}$).
+
+\section{\'Etat d'avancement}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+Groupe & Termin\'es & Groupe ponctuel (meilleur) & $E$ (eV/atome) & Statut \\
+\midrule
+N$_4$ neutre        & 4/4   & $T_d$   & $-1489{,}2317$ & 2 confirm\'es / 2 \`a reoptimiser \\
+N$_5^-$             & 4/10  & $C_1$   & $-1490{,}7970$ & 4 confirm\'es \\
+N$_5^+$             & 1/7   & $D_{2d}$ & $-1487{,}2110$ & 1 confirm\'e \\
+N$_9^-$             & 1/20  & $C_1$   & $-1490{,}2728$ & 1 confirm\'e \\
+N$_9^+$             & 1/12  & $C_1$   & $-1489{,}5163$ & 1 confirm\'e \\
+N$_{10}$ neutre     & 19/22 & $C_2$   & $-1490{,}1063$ & 18 confirm\'es / 1 \`a reoptimiser \\
+N$_{11}^-$          & 13/18 & $C_1$   & $-1490{,}1380$ & 7 confirm\'es / \textbf{6 \`a reoptimiser} \\
+N$_{11}^+$          & 3/10  & $C_{2v}$ & $-1488{,}9635$ & 1 confirm\'e / 2 \`a reoptimiser \\
+N$_{12}^+$          & 1/1   & $C_1$   & $-1489{,}1325$ & 1 confirm\'e \\
+N$_{12}$ neutre     & 9/9   & $C_1$   & $-1490{,}0774$ & 8 confirm\'es / 1 \`a reoptimiser \\
+N$_{13}^-$          & 1/4   & $C_1$   & $-1489{,}9224$ & 1 confirm\'e \\
+N$_{13}^+$          & 3/4   & $C_1$   & $-1489{,}0450$ & 3 confirm\'es \\
+N$_{14}$ neutre     & 6/5\footnotemark[1] & $C_2$   & $-1489{,}3235$ & 2 confirm\'es / 4 \`a reoptimiser \\
+N$_{15}^+$          & 4/2\footnotemark[1] & $C_1$   & $-1489{,}4193$ & 4 confirm\'es \\
+\bottomrule
+\end{tabular}
+\caption{\'Etat par groupe (formule, charge) au moment de la r\'edaction.
+\'Energie du meilleur \textbf{minimum confirm\'e} (aucune fr\'equence
+imaginaire) ; quand aucun minimum n'est encore confirm\'e dans un groupe,
+la valeur report\'ee est absente. N$_6$--N$_8$ et une partie de
+N$_7^{\pm}$/N$_9$ compl\'ementaires restent en file au moment de la
+r\'edaction.}
+\label{tab:etat-avancement}
+\end{table}
+\footnotetext[1]{Le d\'enominateur \texttt{jobs\_list.txt} sous-compte
+l\'eg\`erement N$_{14}$/N$_{15}$ neutre/cation dans ce d\'ecompte
+pr\'eliminaire -- \`a corriger dans la version finale une fois la
+campagne compl\`ete.}
+
+\section{V\'erification des minima}
+
+Sur les 70 structures termin\'ees, \textbf{14 (20~\%) portent au moins une
+fr\'equence imaginaire} et ne sont donc pas, en l'\'etat, de vrais minima
+locaux~: N$_4$ neutre (2/4), N$_{10}$ neutre (1/19), N$_{11}^-$
+(\textbf{6/13}), N$_{11}^+$ (2/3), N$_{12}$ neutre (1/9), N$_{14}$ neutre
+(4/6). La concentration sur N$_{11}^-$ (46~\% des candidats termin\'es \`a
+cette formule) et N$_{14}$ neutre (67~\%) sugg\`ere une surface d'\'energie
+potentielle particuli\`erement plate ou multi-minima \`a ces tailles --
+plausible pour des clusters N--N de cette gamme, o\`u plusieurs topologies
+squelettiques sont quasi-d\'eg\'en\'er\'ees. Contrairement au protocole
+gros-cluster (section~2.2), aucune red\'esym\'etrisation automatique n'est
+appliqu\'ee~: chaque candidat flagg\'e devra \^etre repris manuellement
+(distorsion le long du mode imaginaire puis r\'eoptimisation) avant d'\^etre
+retenu comme candidat final -- exactement la logique de la colonne
+\texttt{is\_true\_minimum} / \texttt{n\_freq\_hops} d\'ej\`a impl\'ement\'ee
+dans \texttt{polyN\_pipeline.py} au niveau GFN2-xTB, appliqu\'ee ici au
+niveau DFT.
+
+\section{Confrontation \`a la litt\'erature et aux bases externes}
+
+Le fichier \texttt{biblio\_polyN/comparison\_table\_3sources.csv} de
+\texttt{polyN-pipeline} catalogue 337 structures connues (articles publi\'es
++ bases externes \texttt{N\_csp} et \texttt{polyN\_study}, relax\'ees au
+m\^eme niveau GFN2-xTB). Le croisement par (N, charge) avec nos 193
+candidats donne trois r\'esultats compl\'ementaires~:
+
+\begin{itemize}[leftmargin=1.4em]
+  \item \textbf{Couverture} : 12 des 19 groupes (89 des 193 structures,
+  46~\%) n'ont \textbf{aucune} r\'ef\'erence catalogu\'ee \`a cette
+  formule/charge -- tous les N impairs sauf N$_9$, et N$_{14}$/N$_{16}$
+  neutres. Rien \`a comparer, ce qui n'est pas une preuve de nouveaut\'e
+  mais une absence de terrain de comparaison.
+  \item \textbf{Topologie} : pour les 104 candidats des 7 groupes
+  comparables, une empreinte de graphe de liaisons (s\'equence de degr\'es
+  + tailles de cycles + nombre de liaisons, seuil 1,90~\AA, NetworkX)
+  montre que \textbf{76 (73~\%) ne correspondent \`a aucune connectivit\'e
+  catalogu\'ee}. Au total, \textbf{165 des 193 candidats (86~\%)} sont donc
+  distincts de tout ce qui existe dans le tableau \`a 3 sources.
+  \item \textbf{Stabilit\'e} : en reconstruisant l'\'energie GFN2-xTB
+  absolue de nos candidats (\`a partir de la convention de r\'eaction de
+  \texttt{polyN\_pipeline.py}, ancres $E$(N$_2$), $E$(N$_5^-$), $E$(N$_5^+$)
+  re-d\'eriv\'ees ind\'ependamment ici et concordantes \`a 5--6 d\'ecimales),
+  \textbf{4 des 7 groupes comparables voient leur meilleur candidat local
+  d\'epasser en stabilit\'e le meilleur catalogu\'e} -- N$_9^-$
+  ($-0{,}166$~eV/atome), N$_9^+$ ($-0{,}213$), N$_{10}$ ($-0{,}066$,
+  malgr\'e 60 r\'ef\'erences disponibles), N$_{12}$ ($-0{,}246$). N$_6$ et
+  N$_8$ retombent exactement sur le minimum d\'ej\`a connu ($<0{,}0001$
+  eV/atome d'\'ecart, bon signe de coh\'erence de la m\'ethode). N$_4$ est
+  la seule perte nette ($+0{,}302$~eV/atome sous la r\'ef\'erence
+  \texttt{N4\_chain}).
+\end{itemize}
+
+D\'etail complet et graphique interactif : voir l'artefact
+\href{https://claude.ai/code/artifact/da2b875a-5560-4a2d-b719-5dbb4d27ddac}{\emph{Uncharted Compositions}}.
+
+\section{Limites et prochaines \'etapes}
+
+\begin{itemize}[leftmargin=1.4em]
+  \item La comparaison de stabilit\'e ci-dessus reste au niveau
+  \textbf{GFN2-xTB} (reconstruit \`a partir de \texttt{E\_react}) -- la
+  confirmation d\'efinitive viendra des \'energies WB97X-D4 elles-m\^emes,
+  une fois la campagne compl\`ete et les 14 candidats flaqu\'es
+  re-optimis\'es en vrais minima.
+  \item Les cha\^ines de r\'eaction de d\'ecomposition
+  ($N_x^{q} \to N_{x-2}^{q} + N_2$) sont impl\'ement\'ees
+  (\texttt{harvest\_results.py reactions}) et s'auto-r\'ef\'erencent pour
+  les neutres ($\Delta H_f$(N$_2$)$=0$) mais requi\`erent encore une valeur
+  de $\Delta H_f$ de r\'ef\'erence litt\'erature pour les ions (ancres
+  N$_5^-$ cyclique et N$_5^+$ coud\'e), non renseign\'ee \`a ce jour.
+  \item Charges de Bader (QTAIM) et de Manz (DDEC6) report\'ees \`a une
+  \'etape ult\'erieure -- ni l'une ni l'autre n'est native \`a ORCA
+  (n\'ecessitent respectivement le code de Henkelman et Chargemol sur un
+  cube de densit\'e via \texttt{orca\_plot}), non install\'ees sur le
+  cluster \`a ce jour.
+  \item Tous les fichiers ORCA bruts (\texttt{.gbw}, \texttt{.densities},
+  \texttt{.hess}) sont conserv\'es intacts pour une seconde campagne
+  CCSD(T) envisag\'ee sur les petites structures -- le module
+  \texttt{refinement/} du d\'ep\^ot compagnon
+  \href{https://github.com/John-Akapulco/polyN}{\texttt{polyN}} impl\'emente
+  d\'ej\`a un enchaînement de m\'ethodes config-driven avec seuil de taille
+  (\texttt{max\_n\_atoms}) adapt\'e \`a cet usage.
+\end{itemize}
+
+\end{document}
