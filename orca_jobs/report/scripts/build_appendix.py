@@ -35,7 +35,7 @@ for r in manifest:
     fam = s["family"]
     by_family[fam].append((n, r["name"], r["point_group"]))
 
-order = [("neutral", "S2", "neutres"), ("cation", "S3", "cationiques"), ("anion", "S4", "anioniques")]
+order = [("neutral", "S3", "neutres"), ("cation", "S4", "cationiques"), ("anion", "S5", "anioniques")]
 out_lines = []
 for fam, fig_label, label_fr in order:
     items = sorted(by_family.get(fam, []), key=lambda t: (t[0], rel_dH.get(t[1], 0)))

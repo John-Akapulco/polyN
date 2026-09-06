@@ -157,7 +157,7 @@ for r in imag_rows:
     by_imag[r["name"]].append(r)
 
 summ_by_name = {r["name"]: r for r in summ}
-lines = [r"\noindent\textbf{Tableau S2.} Structures avec au moins une fr\'equence imaginaire (pas encore de vrai minimum), toutes issues d'un calcul DFT WB97X-D4 termin\'e. "
+lines = [r"\noindent\textbf{Tableau S3.} Structures avec au moins une fr\'equence imaginaire (pas encore de vrai minimum), toutes issues d'un calcul DFT WB97X-D4 termin\'e. "
          r"``Max.\ imaginaire''~: la fr\'equence de plus grande amplitude parmi les modes imaginaires "
          r"(mode dominant de la coordonn\'ee de r\'eaction vers le vrai minimum). $\Delta H$~: \'energie "
          r"relative au ground-state DFT confirm\'e (vrai minimum, non fragment\'e) de la m\^eme "

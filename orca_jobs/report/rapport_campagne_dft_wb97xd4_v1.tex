@@ -54,8 +54,13 @@ par criblage GFN2-xTB (N$_4$ \`a N$_{16}$, familles neutre/cation/anion).
 \textbf{158 structures} (82~\%) disposent d'un r\'esultat DFT exploitable
 (g\'eom\'etrie optimis\'ee et fr\'equences v\'erifi\'ees), tandis que
 \textbf{35} (18~\%) ont atteint la limite de cycles d'optimisation sans
-converger -- \'energie non fiable, \`a reprendre avec davantage de cycles
-(\S\ref{sec:minima}). Un contr\^ole syst\'ematique de connectivit\'e
+converger. Parmi ces 35, \textbf{28 sont en r\'ealit\'e d\'ej\`a
+s\'epar\'ees en plusieurs composantes} \`a la derni\`ere g\'eom\'etrie
+tent\'ee (l'optimiseur suit un gradient de dissociation qui ne s'annule
+jamais en un nombre fini de cycles -- probablement pas de minimum li\'e
+du tout pour ces topologies) ; seules \textbf{7} restent un cluster
+unique et sont des candidates cr\'edibles \`a une reprise avec davantage
+de cycles (\S\ref{sec:minima}, Tableau~S2). Un contr\^ole syst\'ematique de connectivit\'e
 (\S\ref{sec:provenance}) a par ailleurs r\'ev\'el\'e que 24 des 158
 structures exploitables sont en r\'ealit\'e \textbf{fragment\'ees} (deux
 esp\`eces mol\'eculaires distinctes plut\^ot qu'un cluster li\'e, ex.\
@@ -278,7 +283,19 @@ Les 193 jobs SLURM de cette campagne sont tous termin\'es, mais
 \textbf{35 d'entre eux (18~\%) n'ont pas convergé} -- l'optimiseur DFT a
 atteint sa limite de cycles (\texttt{The optimization did not converge
 but reached the maximum}) sans trouver de point stationnaire ; leur
-\'energie n'est donc pas exploitable en l'\'etat. Ces 35 sont exclues de
+\'energie n'est donc pas exploitable en l'\'etat. Un contr\^ole de
+connectivit\'e sur la derni\`ere g\'eom\'etrie tent\'ee (et non la
+g\'eom\'etrie xTB de d\'epart) montre que \textbf{28 des 35 sont d\'ej\`a
+s\'epar\'ees en plusieurs composantes connexes} \`a ce dernier cycle --
+l'optimiseur suit une dissociation en cours plut\^ot qu'un vrai probl\`eme
+num\'erique de convergence, et une reprise avec plus de cycles ne
+trouvera vraisemblablement aucun minimum li\'e pour ces topologies.
+Seules les \textbf{7} restantes (cluster unique au dernier cycle) sont
+des candidates cr\'edibles \`a une reprise. Liste compl\`ete avec le
+nombre de cycles atteint, le statut de fragmentation au dernier cycle et
+repr\'esentation avant (g\'eom\'etrie xTB de d\'epart) / dernier cycle
+tent\'e~: Tableau~S2 et Figure~S2 (Annexe, \S\ref{sec:si-nonconverged}).
+Ces 35 sont exclues de
 tous les tableaux d'analyse ci-dessous et devront \^etre reprises avec
 davantage de cycles d'optimisation (\texttt{\%geom MaxIter}) dans une
 prochaine passe. Les \textbf{158 structures restantes} disposent d'un
@@ -420,8 +437,8 @@ D\'etail complet et graphique interactif : voir l'artefact
 \renewcommand{\thesection}{\Alph{section}}
 \section{Supporting Information}
 
-Mat\'eriel suppl\'ementaire~: tableaux (Tableau~S1, S2) et figures
-(Figure~S1--S4) num\'erot\'es \`a la suite, s\'epar\'ement des tableaux et
+Mat\'eriel suppl\'ementaire~: tableaux (Tableau~S1--S3) et figures
+(Figure~S1--S5) num\'erot\'es \`a la suite, s\'epar\'ement des tableaux et
 sections du corps principal.
 
 \subsection{Structures fragment\'ees}
@@ -432,6 +449,14 @@ sections du corps principal.
 \bigskip
 \input{annexe_fragmented.tex}
 
+\subsection{Structures non convergées}
+\label{sec:si-nonconverged}
+
+\input{table_S2_nonconverged.tex}
+
+\bigskip
+\input{annexe_nonconverged.tex}
+
 \subsection{Structures avec fr\'equence imaginaire}
 \label{sec:si-imaginary}
 
@@ -440,10 +465,10 @@ sections du corps principal.
 \subsection{Structures optimis\'ees confirm\'ees}
 \label{sec:si-confirmed}
 
-Les 81 candidats confirm\'es comme vrais minima \textbf{non-fragment\'es}
+Les 110 candidats confirm\'es comme vrais minima \textbf{non-fragment\'es}
 au moment de la r\'edaction, deux par ligne. Trois figures, class\'ees
 par nombre d'atomes croissant puis par stabilit\'e au sein de chaque
-formule~: Figure~S2 (neutres), Figure~S3 (cations), Figure~S4 (anions).
+formule~: Figure~S3 (neutres), Figure~S4 (cations), Figure~S5 (anions).
 Chaque structure porte son nom, son groupe ponctuel, son $\Delta H$
 (kcal/mol), le niveau de th\'eorie de ce $\Delta H$ (DFT ou xTB si le DFT
 n'est pas encore termin\'e), et sa r\'ef\'erence (num\'ero(s) d'article ou

@@ -1,0 +1,47 @@
+\noindent\textbf{Tableau S2.} Structures dont l'optimisation g\'eom\'etrique DFT WB97X-D4/aug-cc-pVTZ n'a \textbf{pas converg\'e} -- l'optimiseur a atteint sa limite de 50 cycles (\texttt{The optimization did not converge but reached the maximum}) sans trouver de point stationnaire. \'Energie non fiable, structures exclues de tous les tableaux d'analyse (\S\ref{sec:provenance}--\ref{sec:bonds}) et de la comparaison de stabilit\'e (\S\ref{sec:litterature}) tant qu'elles n'ont pas \'et\'e reprises. \textbf{28~des 35~n'ont en r\'ealit\'e probablement jamais de minimum li\'e} : la colonne \emph{Frag.\ dernier cycle} montre qu'elles sont d\'ej\`a s\'epar\'ees en plusieurs composantes connexes (seuil 1,70~\AA) \`a la derni\`ere g\'eom\'etrie tent\'ee -- l'optimiseur suit un gradient de dissociation qui ne s'annule jamais en un nombre fini de cycles, plut\^ot qu'un probl\`eme num\'erique de convergence~; les relancer avec \texttt{\%geom MaxIter} plus grand ne changera probablement rien. Seules les 7 restantes (compos\'e li\'e unique au dernier cycle) sont des candidates cr\'edibles \`a une reprise avec davantage de cycles. Repr\'esentations avant/dernier cycle en Figure~S2.\par\vspace{4pt}
+{\scriptsize
+\begin{longtable}{@{}p{3.8cm}ccrp{1.6cm}c@{}}
+\label{tab:nonconverged}\\
+\toprule
+\textbf{Nom} & \textbf{N} & \textbf{Charge} & \textbf{Cycles} & \textbf{Frag.\ dernier cycle} & \textbf{R\'ef.} \\
+\midrule\endfirsthead
+\multicolumn{6}{c}{\small (suite)}\\ \toprule\endhead
+\bottomrule\endfoot
+\bottomrule\endlastfoot
+\texttt{N6\_neutral\_neutral\_011} & 6 & 0 & 50 & \checkmark~(2$+$4) & our work \\
+\texttt{N7\_anion\_anion\_006} & 7 & - & 50 & \checkmark~(2$+$2$+$3) & our work \\
+\texttt{N7\_anion\_anion\_015} & 7 & - & 50 & \checkmark~(2$+$2$+$3) & our work \\
+\texttt{N7\_cation\_cation\_002} & 7 & + & 50 & \checkmark~(2$+$5) & our work \\
+\texttt{N7\_cation\_cation\_004} & 7 & + & 50 & \checkmark~(2$+$2$+$3) & our work \\
+\texttt{N8\_neutral\_neutral\_011} & 8 & 0 & 50 & non & our work \\
+\texttt{N8\_neutral\_neutral\_015} & 8 & 0 & 50 & non & our work \\
+\texttt{N8\_neutral\_neutral\_017} & 8 & 0 & 50 & \checkmark~(2$+$6) & our work \\
+\texttt{N9\_anion\_anion\_002} & 9 & - & 50 & \checkmark~(2$+$2$+$5) & our work \\
+\texttt{N9\_anion\_anion\_007} & 9 & - & 50 & \checkmark~(3$+$6) & our work \\
+\texttt{N9\_anion\_anion\_009} & 9 & - & 50 & \checkmark~(2$+$7) & our work \\
+\texttt{N9\_anion\_anion\_014} & 9 & - & 50 & \checkmark~(2$+$7) & our work \\
+\texttt{N9\_anion\_anion\_017} & 9 & - & 50 & non & our work \\
+\texttt{N9\_anion\_anion\_020} & 9 & - & 50 & \checkmark~(2$+$7) & our work \\
+\texttt{N9\_cation\_cation\_002} & 9 & + & 50 & \checkmark~(2$+$2$+$5) & our work \\
+\texttt{N9\_cation\_cation\_003} & 9 & + & 50 & \checkmark~(2$+$7) & our work \\
+\texttt{N9\_cation\_cation\_004} & 9 & + & 50 & \checkmark~(2$+$2$+$5) & our work \\
+\texttt{N9\_cation\_cation\_005} & 9 & + & 50 & \checkmark~(2$+$2$+$2$+$3) & our work \\
+\texttt{N9\_cation\_cation\_007} & 9 & + & 50 & \checkmark~(2$+$2$+$5) & our work \\
+\texttt{N9\_cation\_cation\_010} & 9 & + & 50 & non & our work \\
+\texttt{N10\_neutral\_neutral\_008} & 10 & 0 & 50 & \checkmark~(2$+$2$+$3$+$3) & our work \\
+\texttt{N10\_neutral\_neutral\_009} & 10 & 0 & 50 & \checkmark~(2$+$8) & our work \\
+\texttt{N10\_neutral\_neutral\_012} & 10 & 0 & 50 & \checkmark~(2$+$2$+$6) & our work \\
+\texttt{N11\_anion\_anion\_009} & 11 & - & 50 & \checkmark~(2$+$2$+$7) & our work \\
+\texttt{N11\_anion\_anion\_012} & 11 & - & 50 & non & our work \\
+\texttt{N11\_anion\_anion\_014} & 11 & - & 50 & \checkmark~(2$+$9) & our work \\
+\texttt{N11\_anion\_anion\_015} & 11 & - & 50 & non & our work \\
+\texttt{N11\_anion\_anion\_016} & 11 & - & 50 & \checkmark~(2$+$2$+$7) & our work \\
+\texttt{N11\_cation\_cation\_003} & 11 & + & 50 & \checkmark~(2$+$2$+$7) & our work \\
+\texttt{N11\_cation\_cation\_008} & 11 & + & 50 & \checkmark~(2$+$2$+$2$+$5) & our work \\
+\texttt{N13\_anion\_anion\_002} & 13 & - & 50 & \checkmark~(2$+$11) & our work \\
+\texttt{N13\_anion\_anion\_003} & 13 & - & 50 & non & our work \\
+\texttt{N13\_anion\_anion\_004} & 13 & - & 50 & \checkmark~(2$+$11) & our work \\
+\texttt{N13\_cation\_cation\_002} & 13 & + & 50 & \checkmark~(2$+$2$+$2$+$7) & our work \\
+\texttt{N13\_cation\_cation\_003} & 13 & + & 50 & \checkmark~(2$+$2$+$9) & our work \\
+\end{longtable}
+}

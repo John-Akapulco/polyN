@@ -10,6 +10,7 @@ logs/
 reference/
 xyz_gfn2xtb/
 xyz_dft_wb97xd4/
+xyz_dft_nonconverged/
 __pycache__/
 *.pyc
 dispatch_stdout.log

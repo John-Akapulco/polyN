@@ -100,3 +100,25 @@ with open(os.path.join(FRAG_DIR, "manifest.csv"), "w", newline="") as fh:
     w = csv.writer(fh); w.writerow(["name", "fragment_sizes"])
     w.writerows((n, frag_rows[n]["fragment_sizes"]) for n in frag_names)
 print("Figure S4 rendered (fragmented, before/after):", len(frag_names))
+
+# --- Figure S2 (non convergees) : avant (xTB de depart) / apres (derniere
+# geometrie tentee, cycle limite atteint sans convergence) ---
+NC_XYZ_DIR = "/home/gilles/polyN/orca_jobs/xyz_dft_nonconverged"
+NC_DIR = os.path.join(OUT_DIR, "nonconverged")
+os.makedirs(NC_DIR, exist_ok=True)
+nc_rows = list(csv.DictReader(open("/home/gilles/polyN/orca_jobs/results_nonconverged.csv")))
+nc_names = []
+for r in nc_rows:
+    name = r["name"]
+    xtb_path = os.path.join(XTB_DIR, name + ".xyz")
+    last_path = os.path.join(NC_XYZ_DIR, name + ".xyz")
+    if not (os.path.exists(xtb_path) and os.path.exists(last_path)):
+        continue
+    render(xtb_path, os.path.join(NC_DIR, name + "_initial.png"))
+    render(last_path, os.path.join(NC_DIR, name + "_last.png"))
+    nc_names.append(name)
+
+with open(os.path.join(NC_DIR, "manifest.csv"), "w", newline="") as fh:
+    w = csv.writer(fh); w.writerow(["name", "n_cycles"])
+    w.writerows((n, next(r["n_cycles"] for r in nc_rows if r["name"] == n)) for n in nc_names)
+print("Figure S2 rendered (non convergees, before/last cycle):", len(nc_names))
