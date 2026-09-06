@@ -15,9 +15,10 @@ summary = {r["name"]: r for r in csv.DictReader(open("/home/gilles/polyN/orca_jo
 used_codes = []
 for r in topo.values():
     if r["matched_origin"] == "biblio_article":
-        code = name_to_ref.get(r["matched_name"])
-        if code and code not in used_codes:
-            used_codes.append(code)
+        for nm in r["all_biblio_names"].split(";") if r["all_biblio_names"] else []:
+            code = name_to_ref.get(nm)
+            if code and code not in used_codes:
+                used_codes.append(code)
 code_to_num = {c: i+1 for i, c in enumerate(used_codes)}
 
 FULL_REFS = {
@@ -31,15 +32,32 @@ for m in re.finditer(r"\\item\[\[([A-Z0-9]+)\]\]\s*(.+)", open("/tmp/table_refer
 
 def reference_str(name):
     """Every row is one of our own 193 candidates, so 'our work' always
-    applies; a published-article match is cited alongside it, not instead."""
+    applies; published-article match(es) are cited alongside it, not
+    instead -- a topology independently reported in more than one article
+    cites all of them."""
     t = topo.get(name)
-    if t and t["matched_origin"] == "biblio_article":
-        code = name_to_ref.get(t["matched_name"])
-        if code:
-            return f"[{code_to_num[code]}], our work"
+    if t and t["matched_origin"] == "biblio_article" and t["all_biblio_names"]:
+        codes = []
+        for nm in t["all_biblio_names"].split(";"):
+            code = name_to_ref.get(nm)
+            if code and code_to_num[code] not in codes:
+                codes.append(code_to_num[code])
+        if codes:
+            nums = ",".join(f"[{c}]" for c in sorted(codes))
+            return f"{nums}, our work"
     return "our work"
 
+# --- fragmentation (>1.7 A splits the structure into >1 connected
+# component, i.e. it's really two-or-more separate molecular species, not
+# one bound cluster -- e.g. an "N5-" that's actually N2 + N3-) ---
+frag_rows = {r["name"]: r for r in csv.DictReader(
+    open("/home/gilles/polyN/orca_jobs/results_fragmentation.csv"))}
+fragmented = {n for n, r in frag_rows.items() if int(r["n_fragments"]) > 1}
+
 # --- relative dH (kcal/mol) within each (n, family) group, best = 0 ---
+# A fragmented candidate is excluded from being the group's zero-point (its
+# energy reflects two free species drifting apart, not cluster stability) --
+# it still gets a dH computed and printed, just never picked as the anchor.
 groups = defaultdict(list)
 for name, r in dhf.items():
     groups[(int(r["n"]), r["family"])].append(name)
@@ -47,30 +65,25 @@ for name, r in dhf.items():
 rel_dH = {}
 dft_based = {}
 for key, names in groups.items():
+    intact = [n for n in names if n not in fragmented]
     # prefer DFT electronic energy where available
-    dft_vals = {n: float(summary[n]["electronic_Eh"]) for n in names
+    dft_vals = {n: float(summary[n]["electronic_Eh"]) for n in intact
                 if n in summary and summary[n].get("electronic_Eh")}
     if dft_vals:
         best_n = min(dft_vals, key=dft_vals.get)
         best_e = dft_vals[best_n]
         for n in names:
-            if n in dft_vals:
-                rel_dH[n] = (dft_vals[n] - best_e) * 627.5094740631
+            if n in summary and summary[n].get("electronic_Eh"):
+                rel_dH[n] = (float(summary[n]["electronic_Eh"]) - best_e) * 627.5094740631
                 dft_based[n] = True
     # xTB fallback (and for members without DFT yet) -- rank via E_react (additive
     # constant cancels within a fixed (n,family) group, so plain differences work)
-    xtb_vals = {n: float(dhf[n]["e_react_kcalmol_xtb"]) for n in names}
-    xtb_best = min(xtb_vals.values())
+    xtb_pool = intact or names  # if every member is fragmented, fall back to all
+    xtb_best = min(float(dhf[n]["e_react_kcalmol_xtb"]) for n in xtb_pool)
     for n in names:
         if n not in rel_dH:
-            rel_dH[n] = xtb_vals[n] - xtb_best
+            rel_dH[n] = float(dhf[n]["e_react_kcalmol_xtb"]) - xtb_best
             dft_based[n] = False
-
-# --- bond > 1.7 A flag ---
-long_bond = set()
-for r in csv.DictReader(open("/home/gilles/polyN/orca_jobs/results_bonds.csv")):
-    if float(r["distance_A"]) > 1.7:
-        long_bond.add(r["name"])
 
 def make_table(family, label, fname):
     names = sorted(groups.get, key=lambda x: 0) if False else None
@@ -80,12 +93,12 @@ def make_table(family, label, fname):
             continue
         for name in names:
             rows_by_n[n].append(name)
-    lines = [r"\begin{longtable}{@{}p{4.7cm}ccrccp{1.2cm}@{}}", r"\scriptsize",
+    lines = [r"\begin{longtable}{@{}p{4.4cm}ccrccp{1.4cm}@{}}", r"\scriptsize",
              r"\caption{Compos\'es \textbf{" + label + r"}, class\'es par nombre d'atomes croissant puis par stabilit\'e (isom\`ere le plus stable = $\Delta H=0$). "
-             r"$\Delta H$ au niveau DFT quand disponible, sinon GFN2-xTB (indiqu\'e en colonne). ``$>1{,}7$''~: la structure contient au moins une distance N--N sup\'erieure \`a 1,7~\AA. R\'ef\'erence~: num\'ero d'article (voir Annexe~R\'ef\'erences) ou \emph{our work} si absente de la biblio actuelle.}",
+             r"$\Delta H$ au niveau DFT quand disponible, sinon GFN2-xTB (indiqu\'e en colonne). \textbf{Frag.}~: la structure se s\'epare en plusieurs esp\`eces mol\'eculaires distinctes (distance N--N $>1{,}7$~\AA\ entre elles, ex.~deux ions ou une paire N$_2$+reste) plut\^ot que de former un cluster li\'e unique -- exclue du calcul de $\Delta H=0$ du groupe. R\'ef\'erence(s)~: num\'ero(s) d'article (Annexe~R\'ef\'erences) ou \emph{our work} si absente de la biblio actuelle.}",
              r"\label{tab:provenance-" + family + r"}\\",
              r"\toprule",
-             r"\textbf{Nom} & \textbf{N} & \textbf{PG} & \textbf{$\Delta H$ (kcal/mol)} & \textbf{niveau} & \textbf{$>1{,}7$\AA} & \textbf{R\'ef.} \\",
+             r"\textbf{Nom} & \textbf{N} & \textbf{PG} & \textbf{$\Delta H$ (kcal/mol)} & \textbf{niveau} & \textbf{Frag.} & \textbf{R\'ef.} \\",
              r"\midrule\endfirsthead",
              r"\multicolumn{7}{c}{\small (suite)}\\ \toprule\endhead",
              r"\bottomrule\endfoot", r"\bottomrule\endlastfoot"]
@@ -96,7 +109,10 @@ def make_table(family, label, fname):
             s = summary.get(name)
             pg = s["point_group"] if s and s.get("electronic_Eh") else "--"
             niveau = "DFT" if dft_based.get(name) else "xtb"
-            flag = r"\checkmark" if name in long_bond else ""
+            if name in fragmented:
+                flag = frag_rows[name]["fragment_sizes"].replace("+", "$+$")
+            else:
+                flag = ""
             ref = reference_str(name)
             lines.append(f"\\texttt{{{esc(name)}}} & {n} & {pg} & {rel_dH[name]:.2f} & {niveau} & {flag} & {ref} \\\\")
     lines.append(r"\end{longtable}")
@@ -117,8 +133,9 @@ with open(f"{REPORT_DIR}/annexe_references.tex", "w") as fh:
     fh.write("\n".join(lines))
 print("references used:", code_to_num)
 
-# expose rel_dH / dft_based / long_bond / reference_str-materials for the appendix script
+# expose rel_dH / dft_based / fragmented / reference_str-materials for the appendix script
 import pickle
-pickle.dump({"rel_dH": rel_dH, "dft_based": dft_based, "long_bond": long_bond,
+pickle.dump({"rel_dH": rel_dH, "dft_based": dft_based, "fragmented": fragmented,
+             "frag_rows": frag_rows,
              "code_to_num": code_to_num, "name_to_ref": name_to_ref, "topo": topo},
             open("/tmp/provenance_state.pkl", "wb"))

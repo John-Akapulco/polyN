@@ -374,6 +374,46 @@ def atom_distance(a, b):
     return math.sqrt((a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2 + (a[3] - b[3]) ** 2)
 
 
+# Distance beyond which two atoms are no longer considered connected for the
+# purpose of detecting a FRAGMENTED structure (two or more separate molecular
+# species that happened to end up in the same job, e.g. a "N9+" that is
+# really N4+ + N5 sitting a few Angstrom apart, not a genuine bound cluster).
+# Deliberately tighter than BOND_BINS' own non-bonded threshold: the goal
+# here isn't classifying bond order, it's catching outright dissociation.
+FRAGMENTATION_CUTOFF = 1.70
+
+
+def count_fragments(atoms):
+    """Connected components of the atom set at FRAGMENTATION_CUTOFF, as a
+    sorted list of component sizes (e.g. [2, 3] for a dissociated N2 + N3-).
+    Plain union-find -- no numpy/networkx dependency (this script runs on a
+    stdlib-only Python 3.6 on the cluster)."""
+    n = len(atoms)
+    parent = list(range(n))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(x, y):
+        rx, ry = find(x), find(y)
+        if rx != ry:
+            parent[rx] = ry
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            if atom_distance(atoms[i], atoms[j]) < FRAGMENTATION_CUTOFF:
+                union(i, j)
+
+    sizes = {}
+    for i in range(n):
+        r = find(i)
+        sizes[r] = sizes.get(r, 0) + 1
+    return sorted(sizes.values())
+
+
 # ---------------------------------------------------------------------------
 # harvest
 # ---------------------------------------------------------------------------
@@ -417,6 +457,8 @@ def harvest(jobs_root, out_summary, out_bonds, out_charges, out_imaginary, xyz_o
         if xyz_out_dir and atoms and os.path.exists(xyz_path):
             shutil.copy2(xyz_path, os.path.join(xyz_out_dir, name + ".xyz"))
 
+        fragments = count_fragments(atoms) if atoms else []
+
         row = {
             "name": name,
             "n_count": n_count,
@@ -431,6 +473,8 @@ def harvest(jobs_root, out_summary, out_bonds, out_charges, out_imaginary, xyz_o
             "zpe_Eh": data["zpe_Eh"],
             "enthalpy_H_Eh": data["enthalpy_H_Eh"],
             "gibbs_G_Eh": data["gibbs_G_Eh"],
+            "n_fragments": len(fragments),
+            "fragment_sizes": "+".join(map(str, fragments)),
             "n_imaginary_freq": len(imaginary),
             "homo_eV": homo_lumo.get("homo_eV", ""),
             "lumo_eV": homo_lumo.get("lumo_eV", ""),
@@ -478,6 +522,7 @@ def harvest(jobs_root, out_summary, out_bonds, out_charges, out_imaginary, xyz_o
             "name", "n_count", "family", "rank", "charge", "multiplicity",
             "n_atoms", "point_group", "symmetry_number",
             "electronic_Eh", "zpe_Eh", "enthalpy_H_Eh", "gibbs_G_Eh",
+            "n_fragments", "fragment_sizes",
             "n_imaginary_freq", "homo_eV", "lumo_eV",
             "homo_alpha_eV", "lumo_alpha_eV", "homo_beta_eV", "lumo_beta_eV",
         ])
@@ -503,8 +548,12 @@ def harvest(jobs_root, out_summary, out_bonds, out_charges, out_imaginary, xyz_o
         w.writeheader()
         w.writerows(imaginary_rows)
 
+    n_fragmented = sum(1 for r in summary_rows if r["n_fragments"] > 1)
     print("harvest: {} jobs parsed, {} skipped (not finished yet)".format(n_ok, n_skip))
     print("  -> {}".format(out_summary))
+    print("  -> {} ({} structure(s) split into >1 fragment at {} A -- likely two "
+          "separate species, not a bound cluster; see fragment_sizes column)".format(
+        out_summary, n_fragmented, FRAGMENTATION_CUTOFF))
     print("  -> {}".format(out_bonds))
     print("  -> {}".format(out_charges))
     print("  -> {} ({} structure(s) with a genuine imaginary mode -- not a true minimum)".format(
@@ -528,6 +577,8 @@ def compare_xtb(summary_csv, xyz_dir, out_dir):
     for r in rows:
         if r["electronic_Eh"] in (None, ""):
             continue
+        if r.get("n_fragments", "1") not in ("1", "", None):
+            continue  # a dissociated structure isn't a candidate for this formula
         key = (r["family"], int(r["n_count"]))
         families.setdefault(key, []).append(r)
 

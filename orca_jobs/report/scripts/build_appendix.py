@@ -5,7 +5,8 @@ FIGS_DIR = "figs"
 REPORT_DIR = "/home/gilles/polyN/orca_jobs/report"
 
 state = pickle.load(open("/tmp/provenance_state.pkl", "rb"))
-rel_dH, dft_based, long_bond = state["rel_dH"], state["dft_based"], state["long_bond"]
+rel_dH, dft_based = state["rel_dH"], state["dft_based"]
+fragmented, frag_rows = state["fragmented"], state["frag_rows"]
 code_to_num, name_to_ref, topo = state["code_to_num"], state["name_to_ref"], state["topo"]
 
 def esc(s):
@@ -13,10 +14,15 @@ def esc(s):
 
 def reference_str(name):
     t = topo.get(name)
-    if t and t["matched_origin"] == "biblio_article":
-        code = name_to_ref.get(t["matched_name"])
-        if code:
-            return f"[{code_to_num[code]}], our work"
+    if t and t["matched_origin"] == "biblio_article" and t["all_biblio_names"]:
+        codes = []
+        for nm in t["all_biblio_names"].split(";"):
+            code = name_to_ref.get(nm)
+            if code and code_to_num[code] not in codes:
+                codes.append(code_to_num[code])
+        if codes:
+            nums = ",".join(f"[{c}]" for c in sorted(codes))
+            return f"{nums}, our work"
     return "our work"
 
 manifest = list(csv.DictReader(open(f"{REPORT_DIR}/figs/manifest.csv")))
@@ -41,7 +47,8 @@ for fam, fig_label, label_fr in order:
         for n, name, pg in pair:
             dh = rel_dH.get(name, 0.0)
             lvl = "DFT" if dft_based.get(name) else "xtb"
-            flag = " -- N--N $>1{,}7$\\,\\AA" if name in long_bond else ""
+            flag = (" -- \\textbf{fragment\\'ee (" + frag_rows[name]["fragment_sizes"].replace("+", "$+$") + ")}"
+                    if name in fragmented else "")
             ref = reference_str(name)
             out_lines.append(r"\begin{minipage}{0.46\textwidth}")
             out_lines.append(r"\centering")

@@ -43,15 +43,20 @@ polyazot\'es N$_x$ : rapport d'\'etape}}
 \noindent Ce document rend compte de la campagne DFT en cours au niveau
 WB97X-D4/aug-cc-pVTZ sur les \textbf{193 candidats} pr\'es\'electionn\'es
 par criblage GFN2-xTB (N$_4$ \`a N$_{16}$, familles neutre/cation/anion).
-\'Etat au moment de la r\'edaction~: \textbf{92 structures optimis\'ees et
-v\'erifi\'ees par calcul de fr\'equences} (48~\%), 0 erreur ORCA, campagne
-active sur cluster SLURM. Une confrontation aux bases de donn\'ees et \`a
-la litt\'erature d\'ej\`a compil\'ees dans \texttt{polyN-pipeline} montre
-que, parmi les 7 groupes (formule, charge) o\`u une comparaison est
-possible, le criblage local a d\'ej\`a trouv\'e un isom\`ere plus stable
-que tout ce qui est catalogu\'e dans 4 d'entre eux (N$_9^-$, N$_9^+$,
-N$_{10}$, N$_{12}$), tandis que 165 des 193 candidats (86~\%) ne
-correspondent \`a aucune topologie r\'ef\'erenc\'ee ailleurs. Les deux
+\'Etat au moment de la r\'edaction~: \textbf{120 structures optimis\'ees et
+v\'erifi\'ees par calcul de fr\'equences} (62~\%), 0 erreur ORCA, campagne
+active sur cluster SLURM. Un contr\^ole syst\'ematique de connectivit\'e
+(\S\ref{sec:provenance}) a par ailleurs r\'ev\'el\'e que 13 structures
+termin\'ees sont en r\'ealit\'e \textbf{fragment\'ees} (deux esp\`eces
+mol\'eculaires distinctes plut\^ot qu'un cluster li\'e, ex.\ N$_2$ +
+N$_3^-$) -- exclues des comparaisons de stabilit\'e ci-dessous. Une
+confrontation aux bases de donn\'ees et \`a la litt\'erature d\'ej\`a
+compil\'ees dans \texttt{polyN-pipeline} montre que, parmi les 7 groupes
+(formule, charge) o\`u une comparaison est possible, le criblage local a
+d\'ej\`a trouv\'e un isom\`ere non-fragment\'e plus stable que tout ce qui
+est catalogu\'e dans 3 d'entre eux (N$_9^-$, N$_{10}$, N$_{12}$), tandis
+que 165 des 193 candidats (86~\%) ne correspondent \`a aucune topologie
+r\'ef\'erenc\'ee ailleurs. Les deux
 ancres de r\'ef\'erence pour les $\Delta H_f$ ioniques (N$_5^-$ cyclique,
 N$_5^+$ coud\'e) ont \'et\'e retrouv\'ees dans
 \texttt{biblio\_polyN/final\_report\_isodesmic.csv} et permettent
@@ -235,12 +240,20 @@ candidats donne trois r\'esultats compl\'ementaires~:
   montre que 76 (73~\%) ne correspondent \`a aucune connectivit\'e
   catalogu\'ee. Au total, \textbf{165 des 193 candidats (86~\%)} sont donc
   distincts de tout ce qui existe dans le tableau \`a 3 sources.
-  \item \textbf{Stabilit\'e} : 4 des 7 groupes comparables voient leur
+  \item \textbf{Stabilit\'e} : 3 des 7 groupes comparables voient leur
   meilleur candidat local d\'epasser en stabilit\'e le meilleur catalogu\'e
-  -- N$_9^-$ ($-0{,}166$~eV/atome), N$_9^+$ ($-0{,}213$), N$_{10}$
-  ($-0{,}066$), N$_{12}$ ($-0{,}246$). N$_6$ et N$_8$ retombent exactement
-  sur le minimum d\'ej\`a connu. N$_4$ est la seule perte nette
-  ($+0{,}302$~eV/atome).
+  -- N$_9^-$ ($-0{,}166$~eV/atome), N$_{10}$ ($-0{,}066$, malgr\'e 60
+  r\'ef\'erences disponibles), N$_{12}$ ($-0{,}246$). N$_6$ et N$_8$
+  retombent exactement sur le minimum d\'ej\`a connu. N$_4$ est la seule
+  perte nette ($+0{,}302$~eV/atome).
+  \textbf{Correction post-publication} : une premi\`ere version de ce
+  rapport cr\'editait aussi N$_9^+$ ($-0{,}213$~eV/atome) -- ce candidat
+  (\texttt{N9\_cation\_cation\_001}) s'est av\'er\'e, apr\`es v\'erification
+  de la connectivit\'e (\S\ref{sec:provenance}), \'etre \textbf{fragment\'e
+  en trois esp\`eces s\'epar\'ees (2+2+5 atomes)}, pas un cluster N$_9^+$
+  li\'e -- retir\'e du classement. C'est actuellement le seul candidat N$_9^+$
+  termin\'e ; aucune comparaison de stabilit\'e n'est donc possible pour ce
+  groupe tant qu'un candidat non-fragment\'e n'a pas fini.
 \end{itemize}
 
 D\'etail complet et graphique interactif : voir l'artefact
@@ -276,16 +289,18 @@ D\'etail complet et graphique interactif : voir l'artefact
 \appendix
 \section{Structures optimis\'ees (DFT, minima confirm\'es)}
 
-Les 73 candidats confirm\'es comme vrais minima au moment de la
-r\'edaction (aucune fr\'equence imaginaire), deux par ligne. Trois
-figures, class\'ees par nombre d'atomes croissant puis par stabilit\'e au
-sein de chaque formule~: Figure~S1 (neutres), Figure~S2 (cations),
-Figure~S3 (anions). Chaque structure porte son nom, son groupe ponctuel,
-son $\Delta H$ (kcal/mol, isom\`ere le plus stable de sa formule
-$=0$), le niveau de th\'eorie de ce $\Delta H$ (DFT ou xTB si le DFT
-n'est pas encore termin\'e), sa r\'ef\'erence (num\'ero d'article ou
-\emph{our work}), et un indicateur si une distance N--N d\'epasse
-1,7~\AA.
+Les 90 candidats confirm\'es comme vrais minima au moment de la
+r\'edaction (aucune fr\'equence imaginaire -- y compris, le cas \'ech\'eant,
+des candidats fragment\'es en plusieurs esp\`eces, chaque fragment \'etant
+lui-m\^eme un minimum), deux par ligne. Trois figures, class\'ees par
+nombre d'atomes croissant puis par stabilit\'e au sein de chaque
+formule~: Figure~S1 (neutres), Figure~S2 (cations), Figure~S3 (anions).
+Chaque structure porte son nom, son groupe ponctuel, son $\Delta H$
+(kcal/mol, isom\`ere le plus stable \emph{non-fragment\'e} de sa formule
+$=0$), le niveau de th\'eorie de ce $\Delta H$ (DFT ou xTB si le DFT n'est
+pas encore termin\'e), sa r\'ef\'erence (num\'ero(s) d'article ou
+\emph{our work}), et la mention \emph{fragment\'ee} avec la taille des
+morceaux si la structure n'est pas un cluster li\'e unique.
 
 \input{annexe_structures.tex}
 
