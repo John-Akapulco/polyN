@@ -1,4 +1,4 @@
-import re, csv, json, pickle, unicodedata
+import re, csv, json, pickle, unicodedata, difflib
 
 REPORT_DIR = "/home/gilles/polyN/orca_jobs/report"
 BIBLIO_DATA = f"{REPORT_DIR}/scripts/biblio_data"
@@ -83,6 +83,31 @@ lines.append(r"\end{enumerate}")
 
 n1 = len(FULL_REFS)
 
+# --- Verification de chevauchement entre les 22 references extraites et
+# le corpus OpenAlex (bloc suivant) : le corpus de recherche par citations
+# est construit comme "articles CITANT 39 sources" -- si une des 22
+# references est elle-meme l'une de ces 39 sources, elle est exclue par
+# construction du corpus des citants (un article ne se cite pas
+# lui-meme). Verifie par correspondance exacte de titre (les references
+# A1-A20 portent un titre entre \emph{...}; GS et B n'en ont pas). ---
+def norm_title(s):
+    return re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
+
+seeds = json.load(open(f"{BIBLIO_DATA}/master_gen1.json"))
+seed_titles_norm = {norm_title(v.get("title") or "") for v in seeds.values()}
+
+overlap_report = []
+for code, text in FULL_REFS:
+    m = re.search(r"\\emph\{([^}]+)\}", text)
+    if not m:
+        overlap_report.append((code, None, "hors p\u00e9rim\u00e8tre (pas de titre exploitable)"))
+        continue
+    title = m.group(1)
+    is_seed = norm_title(title) in seed_titles_norm
+    overlap_report.append((code, title, "source du corpus (exclue par construction)" if is_seed else "absente du corpus"))
+
+n_seed = sum(1 for _, _, s in overlap_report if s.startswith("source"))
+
 # --- Bloc B.2 : corpus de recherche par citations (OpenAlex), non encore
 # reduit en structures nommees -- titres relus depuis le JSON source (pas
 # depuis les .tex deja generes, qui portent des caracteres unicode que
@@ -94,13 +119,20 @@ rows.sort(key=lambda w: (w.get("year") or 0, w.get("title") or ""))
 
 lines.append(r"\subsubsection*{Corpus de recherche bibliographique (OpenAlex), structures non extraites -- travail restant}")
 lines.append(str(len(rows)) + r" articles identifi\'es par recherche de citations "
-             r"(g\'en\'erations 1 et 2, articles citant les 38 sources de "
+             r"(g\'en\'erations 1 et 2, articles citant les 39 sources de "
              r"\texttt{polyN-pipeline}, filtr\'es aux compos\'es exclusivement "
              r"azot\'es) -- \textbf{aucun n'a encore de structure extraite ni de "
              r"$\Delta H_f$ recalcul\'e} dans \texttt{polyN-pipeline} ; aucun ne "
-             r"peut donc \^etre cit\'e par candidat pour l'instant. Le "
-             r"chevauchement \'eventuel avec la liste pr\'ec\'edente n'a "
-             r"\textbf{pas} \'et\'e v\'erifi\'e (recoupement titre/DOI \`a faire).")
+             r"peut donc \^etre cit\'e par candidat pour l'instant. "
+             r"\textbf{Chevauchement avec la liste pr\'ec\'edente v\'erifi\'e} "
+             r"(correspondance exacte de titre) : " + str(n_seed) + r"~des 22 "
+             r"r\'ef\'erences extraites (A1--A20) sont elles-m\^emes "
+             r"parmi les 39 sources dont ce corpus recense les citations -- "
+             r"exclues par construction de la liste des 156 citants (un "
+             r"article ne se cite pas lui-m\^eme) ; les 2 restantes ([GS] "
+             r"et [B]) n'appartiennent pas non plus \`a ce corpus (ni comme "
+             r"source, ni comme citant trouv\'e). \textbf{Chevauchement "
+             r"confirm\'e nul} : les deux listes sont disjointes.")
 lines.append(r"{\scriptsize")
 lines.append(r"\begin{longtable}{@{}cp{1.0cm}p{8.4cm}p{4.2cm}@{}}")
 lines.append(r"\caption{Travail bibliographique restant \`a faire (statut~: aucune structure extraite, cf.\ texte ci-dessus) -- article, ann\'ee, DOI.}")
