@@ -18,6 +18,7 @@ dispatch_events.log
 dispatch_submitted.txt
 results_*.csv
 compare_*.csv
+multifidelity_*.csv
 reaction_energetics.csv
 
 # One-off manual test files, not part of the DFT screening campaign.
