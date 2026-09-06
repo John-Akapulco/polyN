@@ -16,8 +16,8 @@ FRAGMENTED = {n for n, r in frag_rows_all.items() if int(r["n_fragments"]) > 1}
 for fam, label in [("neutral","neutres"), ("cation","cationiques"), ("anion","anioniques")]:
     rows = list(csv.DictReader(open(f"/home/gilles/polyN/orca_jobs/compare_{fam}.csv")))
     lines = []
+    lines.append(r"{\scriptsize")
     lines.append(r"\begin{longtable}{@{}p{4.4cm}rrrrrc@{}}")
-    lines.append(r"\scriptsize")
     lines.append(r"\caption{Classement DFT vs xTB, compos\'es \textbf{" + label + r"}. Tri\'e par rang DFT (ground state DFT = rang 1) au sein de chaque formule ; le rang xTB tel que g\'en\'er\'e \`a l'origine est rappel\'e pour voir si les deux classements concordent.}")
     lines.append(r"\label{tab:ranking-" + fam + r"}\\")
     lines.append(r"\toprule")
@@ -39,6 +39,7 @@ for fam, label in [("neutral","neutres"), ("cation","cationiques"), ("anion","an
         agree = "\\checkmark" if r["xtb_and_dft_agree_on_gs"] == "True" else ""
         lines.append(f"\\texttt{{{esc(r['name'])}}} & {r['n_count']} & {r['xtb_rank_as_generated']} & {r['dft_rank']} & {r['xtb_Erel_kcal']} & {r['dft_Erel_kcal']} & {agree} \\\\")
     lines.append(r"\end{longtable}")
+    lines.append(r"}")
     with open(os.path.join(REPORT_DIR, f"table_ranking_{fam}.tex"), "w") as fh:
         fh.write("\n".join(lines))
     print(f"table_ranking_{fam}.tex: {len(rows)} lignes")
@@ -47,7 +48,7 @@ for fam, label in [("neutral","neutres"), ("cation","cationiques"), ("anion","an
 # 3) HOMO/LUMO
 # ---------------------------------------------------------------------------
 summ = list(csv.DictReader(open("/home/gilles/polyN/orca_jobs/results_summary.csv")))
-lines = [r"\begin{longtable}{@{}p{4.6cm}p{1.6cm}rrr@{}}", r"\scriptsize",
+lines = [r"{\scriptsize", r"\begin{longtable}{@{}p{4.6cm}p{1.6cm}rrr@{}}",
          r"\caption{Orbitales frontières (WB97X-D4/aug-cc-pVTZ) des candidats termin\'es.}",
          r"\label{tab:homolumo}\\",
          r"\toprule",
@@ -65,6 +66,7 @@ for r in summ:
     homo, lumo = float(r["homo_eV"]), float(r["lumo_eV"])
     lines.append(f"\\texttt{{{esc(r['name'])}}} & {r['point_group']} & {homo:.4f} & {lumo:.4f} & {lumo-homo:.4f} \\\\")
 lines.append(r"\end{longtable}")
+lines.append(r"}")
 with open(os.path.join(REPORT_DIR, "table_homolumo.tex"), "w") as fh:
     fh.write("\n".join(lines))
 print("table_homolumo.tex")
@@ -78,7 +80,7 @@ for b in bonds:
     by_name[b["name"]].append(b)
 dhf = {r["name"]: r for r in csv.DictReader(open("/home/gilles/polyN/orca_jobs/results_dHf_xtb.csv"))}
 
-lines = [r"\begin{longtable}{@{}p{4.6cm}rrrp{2.4cm}r@{}}", r"\scriptsize",
+lines = [r"{\scriptsize", r"\begin{longtable}{@{}p{4.6cm}rrrp{2.4cm}r@{}}",
          r"\caption{Compos\'es \textbf{neutres} termin\'es : proportion de liaisons N--N courtes (triple/double/d\'elocalis\'ees) parmi les liaisons r\'eelles (hors contacts non-liants), et $\Delta H_f$ GFN2-xTB. Seuils de classification en \S\ref{sec:limites} de \texttt{harvest\_results.py}.}",
          r"\label{tab:bonds-dhf}\\",
          r"\toprule",
@@ -100,6 +102,7 @@ for name in neutral_names:
     lines.append(f"\\texttt{{{esc(name)}}} & {len(bl)} & {sum(bos)/len(bos):.3f} & {100*short/len(bl):.0f}\\% & {', '.join(c.replace('_',' ') for c in classes)} & {dhf[name]['dHf_kcalmol_xtb']} \\\\")
 lines.append(r"\end{longtable}")
 lines.append(r"\footnotetext[1]{Triple, double ou d\'elocalis\'ee (ordre ${\sim}1{,}5$), \`a l'exclusion des liaisons simples et des contacts non-liants.}")
+lines.append(r"}")
 with open(os.path.join(REPORT_DIR, "table_bonds_dhf.tex"), "w") as fh:
     fh.write("\n".join(lines))
 print("table_bonds_dhf.tex:", len(neutral_names), "structures neutres")
@@ -117,17 +120,18 @@ for r in imag_rows:
     by_imag[r["name"]].append(r)
 
 summ_by_name = {r["name"]: r for r in summ}
-lines = [r"\noindent\textbf{Table S2.} Structures avec au moins une fr\'equence imaginaire (pas encore de vrai minimum). "
+lines = [r"\noindent\textbf{Table S2.} Structures avec au moins une fr\'equence imaginaire (pas encore de vrai minimum), toutes issues d'un calcul DFT WB97X-D4 termin\'e. "
          r"``Max.\ imaginaire''~: la fr\'equence de plus grande amplitude parmi les modes imaginaires "
          r"(mode dominant de la coordonn\'ee de r\'eaction vers le vrai minimum). $\Delta H$~: \'energie "
-         r"relative au ground-state DFT de la m\^eme composition (kcal/mol, niveau DFT si disponible "
-         r"sinon xTB) -- \`a rapprocher de la fr\'equence pour rep\'erer une \'eventuelle corr\'elation "
-         r"entre instabilit\'e vibrationnelle et haute \'energie relative. \'A reprendre manuellement "
-         r"(distorsion le long de ce mode puis r\'eoptimisation) avant validation finale.\par\vspace{4pt}",
-         r"\begin{longtable}{@{}p{4.0cm}ccrrp{1.7cm}c@{}}", r"\scriptsize",
+         r"relative au ground-state DFT confirm\'e (vrai minimum, non fragment\'e) de la m\^eme "
+         r"composition, en kcal/mol -- un candidat marqu\'e \textbf{Frag.} peut afficher un $\Delta H$ "
+         r"n\'egatif~: une esp\`ece dissoci\'ee (Tableau~S1) est souvent plus basse en \'energie qu'un "
+         r"vrai cluster li\'e, sans en \^etre un.",
+         r"\begin{longtable}{@{}p{4.4cm}cccccc@{}}", r"\scriptsize",
          r"\label{tab:imaginary}\\",
          r"\toprule",
-         r"\textbf{Nom} & \textbf{N} & \textbf{n modes} & \textbf{Max.\ imag.\ (cm$^{-1}$)} & \textbf{Intensit\'e (km/mol)} & \textbf{$\Delta H$ (kcal/mol)} & \textbf{Frag.} \\",
+         r"\textbf{Nom} & \textbf{N} & \textbf{n modes} & \textbf{Max.\ imag.} & \textbf{Intensit\'e} & \textbf{$\Delta H$} & \textbf{Frag.} \\",
+         r" & & & \textbf{(cm$^{-1}$)} & \textbf{(km/mol)} & \textbf{(kcal/mol)} & \\",
          r"\midrule\endfirsthead",
          r"\multicolumn{7}{c}{\small (suite)}\\ \toprule\endhead",
          r"\bottomrule\endfoot", r"\bottomrule\endlastfoot"]
@@ -138,11 +142,7 @@ for name in names_sorted:
     n_count = summ_by_name.get(name, {}).get("n_count", "?")
     intensity = worst["intensity_km_mol"] if worst["intensity_km_mol"] else "--"
     frag_mark = r"\checkmark" if name in FRAGMENTED else ""
-    if name in rel_dH_all:
-        lvl = "DFT" if dft_based_all.get(name) else "xtb"
-        dh = f"{rel_dH_all[name]:.2f} ({lvl})"
-    else:
-        dh = "--"
+    dh = f"{rel_dH_all[name]:.2f}" if name in rel_dH_all else "--"
     lines.append(f"\\texttt{{{esc(name)}}} & {n_count} & {len(modes)} & {float(worst['freq_cm1']):.1f} & {intensity} & {dh} & {frag_mark} \\\\")
 lines.append(r"\end{longtable}")
 with open(os.path.join(REPORT_DIR, "table_S2_imaginary.tex"), "w") as fh:

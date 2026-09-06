@@ -14,8 +14,11 @@
 \usepackage{hyperref}
 \usepackage{parskip}
 \usepackage{helvet}
-\usepackage{caption}
+\usepackage{amssymb}
 \renewcommand{\familydefault}{\sfdefault}
+\sloppy
+\tolerance=9999
+\emergencystretch=3em
 
 \definecolor{accent}{HTML}{1F4E78}
 
@@ -206,13 +209,14 @@ serait plus pr\'eoccupant pour le classement de stabilit\'e).
 Un contr\^ole s\'epar\'e de connectivit\'e (composantes connexes du
 graphe N--N \`a 1,70~\AA) identifie par ailleurs \textbf{19 candidats
 fragment\'es} -- deux ou plusieurs esp\`eces mol\'eculaires distinctes
-(ex.\ N$_2$ + N$_3^-$) plut\^ot qu'un cluster N$_x$ li\'e unique. Ils
-sont retir\'es de tous les tableaux d'analyse ci-dessous et de la
-comparaison de stabilit\'e (une esp\`ece dissoci\'ee est souvent plus
-basse en \'energie qu'un vrai cluster li\'e, ce qui fausserait tout
-classement) et regroup\'es \`a part~: Tableau~S1 et Figure~S4 (Annexe),
-avec repr\'esentation avant (g\'eom\'etrie xTB de d\'epart, topologie
-intacte) / apr\`es (r\'esultat DFT fragment\'e).
+(ex.\ N$_2$ + N$_3^-$) plut\^ot qu'un cluster N$_x$ li\'e unique, list\'es
+\`a part en Tableau~S1 avec repr\'esentation avant (g\'eom\'etrie xTB de
+d\'epart, topologie intacte) / apr\`es (r\'esultat DFT fragment\'e) en
+Figure~S4. Les tableaux d'analyse (\S\ref{sec:provenance}--\ref{sec:bonds})
+et la comparaison de stabilit\'e (\S\ref{sec:litterature}) portent
+uniquement sur les clusters li\'es~: une esp\`ece dissoci\'ee est souvent
+plus basse en \'energie qu'un vrai cluster li\'e, ce qui fausserait tout
+classement fond\'e sur l'\'energie seule.
 
 \section{Orbitales fronti\`eres}
 
@@ -227,6 +231,7 @@ ni l'une ni l'autre n'est native \`a ORCA.
 \input{table_charges.tex}
 
 \section{Distances et ordres de liaison N--N~: corr\'elation avec $\Delta H_f$}
+\label{sec:bonds}
 
 Pour les compos\'es neutres, proportion de liaisons courtes (triple,
 double, ou d\'elocalis\'ees ${\sim}1{,}5$) parmi les liaisons r\'eelles, et
@@ -240,6 +245,7 @@ tendance qualitativement mais reste bruit\'e).
 \input{table_bonds_dhf.tex}
 
 \section{Confrontation \`a la litt\'erature et aux bases externes}
+\label{sec:litterature}
 
 Le fichier \texttt{biblio\_polyN/comparison\_table\_3sources.csv} de
 \texttt{polyN-pipeline} catalogue 337 structures connues (articles publi\'es
@@ -263,14 +269,11 @@ candidats donne trois r\'esultats compl\'ementaires~:
   r\'ef\'erences disponibles), N$_{12}$ ($-0{,}246$). N$_6$ et N$_8$
   retombent exactement sur le minimum d\'ej\`a connu. N$_4$ est la seule
   perte nette ($+0{,}302$~eV/atome).
-  \textbf{Correction post-publication} : une premi\`ere version de ce
-  rapport cr\'editait aussi N$_9^+$ ($-0{,}213$~eV/atome) -- ce candidat
-  (\texttt{N9\_cation\_cation\_001}) s'est av\'er\'e, apr\`es v\'erification
-  de la connectivit\'e (\S\ref{sec:provenance}), \'etre \textbf{fragment\'e
-  en trois esp\`eces s\'epar\'ees (2+2+5 atomes)}, pas un cluster N$_9^+$
-  li\'e -- retir\'e du classement. C'est actuellement le seul candidat N$_9^+$
-  termin\'e ; aucune comparaison de stabilit\'e n'est donc possible pour ce
-  groupe tant qu'un candidat non-fragment\'e n'a pas fini.
+  N$_9^+$ : le seul candidat termin\'e \`a cette composition
+  (\texttt{N9\_cation\_cation\_001}) est fragment\'e en trois esp\`eces
+  s\'epar\'ees (2+2+5 atomes, Tableau~S1) -- aucune comparaison de
+  stabilit\'e n'est possible pour ce groupe tant qu'un candidat
+  non-fragment\'e n'a pas termin\'e.
 \end{itemize}
 
 D\'etail complet et graphique interactif : voir l'artefact
@@ -314,28 +317,19 @@ sections du corps principal.
 \subsection{Structures fragment\'ees}
 \label{sec:si-fragmented}
 
-Les 19 candidats identifi\'es comme fragment\'es (\S\ref{sec:minima}) --
-retir\'es de tous les tableaux et comparaisons du corps du rapport.
-
 \input{table_S1_fragmented.tex}
 
-Repr\'esentation avant (g\'eom\'etrie de d\'epart, criblage GFN2-xTB,
-topologie N$_x$ intacte) / apr\`es (r\'esultat de l'optimisation DFT
-WB97X-D4, s\'epar\'e en plusieurs esp\`eces) pour les 13 candidats dont
-le calcul DFT est termin\'e (les 6 autres ne sont, pour l'instant,
-identifi\'es fragment\'es qu'au niveau xTB -- pas encore de g\'eom\'etrie
-DFT \`a montrer).
+\bigskip
+\noindent\textbf{Figure S4.} Structures fragment\'ees~: g\'eom\'etrie
+initiale (criblage GFN2-xTB, topologie N$_x$ intacte) \`a gauche,
+r\'esultat de l'optimisation DFT WB97X-D4 (s\'epar\'e en plusieurs
+esp\`eces) \`a droite. 13 candidats -- ceux du Tableau~S1 dont le calcul
+DFT est termin\'e.
 
 \input{annexe_fragmented.tex}
 
 \subsection{Structures avec fr\'equence imaginaire}
 \label{sec:si-imaginary}
-
-Les 30 candidats pas encore confirm\'es comme vrais minima
-(\S\ref{sec:minima}), avec la fr\'equence imaginaire dominante,
-son intensit\'e IR, et l'\'energie relative au ground-state DFT de la
-m\^eme composition (pour rep\'erer une \'eventuelle corr\'elation entre
-instabilit\'e vibrationnelle et haute \'energie relative).
 
 \input{table_S2_imaginary.tex}
 

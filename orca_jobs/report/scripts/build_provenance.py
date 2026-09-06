@@ -55,9 +55,12 @@ frag_rows = {r["name"]: r for r in csv.DictReader(
 fragmented = {n for n, r in frag_rows.items() if int(r["n_fragments"]) > 1}
 
 # --- relative dH (kcal/mol) within each (n, family) group, best = 0 ---
-# A fragmented candidate is excluded from being the group's zero-point (its
-# energy reflects two free species drifting apart, not cluster stability) --
-# it still gets a dH computed and printed, just never picked as the anchor.
+# Only a genuine confirmed minimum (not fragmented, no imaginary frequency)
+# can anchor a group's zero-point; every other member still gets a dH
+# computed and printed, just never picked as the anchor.
+imaginary_names = {r["name"] for r in csv.DictReader(
+    open("/home/gilles/polyN/orca_jobs/results_imaginary_modes.csv"))}
+
 groups = defaultdict(list)
 for name, r in dhf.items():
     groups[(int(r["n"]), r["family"])].append(name)
@@ -65,7 +68,7 @@ for name, r in dhf.items():
 rel_dH = {}
 dft_based = {}
 for key, names in groups.items():
-    intact = [n for n in names if n not in fragmented]
+    intact = [n for n in names if n not in fragmented and n not in imaginary_names]
     # prefer DFT electronic energy where available
     dft_vals = {n: float(summary[n]["electronic_Eh"]) for n in intact
                 if n in summary and summary[n].get("electronic_Eh")}
@@ -94,9 +97,9 @@ def make_table(family, label, fname):
             if name in fragmented:
                 continue  # moved to Table S1 (Annexe) instead
             rows_by_n[n].append(name)
-    lines = [r"\begin{longtable}{@{}p{4.7cm}ccrcp{1.6cm}@{}}", r"\scriptsize",
+    lines = [r"{\scriptsize", r"\begin{longtable}{@{}p{4.7cm}ccrcp{1.6cm}@{}}",
              r"\caption{Compos\'es \textbf{" + label + r"}, class\'es par nombre d'atomes croissant puis par stabilit\'e (isom\`ere le plus stable = $\Delta H=0$). "
-             r"$\Delta H$ au niveau DFT quand disponible, sinon GFN2-xTB (indiqu\'e en colonne). Les candidats fragment\'es (plusieurs esp\`eces mol\'eculaires s\'epar\'ees plut\^ot qu'un cluster li\'e unique) sont retir\'es de ce tableau et group\'es dans le Tableau~S1 (Annexe). R\'ef\'erence(s)~: num\'ero(s) d'article (Annexe~R\'ef\'erences) ou \emph{our work} si absente de la biblio actuelle.}",
+             r"$\Delta H$ au niveau DFT quand disponible, sinon GFN2-xTB (indiqu\'e en colonne). N'inclut que les clusters li\'es (Tableau~S1~: candidats fragment\'es en plusieurs esp\`eces mol\'eculaires distinctes). R\'ef\'erence(s)~: num\'ero(s) d'article (Annexe~R\'ef\'erences) ou \emph{our work} si absente de la biblio actuelle.}",
              r"\label{tab:provenance-" + family + r"}\\",
              r"\toprule",
              r"\textbf{Nom} & \textbf{N} & \textbf{PG} & \textbf{$\Delta H$ (kcal/mol)} & \textbf{niveau} & \textbf{R\'ef.} \\",
@@ -113,6 +116,7 @@ def make_table(family, label, fname):
             ref = reference_str(name)
             lines.append(f"\\texttt{{{esc(name)}}} & {n} & {pg} & {rel_dH[name]:.2f} & {niveau} & {ref} \\\\")
     lines.append(r"\end{longtable}")
+    lines.append(r"}")
     with open(f"{REPORT_DIR}/{fname}", "w") as fh:
         fh.write("\n".join(lines))
     print(fname, "->", sum(len(v) for v in rows_by_n.values()), "lignes (fragmentees exclues)")

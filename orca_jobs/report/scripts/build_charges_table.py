@@ -10,14 +10,17 @@ for c in charges:
     by_name[c["name"]].append(c)
 
 summ = {r["name"]: r for r in csv.DictReader(open("/home/gilles/polyN/orca_jobs/results_summary.csv"))}
+frag_rows_all = {r["name"]: r for r in csv.DictReader(
+    open("/home/gilles/polyN/orca_jobs/results_fragmentation.csv"))}
+FRAGMENTED = {n for n, r in frag_rows_all.items() if int(r["n_fragments"]) > 1}
 
-# groupe-best (confirmed minimum, lowest energy) per (n,family)
+# groupe-best (confirmed minimum, lowest energy, non-fragmente) per (n,family)
 groups = defaultdict(list)
 for r in summ.values():
-    if r["electronic_Eh"]:
+    if r["electronic_Eh"] and r["name"] not in FRAGMENTED:
         groups[(r["n_count"], r["family"])].append(r)
 
-lines = [r"\begin{longtable}{@{}p{4.6cm}rrrp{2.6cm}@{}}", r"\scriptsize",
+lines = [r"{\scriptsize", r"\begin{longtable}{@{}p{4.6cm}rrrp{2.6cm}@{}}",
          r"\caption{Charges atomiques (Mulliken et L\"owdin) du meilleur minimum confirm\'e de chaque groupe (formule, charge) -- min/max sur les atomes N. Charges de Bader/QTAIM non natives \`a ORCA, report\'ees (\S\ref{sec:limites}).}",
          r"\label{tab:charges}\\",
          r"\toprule",
@@ -38,6 +41,7 @@ for (n,fam), recs in sorted(groups.items(), key=lambda kv: (int(kv[0][0]), kv[0]
         continue
     lines.append(f"\\texttt{{{esc(best['name'])}}} & {min(mull):.3f} & {max(mull):.3f} & {min(loew):.3f} / {max(loew):.3f} & \\\\")
 lines.append(r"\end{longtable}")
+lines.append(r"}")
 with open("/home/gilles/polyN/orca_jobs/report/table_charges.tex", "w") as fh:
     fh.write("\n".join(lines))
 print("table_charges.tex done")

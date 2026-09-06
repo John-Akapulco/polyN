@@ -88,8 +88,9 @@ for r in frag_items:
     s4_lines.append(f"\\includegraphics[width=0.8\\linewidth]{{{FIGS_DIR}/fragmented/{name}_final.png}}\\\\[2pt]")
     s4_lines.append(r"{\small DFT (fragment\'ee, " + sizes + ")}")
     s4_lines.append(r"\end{minipage}")
-    s4_lines.append(r"\caption*{\small \texttt{" + esc(name) + r"} -- fragments de taille " + sizes + "}")
     s4_lines.append(r"\end{figure}")
+    s4_lines.append(r"\centerline{\small \texttt{" + esc(name) + r"} -- fragments de taille " + sizes + "}")
+    s4_lines.append(r"\vspace{8pt}")
 
 with open(f"{REPORT_DIR}/annexe_fragmented.tex", "w") as fh:
     fh.write("\n".join(s4_lines))
