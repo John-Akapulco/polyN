@@ -1,6 +1,8 @@
 name,fragment_sizes
 N11_anion_anion_011,3+3+5
 N11_anion_anion_018,3+8
+N11_cation_cation_009,3+8
+N11_cation_cation_010,3+8
 N14_neutral_neutral_004,2+2+2+3+5
 N5_anion_anion_002,2+3
 N5_anion_anion_003,2+3
@@ -11,4 +13,7 @@ N5_anion_anion_008,2+3
 N5_anion_anion_009,2+3
 N5_cation_cation_007,2+3
 N6_neutral_neutral_004,2+2+2
+N8_neutral_neutral_006,3+5
+N8_neutral_neutral_018,2+2+2+2
+N9_anion_anion_015,2+7
 N9_cation_cation_001,2+2+5

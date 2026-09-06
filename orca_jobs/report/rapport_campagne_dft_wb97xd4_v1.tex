@@ -47,28 +47,36 @@ polyazot\'es N$_x$ : rapport d'\'etape}}
 \thispagestyle{fancy}
 
 \begin{abstract}
-\noindent Ce document rend compte de la campagne DFT en cours au niveau
+\noindent Ce document rend compte de la campagne DFT au niveau
 WB97X-D4/aug-cc-pVTZ sur les \textbf{193 candidats} pr\'es\'electionn\'es
 par criblage GFN2-xTB (N$_4$ \`a N$_{16}$, familles neutre/cation/anion).
-\'Etat au moment de la r\'edaction~: \textbf{120 structures optimis\'ees et
-v\'erifi\'ees par calcul de fr\'equences} (62~\%), 0 erreur ORCA, campagne
-active sur cluster SLURM. Un contr\^ole syst\'ematique de connectivit\'e
-(\S\ref{sec:provenance}) a par ailleurs r\'ev\'el\'e que 13 structures
-termin\'ees sont en r\'ealit\'e \textbf{fragment\'ees} (deux esp\`eces
-mol\'eculaires distinctes plut\^ot qu'un cluster li\'e, ex.\ N$_2$ +
-N$_3^-$) -- exclues des comparaisons de stabilit\'e ci-dessous. Une
-confrontation aux bases de donn\'ees et \`a la litt\'erature d\'ej\`a
-compil\'ees dans \texttt{polyN-pipeline} montre que, parmi les 7 groupes
-(formule, charge) o\`u une comparaison est possible, le criblage local a
-d\'ej\`a trouv\'e un isom\`ere non-fragment\'e plus stable que tout ce qui
-est catalogu\'e dans 3 d'entre eux (N$_9^-$, N$_{10}$, N$_{12}$), tandis
-que 165 des 193 candidats (86~\%) ne correspondent \`a aucune topologie
-r\'ef\'erenc\'ee ailleurs. Les deux
-ancres de r\'ef\'erence pour les $\Delta H_f$ ioniques (N$_5^-$ cyclique,
-N$_5^+$ coud\'e) ont \'et\'e retrouv\'ees dans
-\texttt{biblio\_polyN/final\_report\_isodesmic.csv} et permettent
-d\'esormais de calculer un $\Delta H_f$ absolu (niveau GFN2-xTB) pour les
-193 candidats -- tables~\ref{tab:provenance-neutral}--\ref{tab:provenance-anion}.
+\textbf{Les 193 jobs SLURM sont termin\'es} (0 erreur ORCA) ; parmi eux,
+\textbf{158 structures} (82~\%) disposent d'un r\'esultat DFT exploitable
+(g\'eom\'etrie optimis\'ee et fr\'equences v\'erifi\'ees), tandis que
+\textbf{35} (18~\%) ont atteint la limite de cycles d'optimisation sans
+converger -- \'energie non fiable, \`a reprendre avec davantage de cycles
+(\S\ref{sec:minima}). Un contr\^ole syst\'ematique de connectivit\'e
+(\S\ref{sec:provenance}) a par ailleurs r\'ev\'el\'e que 24 des 158
+structures exploitables sont en r\'ealit\'e \textbf{fragment\'ees} (deux
+esp\`eces mol\'eculaires distinctes plut\^ot qu'un cluster li\'e, ex.\
+N$_2$ + N$_3^-$ -- dont 11 d\'ej\`a fragment\'ees dans la g\'eom\'etrie
+GFN2-xTB de d\'epart, avant tout calcul DFT) -- exclues des comparaisons
+de stabilit\'e ci-dessous. Une confrontation aux bases de donn\'ees et
+\`a la litt\'erature d\'ej\`a compil\'ees dans \texttt{polyN-pipeline}
+montre que, parmi les 7 groupes (formule, charge) o\`u une comparaison
+est possible, le criblage local a d\'ej\`a trouv\'e un isom\`ere
+non-fragment\'e plus stable que tout ce qui est catalogu\'e dans 3
+d'entre eux (N$_9^-$, N$_{10}$, N$_{12}$), tandis que 165 des 193
+candidats (86~\%) ne correspondent \`a aucune topologie r\'ef\'erenc\'ee
+ailleurs. Les deux ancres de r\'ef\'erence pour les $\Delta H_f$ ioniques
+(N$_5^-$ cyclique, N$_5^+$ coud\'e) ont \'et\'e retrouv\'ees dans
+\texttt{biblio\_polyN/final\_report\_isodesmic.csv} et permettent de
+calculer un $\Delta H_f$ absolu (niveau GFN2-xTB) pour les 193 candidats
+-- tables~\ref{tab:provenance-neutral}--\ref{tab:provenance-anion}. Une
+seconde campagne (DLPNO-CCSD(T)-F12, 49 structures repr\'esentatives)
+est en cours pour \'etablir des statistiques de temps de calcul et le
+nombre de c\oe urs optimal avant d'\'etendre le niveau CCSD(T) \`a
+l'ensemble des candidats.
 \end{abstract}
 
 \tableofcontents
@@ -266,9 +274,17 @@ apparaissent.
 \section{V\'erification des minima}
 \label{sec:minima}
 
-Sur les 120 structures termin\'ees avec un bloc de thermochimie complet,
-\textbf{30 pr\'esentent au moins une fr\'equence imaginaire} et ne sont
-donc pas, en l'\'etat, de vrais minima locaux. Contrairement au protocole
+Les 193 jobs SLURM de cette campagne sont tous termin\'es, mais
+\textbf{35 d'entre eux (18~\%) n'ont pas convergé} -- l'optimiseur DFT a
+atteint sa limite de cycles (\texttt{The optimization did not converge
+but reached the maximum}) sans trouver de point stationnaire ; leur
+\'energie n'est donc pas exploitable en l'\'etat. Ces 35 sont exclues de
+tous les tableaux d'analyse ci-dessous et devront \^etre reprises avec
+davantage de cycles d'optimisation (\texttt{\%geom MaxIter}) dans une
+prochaine passe. Les \textbf{158 structures restantes} disposent d'un
+bloc de thermochimie complet, parmi lesquelles \textbf{38 pr\'esentent
+au moins une fr\'equence imaginaire} et ne sont donc pas, en l'\'etat, de
+vrais minima locaux. Contrairement au protocole
 gros-cluster, aucune red\'esym\'etrisation automatique n'est appliqu\'ee~:
 chaque candidat flagg\'e devra \^etre repris manuellement (distorsion le
 long du mode imaginaire puis r\'eoptimisation) avant d'\^etre retenu comme
@@ -284,15 +300,15 @@ ou touche aussi des candidats proches du ground-state (auquel cas ce
 serait plus pr\'eoccupant pour le classement de stabilit\'e).
 
 Un contr\^ole s\'epar\'e de connectivit\'e (composantes connexes du
-graphe N--N \`a 1,70~\AA) identifie par ailleurs \textbf{19 candidats
+graphe N--N \`a 1,70~\AA) identifie par ailleurs \textbf{24 candidats
 fragment\'es} -- deux ou plusieurs esp\`eces mol\'eculaires distinctes
 (ex.\ N$_2$ + N$_3^-$) plut\^ot qu'un cluster N$_x$ li\'e unique, list\'es
 \`a part en Tableau~S1 avec repr\'esentation avant/apr\`es en Figure~S1.
 Ce contr\^ole a \'et\'e appliqu\'e \'egalement \`a la g\'eom\'etrie de
-d\'epart (avant tout calcul DFT) pour les 19~: \textbf{11 des 19 \'etaient
+d\'epart (avant tout calcul DFT) pour les 24~: \textbf{11 \'etaient
 d\'ej\`a fragment\'ees dans la g\'eom\'etrie GFN2-xTB issue du criblage},
 avant m\^eme d'entrer dans cette campagne DFT (artefact du criblage en
-amont, colonne \emph{d\'ej\`a frag.\ \`a xTB} du Tableau~S1) ; les 8
+amont, colonne \emph{d\'ej\`a frag.\ \`a xTB} du Tableau~S1) ; les 13
 autres \'etaient des clusters intacts \`a xTB et n'ont fragment\'e que
 pendant l'optimisation DFT. Les tableaux d'analyse
 (\S\ref{sec:provenance}--\ref{sec:bonds}) et la comparaison de stabilit\'e
@@ -373,19 +389,25 @@ D\'etail complet et graphique interactif : voir l'artefact
 \begin{itemize}[leftmargin=1.4em]
   \item La comparaison de stabilit\'e de la section pr\'ec\'edente reste
   au niveau \textbf{GFN2-xTB} -- la confirmation d\'efinitive viendra des
-  \'energies WB97X-D4 elles-m\^emes, une fois la campagne compl\`ete et les
-  19 candidats flagg\'es re-optimis\'es en vrais minima.
+  \'energies WB97X-D4 elles-m\^emes, une fois les 35 candidats non
+  convergés repris avec davantage de cycles d'optimisation et les 38
+  candidats \`a fr\'equence imaginaire re-optimis\'es en vrais minima
+  (\S\ref{sec:minima}).
   \item Charges de Bader (QTAIM) et de Manz (DDEC6) report\'ees \`a une
   \'etape ult\'erieure -- n\'ecessitent respectivement le code de
   Henkelman et Chargemol sur un cube de densit\'e via \texttt{orca\_plot},
   non install\'es sur le cluster \`a ce jour.
   \item Tous les fichiers ORCA bruts (\texttt{.gbw}, \texttt{.densities},
-  \texttt{.hess}) sont conserv\'es intacts pour une seconde campagne
-  CCSD(T) envisag\'ee sur les petites structures -- le module
-  \texttt{refinement/} du d\'ep\^ot compagnon
+  \texttt{.hess}) sont conserv\'es intacts. Une seconde campagne
+  DLPNO-CCSD(T)-F12 (cc-pVTZ-F12, 49 structures repr\'esentatives -- les 3
+  isom\`eres DFT les plus stables de chacun des 19 groupes (N, charge)
+  confirm\'es, plus N$_2$, NH$_4^+$ et NH$_2^-$) est en cours pour \'etablir
+  des statistiques de temps de calcul (humain/CPU) et le nombre de c\oe urs
+  optimal par taille, avant d'\'etendre ce niveau \`a l'ensemble des
+  candidats. Le module \texttt{refinement/} du d\'ep\^ot compagnon
   \href{https://github.com/John-Akapulco/polyN}{\texttt{polyN}} impl\'emente
   d\'ej\`a un enchaînement de m\'ethodes config-driven avec seuil de taille
-  (\texttt{max\_n\_atoms}) adapt\'e \`a cet usage.
+  (\texttt{max\_n\_atoms}) adapt\'e \`a cet usage, \`a migrer vers plus tard.
   \item Seuils de classification des liaisons N--N (\S6)~: triple
   $<1{,}15$~\AA, double $<1{,}22$, d\'elocalis\'ee $<1{,}32$, simple
   $<1{,}55$, au-del\`a non-liant -- purement g\'eom\'etriques, \`a

@@ -4,6 +4,7 @@ orca
 orca.tar
 orca6.1
 jobs/
+ccsdt_jobs/
 bench/
 logs/
 reference/
