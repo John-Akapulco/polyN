@@ -130,25 +130,73 @@ points-selles), et s\'electionn\'ee par crit\`ere \'energ\'etique
 contribution du pool~2 n'a \'et\'e identifi\'ee dans les 193 candidats de
 cette campagne (\`a confirmer, \S\ref{sec:provenance}).
 
-\item[Pool~2 -- surrogate adaptatif (\texttt{polyN\_adapt}), non utilis\'e ici]
-Approche g\'en\'eration-par-g\'en\'eration~: une population de graphes
-candidats (\texttt{geng} tant que l'\'enum\'eration exhaustive reste
-praticable, puis mutation locale de l'archive accumul\'ee --
-ajout/retrait d'ar\^ete, permutation double d'ar\^etes, \`a $n$ constant
--- au-del\`a) est filtr\'ee par un \emph{surrogate} \`a deux volets~: un
-r\'egresseur \`a gradient boost\'e et une r\`egle interpr\'etable, tous
-deux r\'eentra\^\i n\'es \`a chaque g\'en\'eration sur l'archive
-accumul\'ee. Seuls les candidats retenus par le surrogate sont
-r\'eellement relax\'es (GFN2-xTB via \texttt{tblite}, calculateur ASE
-in-process), avec calcul de fr\'equences pour confirmer un vrai minimum.
-Un apprentissage actif priorise l'\'evaluation r\'eelle sur les
-candidats les plus incertains ou les plus proches de la fronti\`ere de la
-fen\^etre d'\'energie (0,2~eV/atome par d\'efaut, recalcul\'ee
-dynamiquement par rapport au meilleur minimum connu) plut\^ot que sur
-tous les candidats accept\'es indistinctement -- objectif~: minimiser le
-nombre de relaxations xTB r\'eellement n\'ecessaires face \`a un espace
-combinatoire trop vaste pour l'\'enum\'eration exhaustive seule. Un
-raffinement post-xTB (Gaussian ou ORCA, chaine d'\'etapes configurable
+\item[Pool~2 -- surrogate adaptatif (\texttt{polyN\_adapt}), non utilis\'e pour les 193 candidats de cette campagne DFT, op\'erationnel de bout en bout depuis le 2026-09-06]
+Approche g\'en\'eration-par-g\'en\'eration (\texttt{pipeline/population\_loop.py},
+fonction \texttt{run\_campaign}), pour $n$ et la charge fix\'es, en cinq
+\'etapes r\'ep\'et\'ees \`a chaque g\'en\'eration~:
+\begin{enumerate}[leftmargin=1.4em]
+\item \textbf{G\'en\'eration de candidats.} \texttt{core.geng\_interface.stream\_geng\_graphs}
+fait tourner \texttt{geng} (nauty) et \'enum\`ere des graphes \`a $n$
+sommets, connexes, de degr\'e born\'e (3 -- coh\'erent avec la valence de
+l'azote) ; au-del\`a du praticable en \'enum\'eration exhaustive
+(mesur\'e~: jusqu'\`a $n\approx14$--16 selon la machine), une mutation
+locale de l'archive accumul\'ee (ajout/retrait d'ar\^ete, permutation
+double d'ar\^etes, \`a $n$ constant) prend le relais
+(\texttt{run\_campaign\_mutation}). Le flux est tronqu\'e \`a un nombre
+maximal de candidats \emph{vus} par g\'en\'eration quand l'espace total
+d\'epasse ce qui est exploitable (ex.\ 1~016~740 graphes pour $n=15$).
+\item \textbf{Descripteurs topologiques.} Chaque candidat vu -- pas
+seulement ceux retenus -- re\c{c}oit 11 descripteurs
+(\texttt{core.graph\_descriptors.compute\_descriptors})~: nombre
+d'atomes, degr\'e maximal/moyen, fractions d'atomes de degr\'e 1/2/3,
+taille du plus petit cycle, nombre de cycles ind\'ependants, arbre ou
+non, nombre de fragments, chevauchement local maximal de cycles -- calcul
+purement combinatoire, sans relaxation.
+\item \textbf{S\'election par le surrogate.} \texttt{surrogate.adaptive.AdaptiveSurrogate.select\_batch}
+classe tous les candidats vus sur ces descripteurs et n'en retient
+qu'un budget fix\'e par g\'en\'eration (candidats r\'eellement
+\'evalu\'es, pas vus) -- un r\'egresseur \`a gradient boost\'e
+(entra\^\i n\'e sur l'archive des g\'en\'erations pr\'ec\'edentes, actif
+au-del\`a de \texttt{MIN\_TRAINING\_SAMPLES=20} exemples) priorise les
+candidats les plus proches en \'energie du meilleur isom\`ere connu
+(apprentissage actif). Une fraction (2\,\% par d\'efaut) des candidats
+\emph{rejet\'es} est n\'eanmoins \'evalu\'ee r\'eellement en
+\'echantillon de contr\^ole, pour mesurer un \'eventuel taux de faux
+rejets (isom\`eres m\'etastables r\'eels \'ecart\'es \`a tort par le
+filtre) et d\'eclencher une alerte si ce taux d\'epasse un seuil.
+\item \textbf{\'Evaluation r\'eelle, en parall\`ele.} Pour chaque candidat
+retenu (s\'election~+~contr\^ole), la chaine
+\texttt{evaluation.xtb\_bridge.relax\_and\_evaluate}~: (a)~plongement 3D
+par relaxation d'un champ de force
+(\texttt{embed\_graph\_3d\_ff}, plusieurs conform\`eres) \`a partir du
+graphe de connectivit\'e seul ; (b)~relaxation quantique GFN2-xTB
+(\texttt{tblite}, calculateur ASE \texttt{TBLite} in-process,
+multiplicit\'e impos\'ee \`a 1 -- singulet -- LBFGS jusqu'\`a
+convergence de force ou 300 pas) \`a charge fix\'ee ; (c)~v\'erification
+d'int\'egrit\'e g\'eom\'etrique (rejet des structures fragment\'ees) ;
+(d)~d\'etection d'un r\'earrangement topologique (comparaison par
+isomorphisme entre le graphe candidat initial et le graphe reconstruit
+g\'eom\'etriquement apr\`es relaxation) ; (e)~calcul de fr\'equences
+(si demand\'e) pour rejeter les points-selles (fr\'equence imaginaire) ;
+(f)~classification topologique de la structure finale. L'ensemble est
+r\'ep\'et\'e sur plusieurs graines d'embedding (\texttt{multiseed\_seeds},
+3 par d\'efaut -- un seed unique peut manquer un bassin r\'eellement plus
+stable, \'ecart observ\'e jusqu'\`a 0,44~eV/atome sur un cas r\'eel \`a
+$n=8$) ; seul le r\'esultat de plus basse \'energie est conserv\'e.
+Ces \'evaluations sont ind\'ependantes les unes des autres au sein d'une
+m\^eme g\'en\'eration (l'archive n'est mise \`a jour qu'apr\`es tout le
+lot) -- embarrassingly parallel par construction~:
+\texttt{n\_workers>1} les distribue sur un \texttt{ProcessPoolExecutor}
+plut\^ot qu'en s\'erie, gain quasi lin\'eaire avec le nombre de c\oe urs
+allou\'es.
+\item \textbf{Archive et r\'eapprentissage.} Les structures valides
+(int\`egres, sans fr\'equence imaginaire) sont d\'edoublonn\'ees par
+isomorphisme et ajout\'ees \`a l'archive (fen\^etre d'\'energie 0,2~eV/atome
+par d\'efaut au-dessus du meilleur isom\`ere connu, recalcul\'ee \`a
+chaque g\'en\'eration) ; le surrogate est r\'eentra\^\i n\'e sur
+l'archive mise \`a jour avant la g\'en\'eration suivante.
+\end{enumerate}
+Un raffinement post-xTB (Gaussian ou ORCA, chaine d'\'etapes configurable
 YAML, module \texttt{refinement/}) est pr\'evu pour les quelques
 isom\`eres bas en \'energie qui survivent \`a la fen\^etre. \emph{Aucune
 biblioth\`eque de potentiel appris (type MACE) n'intervient comme
@@ -156,7 +204,10 @@ surrogate dans le code actuel} de \texttt{polyN\_adapt} -- v\'erifi\'e
 directement dans \texttt{surrogate/adaptive.py} ; seule une note de
 compatibilit\'e OpenMP (\texttt{README.md}) mentionne \texttt{mace} comme
 biblioth\`eque tierce potentiellement import\'ee par un script externe,
-sans lien avec le m\'ecanisme de filtrage lui-m\^eme.
+sans lien avec le m\'ecanisme de filtrage lui-m\^eme. Premi\`ere campagne
+r\'eelle en cours au moment de la r\'edaction~: N$_{15}^-$ (seul trou de
+couverture accessible en singulet identifi\'e \`a la
+\S\ref{sec:coverage}), 32~c\oe urs, 3~g\'en\'erations.
 
 \item[Pool~3 -- structures issues de la litt\'erature (\texttt{biblio\_polyN})]
 Structures extraites d'articles publi\'es (actuellement 2 sources
@@ -495,7 +546,7 @@ SLURM/MPI des campagnes DFT/CCSD(T) de ce rapport.
 \clearpage
 \appendix
 \renewcommand{\thesection}{\Alph{section}}
-\section{Supporting Information}
+\section{Informations compl\'ementaires}
 
 Mat\'eriel suppl\'ementaire~: tableaux (Tableau~S1--S3) et figures
 (Figure~S1--S5) num\'erot\'es \`a la suite, s\'epar\'ement des tableaux et
