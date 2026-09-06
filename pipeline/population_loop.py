@@ -11,10 +11,19 @@ Le générateur de candidats (population_source) est injecté en paramètre :
   l'archive plutôt que d'énumérer tout l'espace.
 Cette fonction ne décide pas laquelle utiliser -- c'est un choix explicite
 de l'appelant selon n et la machine.
+
+Évaluation parallèle (n_workers, run_campaign et run_campaign_mutation) :
+l'évaluation de chaque candidat retenu au sein d'une génération est
+indépendante des autres (l'archive n'est mise à jour, et le surrogate
+ré-entraîné, qu'après tout le lot) -- embarrassingly parallel par
+construction. n_workers > 1 exécute ces évaluations sur un
+ProcessPoolExecutor plutôt qu'en série ; voir _evaluate_batch.
 """
 
 from __future__ import annotations
 
+import functools
+from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterator
@@ -24,6 +33,42 @@ import networkx as nx
 from ..archive.archive import Archive, ArchiveEntry
 from ..core.graph_descriptors import compute_descriptors
 from ..surrogate.adaptive import AdaptiveSurrogate
+
+
+def _evaluate_batch(to_evaluate, control_idx, candidates, evaluate_fn, charge,
+                     slako_dir, eval_dir, n_workers):
+    """
+    Evalue chaque candidat d'indice dans `to_evaluate`, en parallele si
+    n_workers > 1 -- chaque evaluation (embed 3D -> relaxation -> frequences)
+    est independante des autres au sein d'une meme generation (l'archive
+    n'est mise a jour et le surrogate re-entraine qu'APRES tout le lot,
+    cf. run_campaign), ecrit dans son propre cand_work_dir, ne touche a
+    aucun etat partage : cas d'ecole d'"embarrassingly parallel".
+
+    Retourne la liste (i, is_control, result) triee par indice croissant
+    (pas par ordre de completion), pour un comportement -- et une
+    reproductibilite a seed fixe -- identiques a la version serie : seul
+    l'ORDRE DE SOUMISSION compte pour le dedoublonnage de l'archive
+    (Archive.add), jamais l'ordre de retour des workers.
+
+    n_workers > 1 exige que `evaluate_fn` soit picklable -- une fonction de
+    niveau module, ou un functools.partial d'une telle fonction (cas de
+    l'evaluateur par defaut, cf. run_campaign) ; une closure/lambda locale
+    echoue avec un PicklingError explicite plutot que de degrader
+    silencieusement en execution serie.
+    """
+    tasks = [(i, i in control_idx, str(eval_dir / f"cand{i:05d}")) for i in sorted(to_evaluate)]
+
+    if n_workers <= 1:
+        return [(i, is_ctrl, evaluate_fn(candidates[i], charge, slako_dir, wd))
+                for i, is_ctrl, wd in tasks]
+
+    with ProcessPoolExecutor(max_workers=n_workers) as pool:
+        futures = [pool.submit(evaluate_fn, candidates[i], charge, slako_dir, wd)
+                   for i, is_ctrl, wd in tasks]
+        results = [fut.result() for fut in futures]
+
+    return [(i, is_ctrl, result) for (i, is_ctrl, wd), result in zip(tasks, results)]
 
 
 @dataclass
@@ -69,8 +114,18 @@ def run_campaign(
     active_learning: bool = True,
     control_sample_fraction: float = 0.02,
     seed: int = 0,
+    n_workers: int = 1,
 ) -> tuple[Archive, list[GenerationReport]]:
     """
+    n_workers : nombre de candidats évalués EN PARALLÈLE au sein d'une même
+        génération (ProcessPoolExecutor, un process par évaluation
+        concurrente). 1 = série (comportement historique, inchangé).
+        Embarrassingly parallel par construction (cf. _evaluate_batch) :
+        gain quasi-linéaire avec le nombre de cœurs alloués, sans toucher à
+        la logique de filtrage/archive. Avec evaluate_fn=None (défaut),
+        fonctionne tel quel ; un evaluate_fn personnalisé doit être une
+        fonction de niveau module (ou un functools.partial d'une telle
+        fonction) pour rester picklable au-delà de n_workers=1.
     candidate_source_per_generation : une fonction génératrice par
         population (peut être la même répétée, ou une différente à partir
         d'un certain rang -- ex: geng pour les 3 premières, mutation ensuite).
@@ -115,11 +170,15 @@ def run_campaign(
     if evaluate_fn is None:
         from ..evaluation.xtb_bridge import default_multiseed_evaluate_fn
 
-        def evaluate_fn(G, charge, slako_dir, cand_work_dir):
-            return default_multiseed_evaluate_fn(
-                G, charge, slako_dir, cand_work_dir,
-                seeds=multiseed_seeds, run_frequencies=run_frequencies,
-            )
+        # functools.partial d'une fonction de niveau module (pas une closure
+        # locale) : reste picklable pour ProcessPoolExecutor quand
+        # n_workers > 1 -- une closure imbriquée (def evaluate_fn(...): ...)
+        # echouerait a la soumission (PicklingError), le pickle standard ne
+        # sachant serialiser que des fonctions accessibles par nom de module.
+        evaluate_fn = functools.partial(
+            default_multiseed_evaluate_fn,
+            seeds=multiseed_seeds, run_frequencies=run_frequencies,
+        )
 
     work_dir = Path(work_dir)
     work_dir.mkdir(parents=True, exist_ok=True)
@@ -157,11 +216,12 @@ def run_campaign(
         n_rearranged = 0
         control_energies: list[float] = []  # correction #2 : énergies des contrôles évalués OK
         eval_dir = work_dir / f"gen{gen_idx:03d}"
-        for i in to_evaluate:
+        eval_dir.mkdir(parents=True, exist_ok=True)
+        for i, is_control, result in _evaluate_batch(
+            to_evaluate, control_idx, candidates, evaluate_fn, charge,
+            slako_dir, eval_dir, n_workers,
+        ):
             G = candidates[i]
-            is_control = i in control_idx
-            cand_work_dir = str(eval_dir / f"cand{i:05d}")
-            result = evaluate_fn(G, charge, slako_dir, cand_work_dir)
             if result.get("error"):
                 continue
             entry = ArchiveEntry(
@@ -254,8 +314,13 @@ def run_campaign_mutation(
     active_learning: bool = True,
     control_sample_fraction: float = 0.02,
     seed: int = 0,
+    n_workers: int = 1,
 ) -> tuple[Archive, list[GenerationReport]]:
     """
+    n_workers : voir run_campaign -- même mécanisme (ProcessPoolExecutor,
+        embarrassingly parallel par génération), même contrainte de
+        picklabilité sur evaluate_fn au-delà de n_workers=1.
+
     Variante de run_campaign pour les GRANDES tailles (n > ~16), où
     l'énumération geng est impraticable : les candidats de chaque
     génération sont produits par MUTATION des graphes de l'archive
@@ -285,17 +350,15 @@ def run_campaign_mutation(
         seed=seed,
     )
 
-    def evaluate_fn_factory():
-        from ..evaluation.xtb_bridge import default_multiseed_evaluate_fn
+    from ..evaluation.xtb_bridge import default_multiseed_evaluate_fn
 
-        def evaluate_fn(G, charge, slako_dir, cand_work_dir):
-            return default_multiseed_evaluate_fn(
-                G, charge, slako_dir, cand_work_dir,
-                seeds=multiseed_seeds, run_frequencies=run_frequencies,
-            )
-        return evaluate_fn
-
-    evaluate_fn = evaluate_fn_factory()
+    # cf. run_campaign : functools.partial d'une fonction de niveau module,
+    # picklable pour ProcessPoolExecutor quand n_workers > 1 (une closure
+    # locale ne le serait pas).
+    evaluate_fn = functools.partial(
+        default_multiseed_evaluate_fn,
+        seeds=multiseed_seeds, run_frequencies=run_frequencies,
+    )
 
     import random
     rng_ctrl = random.Random(seed)
@@ -337,11 +400,12 @@ def run_campaign_mutation(
         n_ok = n_new_unique = n_duplicate_updated = n_duplicate_rejected = n_rearranged = 0
         control_energies: list[float] = []  # correction #2
         eval_dir = work_dir / f"gen{gen_idx:03d}"
-        for i in to_evaluate:
+        eval_dir.mkdir(parents=True, exist_ok=True)
+        for i, is_control, result in _evaluate_batch(
+            to_evaluate, control_idx, candidates, evaluate_fn, charge,
+            slako_dir, eval_dir, n_workers,
+        ):
             G = candidates[i]
-            is_control = i in control_idx
-            cand_work_dir = str(eval_dir / f"cand{i:05d}")
-            result = evaluate_fn(G, charge, slako_dir, cand_work_dir)
             if result.get("error"):
                 continue
             entry = ArchiveEntry(

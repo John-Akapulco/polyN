@@ -130,3 +130,25 @@ module est autonome, prêt à l'emploi, mais rien dans la boucle de
 génération ne l'appelle encore) ; enrichissement des descripteurs
 (charge, ordre de liaison, groupe ponctuel) qui expliquerait
 probablement le signal manquant pour neutres/anions.
+
+## Parallélisation de l'évaluation (pool 2, 2026-09-06)
+
+`pipeline/population_loop.py` (`run_campaign` et `run_campaign_mutation`)
+accepte maintenant `n_workers: int = 1` : au-delà de 1, les évaluations
+xTB des candidats d'une même génération tournent sur un
+`ProcessPoolExecutor` plutôt qu'en série (`_evaluate_batch`) --
+embarrassingly parallel par construction, puisque l'archive n'est mise à
+jour et le surrogate ré-entraîné qu'après tout le lot. Testé avec un
+évaluateur factice (`ase`/`tblite` absents de cet environnement) :
+résultats identiques série/parallèle, speedup ×5,6 mesuré avec 8 workers
+sur une charge de test triviale (overhead du pool proportionnellement
+plus visible que sur de vraies évaluations xTB, qui dureront des
+secondes chacune plutôt que 0,05 s).
+
+**Contrainte à connaître** : `evaluate_fn` doit rester picklable au-delà
+de `n_workers=1` (fonction de niveau module, ou `functools.partial`
+d'une telle fonction) -- une closure locale échoue avec un
+`PicklingError` explicite. L'évaluateur par défaut a été changé d'une
+closure interne vers un `functools.partial(default_multiseed_evaluate_fn,
+...)` pour cette raison ; un `evaluate_fn` personnalisé fourni par
+l'appelant reste soumis à la même contrainte.
