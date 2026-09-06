@@ -1,6 +1,6 @@
 {\scriptsize
 \begin{longtable}{@{}p{4.0cm}rrrr@{}}
-\caption{Confrontation xTB / DFT / CCSD(T)-F12 (cc-pVTZ-F12, single-point sur g\'eom\'etrie DFT resym\'etris\'ee) : rang de stabilit\'e (isom\`ere le plus stable de son groupe (N, charge) = rang~1) aux trois niveaux, et $\Delta E$ CCSD(T)-F12 (kcal/mol) relative \`a ce m\^eme isom\`ere. Limit\'e aux groupes ayant au moins 2 structures avec un calcul CCSD(T) termin\'e -- 40 structures termin\'ees au total au moment de la r\'edaction (campagne en cours, \S\ref{sec:limites}).}
+\caption{Confrontation xTB / DFT / CCSD(T)-F12 (cc-pVTZ-F12, single-point sur g\'eom\'etrie DFT resym\'etris\'ee) : rang de stabilit\'e (isom\`ere le plus stable de son groupe (N, charge) = rang~1) aux trois niveaux, et $\Delta E$ CCSD(T)-F12 (kcal/mol) relative \`a ce m\^eme isom\`ere. Limit\'e aux groupes ayant au moins 2 structures avec un calcul CCSD(T) termin\'e -- 55 structures termin\'ees au total au moment de la r\'edaction (campagne en cours, \S\ref{sec:limites}).}
 \label{tab:ccsdt-comparison}\\
 \toprule
 \textbf{Nom} & \textbf{rang xtb} & \textbf{rang DFT} & \textbf{rang CCSD(T)} & \textbf{$\Delta E$ CCSD(T)} \\
@@ -19,7 +19,9 @@
 \texttt{N5\_cation\_cation\_004} & 4 & 3 & 1 & 0.000 \\
 \texttt{N5\_cation\_cation\_001} & 1 & 2 & 2 & 0.009 \\
 \texttt{N5\_cation\_cation\_003} & 3 & 1 & 3 & 0.010 \\
-\texttt{N5\_cation\_cation\_005} & 5 & 5 & 4 & 112.848 \\
+\texttt{N5\_cation\_cation\_002} & 2 & 4 & 4 & 40.851 \\
+\texttt{N5\_cation\_cation\_005} & 5 & 5 & 5 & 112.848 \\
+\texttt{N5\_cation\_cation\_006} & 6 & 6 & 6 & 156.067 \\
 \addlinespace
 \texttt{N6\_neutral\_neutral\_001} & 1 & 1 & 1 & 0.000 \\
 \texttt{N6\_neutral\_neutral\_002} & 2 & 2 & 2 & 23.011 \\
@@ -34,13 +36,24 @@
 \texttt{N7\_anion\_anion\_002} & 2 & 1 & 1 & 0.000 \\
 \texttt{N7\_anion\_anion\_001} & 1 & 2 & 2 & 0.001 \\
 \texttt{N7\_anion\_anion\_005} & 5 & 3 & 3 & 3.684 \\
+\texttt{N7\_anion\_anion\_004} & 4 & 4 & 4 & 6.419 \\
+\texttt{N7\_anion\_anion\_011} & 11 & 7 & 5 & 25.240 \\
+\texttt{N7\_anion\_anion\_012} & 12 & 8 & 6 & 28.017 \\
+\texttt{N7\_anion\_anion\_008} & 8 & 12 & 7 & 46.393 \\
+\texttt{N7\_anion\_anion\_010} & 10 & 11 & 8 & 47.610 \\
+\texttt{N7\_anion\_anion\_014} & 14 & 14 & 9 & 52.880 \\
+\texttt{N7\_anion\_anion\_019} & 19 & 17 & 10 & 91.053 \\
 \addlinespace
 \texttt{N7\_cation\_cation\_001} & 1 & 1 & 1 & 0.000 \\
 \texttt{N7\_cation\_cation\_003} & 3 & 2 & 2 & 24.641 \\
 \addlinespace
 \texttt{N8\_neutral\_neutral\_002} & 2 & 1 & 1 & 0.000 \\
 \texttt{N8\_neutral\_neutral\_001} & 1 & 2 & 2 & 13.430 \\
-\texttt{N8\_neutral\_neutral\_005} & 5 & 3 & 3 & 16.069 \\
+\texttt{N8\_neutral\_neutral\_003} & 3 & 4 & 3 & 15.378 \\
+\texttt{N8\_neutral\_neutral\_005} & 5 & 3 & 4 & 16.069 \\
+\texttt{N8\_neutral\_neutral\_004} & 4 & 6 & 5 & 32.979 \\
+\texttt{N8\_neutral\_neutral\_010} & 10 & 8 & 6 & 75.291 \\
+\texttt{N8\_neutral\_neutral\_012} & 12 & 10 & 7 & 84.254 \\
 \addlinespace
 \texttt{N9\_anion\_anion\_001} & 1 & 1 & 1 & 0.000 \\
 \texttt{N9\_anion\_anion\_003} & 3 & 3 & 2 & 41.009 \\
@@ -57,7 +70,10 @@
 \texttt{N11\_anion\_anion\_006} & 6 & 3 & 1 & 0.000 \\
 \texttt{N11\_anion\_anion\_007} & 7 & 6 & 2 & 47.568 \\
 \texttt{N11\_anion\_anion\_008} & 8 & 8 & 3 & 52.275 \\
+\addlinespace
+\texttt{N11\_cation\_cation\_001} & 1 & 2 & 1 & 0.000 \\
+\texttt{N11\_cation\_cation\_006} & 6 & 5 & 2 & 39.509 \\
 \end{longtable}
 }
-\noindent\textit{Bilan~:} 7/11 groupes comparables ont le m\^eme \'etat fondamental aux trois niveaux~; DFT et CCSD(T) s'accordent entre eux sur 9/11 groupes -- l\`a o\`u ils divergent, l'\'ecart CCSD(T) entre les deux premiers isom\`eres est syst\'ematiquement inf\'erieur \`a 1~kcal/mol (quasi-d\'eg\'en\'erescence, pas de d\'esaccord physique). Quand xTB diverge du couple DFT/CCSD(T), c'est presque toujours xTB qui est en cause -- coh\'erent avec sa pr\'ecision moindre.
+\noindent\textit{Bilan~:} 8/12 groupes comparables ont le m\^eme \'etat fondamental aux trois niveaux~; DFT et CCSD(T) s'accordent entre eux sur 10/12 groupes -- l\`a o\`u ils divergent, l'\'ecart CCSD(T) entre les deux premiers isom\`eres est syst\'ematiquement inf\'erieur \`a 1~kcal/mol (quasi-d\'eg\'en\'erescence, pas de d\'esaccord physique). Quand xTB diverge du couple DFT/CCSD(T), c'est presque toujours xTB qui est en cause -- coh\'erent avec sa pr\'ecision moindre.
 \bigskip\noindent\textit{R\'ef\'erences hors criblage} (pas de groupe de comparaison)~: \texttt{N2}, \texttt{NH2\_anion}, \texttt{NH4\_cation}.
