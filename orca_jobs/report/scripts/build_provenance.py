@@ -11,24 +11,23 @@ topo = {r["name"]: r for r in csv.DictReader(open("/tmp/topology_match_report.cs
 dhf = {r["name"]: r for r in csv.DictReader(open("/home/gilles/polyN/orca_jobs/results_dHf_xtb.csv"))}
 summary = {r["name"]: r for r in csv.DictReader(open("/home/gilles/polyN/orca_jobs/results_summary.csv"))}
 
-# --- reference code -> sequential number, only for codes actually used ---
-used_codes = []
-for r in topo.values():
-    if r["matched_origin"] == "biblio_article":
-        for nm in r["all_biblio_names"].split(";") if r["all_biblio_names"] else []:
-            code = name_to_ref.get(nm)
-            if code and code not in used_codes:
-                used_codes.append(code)
-code_to_num = {c: i+1 for i, c in enumerate(used_codes)}
-
-FULL_REFS = {
-    "GS": r"Glukhovtsev, Jiao, von Rag\'e Schleyer, \emph{Inorg. Chem.} \textbf{1996}, 35, 7124--7133.",
-    "B": r"Fau, Mobita, Wilson, Perera, Bartlett, \emph{Quantum Theory Project report}, University of Florida.",
-}
-# A1-A20 filled from table_references.tex if ever used (none are, currently)
+# --- reference code -> sequential number: FIXED order (GS, B, A1..A20),
+# matching the master numbered list in annexe_references.tex (B.1) so an
+# in-table citation number always points to the same list entry regardless
+# of which candidates happen to cite it. ---
 import re
-for m in re.finditer(r"\\item\[\[([A-Z0-9]+)\]\]\s*(.+)", open("/tmp/table_references.tex").read()):
-    FULL_REFS.setdefault(m.group(1), m.group(2).strip())
+FULL_REFS_LIST = [
+    ("GS", r"Glukhovtsev, Jiao, von Rag\'e Schleyer, \emph{Inorg. Chem.} \textbf{1996}, 35, 7124--7133."),
+    ("B", r"Fau, Mobita, Wilson, Perera, Bartlett, \emph{Quantum Theory Project report}, University of Florida."),
+]
+_seen = {c for c, _ in FULL_REFS_LIST}
+for m in re.finditer(r"\\item\[\[([A-Z0-9]+)\]\]\s*(.+)", open(f"{REPORT_DIR}/scripts/biblio_data/table_references.tex").read()):
+    code = m.group(1)
+    if code not in _seen:
+        FULL_REFS_LIST.append((code, m.group(2).strip()))
+        _seen.add(code)
+code_to_num = {c: i + 1 for i, (c, _) in enumerate(FULL_REFS_LIST)}
+FULL_REFS = dict(FULL_REFS_LIST)
 
 def reference_str(name):
     """Every row is one of our own 193 candidates, so 'our work' always
@@ -117,6 +116,12 @@ def make_table(family, label, fname):
             lines.append(f"\\texttt{{{esc(name)}}} & {n} & {pg} & {rel_dH[name]:.2f} & {niveau} & {ref} \\\\")
     lines.append(r"\end{longtable}")
     lines.append(r"}")
+    lines.append(r"\noindent{\footnotesize\textit{Note~:} $\Delta H$ = \'energie "
+                 r"d'isom\'erisation \`a N et charge fix\'es, "
+                 r"N$_x^{q}$(isom\`ere $i$) $\rightarrow$ N$_x^{q}$(isom\`ere le "
+                 r"plus stable de la m\^eme formule), $\Delta H = E(i) - "
+                 r"E_{\mathrm{stable}}$, au niveau DFT quand disponible "
+                 r"sinon GFN2-xTB (colonne \emph{niveau}).}")
     with open(f"{REPORT_DIR}/{fname}", "w") as fh:
         fh.write("\n".join(lines))
     print(fname, "->", sum(len(v) for v in rows_by_n.values()), "lignes (fragmentees exclues)")
@@ -129,14 +134,15 @@ make_table("anion", "anioniques", "table_provenance_anion.tex")
 # Manual "Table S1." heading instead of \caption's auto-numbered "Table N":
 # keeps Supporting-Information numbering (S1, S2...) independent of the main
 # body's Table 1,2,3... sequence, with no extra package/counter machinery.
-lines = [r"\noindent\textbf{Table S1.} Structures fragment\'ees~: le candidat se s\'epare en plusieurs esp\`eces mol\'eculaires distinctes (aucune paire N--N restante sous 1,7~\AA\ entre les morceaux), pas un cluster N$_x$ li\'e unique. "
-         r"Retir\'ees des tableaux principaux (\S\ref{sec:provenance}) et de la comparaison de stabilit\'e. Repr\'esentations avant/apr\`es en Figure~S4.\par\vspace{4pt}",
-         r"\begin{longtable}{@{}p{4.4cm}ccp{1.6cm}cc@{}}", r"\scriptsize",
+lines = [r"\noindent\textbf{Tableau S1.} Structures fragment\'ees~: le candidat se s\'epare en plusieurs esp\`eces mol\'eculaires distinctes (aucune paire N--N restante sous 1,7~\AA\ entre les morceaux), pas un cluster N$_x$ li\'e unique. "
+         r"N'apparaissent pas dans les Tableaux~2--4 (\S\ref{sec:provenance}) ni dans la comparaison de stabilit\'e DFT/xTB (\S\ref{sec:ranking}). "
+         r"La colonne \emph{d\'ej\`a fragment\'e \`a xTB} indique si la g\'eom\'etrie de d\'epart (avant tout calcul DFT) \'etait elle-m\^eme d\'ej\`a s\'epar\'ee en plusieurs morceaux -- auquel cas la fragmentation est ant\'erieure \`a cette campagne DFT (artefact du criblage GFN2-xTB en amont), et non un r\'esultat de l'optimisation DFT. Repr\'esentations avant/apr\`es en Figure~S1.\par\vspace{4pt}",
+         r"{\scriptsize", r"\begin{longtable}{@{}p{4.0cm}ccp{1.6cm}cp{1.7cm}c@{}}",
          r"\label{tab:fragmented}\\",
          r"\toprule",
-         r"\textbf{Nom} & \textbf{N} & \textbf{Charge} & \textbf{Fragments (tailles)} & \textbf{Niveau} & \textbf{R\'ef.} \\",
+         r"\textbf{Nom} & \textbf{N} & \textbf{Charge} & \textbf{Fragments (tailles)} & \textbf{Niveau} & \textbf{D\'ej\`a frag.\ \`a xTB} & \textbf{R\'ef.} \\",
          r"\midrule\endfirsthead",
-         r"\multicolumn{6}{c}{\small (suite)}\\ \toprule\endhead",
+         r"\multicolumn{7}{c}{\small (suite)}\\ \toprule\endhead",
          r"\bottomrule\endfoot", r"\bottomrule\endlastfoot"]
 frag_sorted = sorted(fragmented, key=lambda nm: (int(dhf[nm]["n"]), dhf[nm]["family"]))
 for name in frag_sorted:
@@ -145,20 +151,19 @@ for name in frag_sorted:
     sign = {"cation": "+", "anion": "-", "neutral": "0"}[r["family"]]
     sizes = fr["fragment_sizes"].replace("+", "$+$")
     ref = reference_str(name)
-    lines.append(f"\\texttt{{{esc(name)}}} & {r['n']} & {sign} & {sizes} & {fr['level']} & {ref} \\\\")
+    already = fr.get("already_fragmented_at_xtb", "False") == "True"
+    already_mark = r"\checkmark~(" + fr["fragment_sizes_xtb_initial"].replace("+", "$+$") + ")" if already else "non (DFT seul)"
+    lines.append(f"\\texttt{{{esc(name)}}} & {r['n']} & {sign} & {sizes} & {fr['level']} & {already_mark} & {ref} \\\\")
 lines.append(r"\end{longtable}")
+lines.append(r"}")
 with open(f"{REPORT_DIR}/table_S1_fragmented.tex", "w") as fh:
     fh.write("\n".join(lines))
 print("table_S1_fragmented.tex:", len(frag_sorted), "lignes")
 
-# --- Annexe references ---
-lines = [r"\begin{description}[leftmargin=1.6cm,itemsep=3pt,style=nextline]"]
-for code, num in sorted(code_to_num.items(), key=lambda kv: kv[1]):
-    lines.append(f"\\item[[{num}]] {FULL_REFS.get(code, code)}")
-lines.append(r"\end{description}")
-with open(f"{REPORT_DIR}/annexe_references.tex", "w") as fh:
-    fh.write("\n".join(lines))
-print("references used:", code_to_num)
+# NOTE: annexe_references.tex (Annexe B) is now generated by the separate
+# build_references.py, which needs code_to_num/name_to_ref/topo from the
+# pickle dumped just below -- run it after this script.
+print("code_to_num (fixed order):", code_to_num)
 
 # expose rel_dH / dft_based / fragmented / reference_str-materials for the appendix script
 import pickle

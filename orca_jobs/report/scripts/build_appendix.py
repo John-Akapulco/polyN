@@ -35,7 +35,7 @@ for r in manifest:
     fam = s["family"]
     by_family[fam].append((n, r["name"], r["point_group"]))
 
-order = [("neutral", "S1", "neutres"), ("cation", "S2", "cationiques"), ("anion", "S3", "anioniques")]
+order = [("neutral", "S2", "neutres"), ("cation", "S3", "cationiques"), ("anion", "S4", "anioniques")]
 out_lines = []
 for fam, fig_label, label_fr in order:
     items = sorted(by_family.get(fam, []), key=lambda t: (t[0], rel_dH.get(t[1], 0)))
@@ -61,27 +61,35 @@ print("annexe_structures.tex (S1-S3) rebuilt,", sum(len(v) for v in by_family.va
 for fam in by_family:
     print(" ", fam, len(by_family[fam]))
 
-# --- Figure S4: fragmented structures, initial (xTB) | final (DFT, fragmented) ---
+# --- Figure S1: fragmented structures, initial (xTB) | final (DFT, fragmented) ---
 frag_manifest = list(csv.DictReader(open(f"{REPORT_DIR}/figs/fragmented/manifest.csv")))
 dhf = state["dhf"]
+frag_check = {r["name"]: r for r in csv.DictReader(
+    open("/home/gilles/polyN/orca_jobs/results_fragmentation.csv"))}
 frag_items = sorted(frag_manifest, key=lambda r: (int(dhf[r["name"]]["n"]), dhf[r["name"]]["family"]))
 
-s4_lines = [r"\subsection*{Figure S4 -- structures fragment\'ees (avant / apr\`es)}",
+s4_lines = [r"\subsection*{Figure S1 -- structures fragment\'ees (avant / apr\`es)}",
             r"Pour chaque candidat fragment\'e (Tableau~S1)~: \`a gauche la g\'eom\'etrie "
-            r"initiale (issue du criblage GFN2-xTB, topologie N$_x$ intacte telle que "
-            r"g\'en\'er\'ee), \`a droite le r\'esultat de l'optimisation DFT WB97X-D4 "
-            r"(s\'epar\'e en plusieurs esp\`eces)."]
+            r"initiale telle que produite par le criblage GFN2-xTB, \`a droite le "
+            r"r\'esultat de l'optimisation DFT WB97X-D4. La l\'egende sous chaque paire "
+            r"pr\'ecise si la g\'eom\'etrie initiale \'etait d\'ej\`a fragment\'ee \`a "
+            r"xTB (artefact du criblage en amont) ou encore intacte (fragmentation "
+            r"survenue pendant l'optimisation DFT elle-m\^eme)."]
 for r in frag_items:
     name = r["name"]
     d = dhf[name]
     sign = {"cation": "+", "anion": "-", "neutral": "0"}[d["family"]]
     sizes = r["fragment_sizes"].replace("+", "$+$")
+    fc = frag_check[name]
+    already = fc.get("already_fragmented_at_xtb", "False") == "True"
+    xtb_label = (r"d\'ej\`a fragment\'ee, " + fc["fragment_sizes_xtb_initial"].replace("+", "$+$")) if already \
+        else "intacte, N$_" + d["n"] + "^{" + sign + r"}$"
     s4_lines.append(r"\begin{figure}[H]")
     s4_lines.append(r"\centering")
     s4_lines.append(r"\begin{minipage}{0.46\textwidth}")
     s4_lines.append(r"\centering")
     s4_lines.append(f"\\includegraphics[width=0.8\\linewidth]{{{FIGS_DIR}/fragmented/{name}_initial.png}}\\\\[2pt]")
-    s4_lines.append(r"{\small initiale (xTB, N$_" + d["n"] + "^{" + sign + r"}$ intact)}")
+    s4_lines.append(r"{\small initiale (xTB, " + xtb_label + ")}")
     s4_lines.append(r"\end{minipage}\hfill")
     s4_lines.append(r"\begin{minipage}{0.46\textwidth}")
     s4_lines.append(r"\centering")
@@ -91,6 +99,17 @@ for r in frag_items:
     s4_lines.append(r"\end{figure}")
     s4_lines.append(r"\centerline{\small \texttt{" + esc(name) + r"} -- fragments de taille " + sizes + "}")
     s4_lines.append(r"\vspace{8pt}")
+
+s4_lines.append(r"\bigskip\noindent\textit{L\'egende g\'en\'erale, Figure~S1~:} "
+                 r"sph\`eres bleues reli\'ees par des b\^atonnets = atomes N et "
+                 r"liaisons N--N (mod\`ele boules-b\^atonnets, rendu depuis les "
+                 r"coordonn\'ees cart\'esiennes .xyz) ; paires group\'ees par "
+                 r"candidat, g\'eom\'etrie initiale GFN2-xTB \`a gauche et "
+                 r"g\'eom\'etrie finale DFT WB97X-D4 \`a droite pour chacun des "
+                 + str(len(frag_items)) + r" candidats fragment\'es dont le calcul "
+                 r"DFT est termin\'e (sur les " + str(len(fragmented)) +
+                 r" recens\'es au Tableau~S1 ; les autres n'ont pas encore de "
+                 r"g\'eom\'etrie DFT \`a montrer).")
 
 with open(f"{REPORT_DIR}/annexe_fragmented.tex", "w") as fh:
     fh.write("\n".join(s4_lines))

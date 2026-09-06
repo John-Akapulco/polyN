@@ -1,0 +1,1755 @@
+{
+ "https://openalex.org/W2951459289": {
+  "id": "https://openalex.org/W2951459289",
+  "title": "On the Bonding Nature of the N5+(=N(N2)2+) Cation and Related Species N(CO)x+, N(NH3)x+, and NRx+, x = 1, 2 and R = He, Ne, Ar, Kr. Do We Really Need the Resonance Concept?",
+  "year": 2002,
+  "doi": "https://doi.org/10.1021/jp014124p",
+  "abstract": "We attempt to elucidate the bonding nature of the isoelectronic and isovalent cations N 5 + (=N(N 2 ) 2 + ) and N(CO) 2 +, the salts of which have been recently isolated. By performing coupled-cluster RCCSD(T) calculations, we argue against the \u201cresonance\u201d bonding approach as redundant, and we claim that the bonding in the aforementioned species is naturally explained by realizing that the in situ central nitrogen (N + ) finds itself in the first excited 1 D state, thus forming two equivalent dative bonds with N 2 and CO, respectively. To further support our position, we have also studied at the same level of theory the molecules NNH 3 +, N(NH 3 ) 2 +, NR +, and NR 2 +, where R = He, Ne, Ar, and Kr. It is predicted that the N(NH 3 ) 2 + system is clearly isolable, whereas under certain conditions, NKr 2 + (and perhaps NXe 2 + ) could also be \u201ctrapped\u201d experimentally.",
+  "cites_our_sources": [
+   "N3+.pdf",
+   "N5.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W2184578977": {
+  "id": "https://openalex.org/W2184578977",
+  "title": "Polynitrogen compounds",
+  "year": 2003,
+  "doi": "https://doi.org/10.1016/s0010-8545(03)00101-2",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-C2O2-28.pdf",
+   "N4c.pdf",
+   "N4-N8.pdf",
+   "N4+.pdf",
+   "N5.pdf",
+   "N10-N60.pdf",
+   "N4b.pdf",
+   "ja002253y.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "N10.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2029891039": {
+  "id": "https://openalex.org/W2029891039",
+  "title": "Besides N 2 , What Is the Most Stable Molecule Composed Only of Nitrogen Atoms?",
+  "year": 1996,
+  "doi": "https://doi.org/10.1021/ic9606237",
+  "abstract": "Polynitrogen molecules have been studied systematically at high levels of ab initio and density functional theory (DFT). Besides N(2), the thermodynamically most stable N(n)() molecules, located with the help of a newly developed energy increment system, are all based on pentazole units. The geometric, energetic, and magnetic criteria establish pentazole (2) and its anion (3) to be as aromatic as their isoelectronic analogues, e.g., furan, pyrrole, and the cyclopentadienyl anion. The bond lengths in 2 and 3 are equalized; both have large aromatic stabilization energies (ASE) and also substantial magnetic susceptibility exaltations (Lambda). The C(s)() symmetric azidopentazole (14), a candidate for experimental investigation, is the lowest energy N(8) isomer but is still 196.7 kcal/mol higher in energy than four N(2) molecules. Octaazapentalene (12) with 10 pi electrons also is aromatic. The D(2)(d)() symmetric bispentazole (21) is the lowest energy N(10) minimum but is 260 kcal/mol higher in energy than five N(2) molecules. For strain-free molecules, the average deviation is +/-2.6 kcal/mol between the DFT energies and those based on the increment scheme. The increment scheme also provides estimates of the strain energies of polynitrogen compounds, e.g., tetraazatetrahedrane (8, 48.2 kcal/mol), octaazacubane (11, 192.6 kcal/mol), and N(20) (27, 294.6 kcal/mol), and is useful in searching for new high-energy-high-density materials.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-C2O2-28.pdf",
+   "N4c.pdf"
+  ]
+ },
+ "https://openalex.org/W2073149497": {
+  "id": "https://openalex.org/W2073149497",
+  "title": "Structure and Stability of N6 Isomers and Their Spectroscopic Characteristics",
+  "year": 2001,
+  "doi": "https://doi.org/10.1021/jp003971+",
+  "abstract": "Among homonuclear nitrogen molecules, N 6 isomers occupy a critical position as a possible diazide or a benzene analogue. However, the character of stationary points on the N 6 potential-energy hypersurface is known to be a strong function of choice of calculation methods and basis set. We present results with density functional theory (B3LYP and PW91 functionals) and coupled cluster theory (CCSD(T)) to investigate the shape of the potential-energy surface. The CCSD(T) suggests fewer minima on the potential-energy surface compared with the density functional theory. The stability and amount of internally stored energy of N 6 isomers as well as their spectroscopic characteristics are important. Structure, vibrational frequencies including IR and CCSD Raman intensities, heats of formation, vertical ionization potentials, electron affinities, and excitation energies are reported.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N6-3N2.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4220802781": {
+  "id": "https://openalex.org/W4220802781",
+  "title": "Molecular and Electronic Structures of Neutral Polynitrogens: Review on the Theory and Experiment in 21st Century",
+  "year": 2022,
+  "doi": "https://doi.org/10.3390/ijms23052841",
+  "abstract": "The data on the existence and physicochemical characteristics of uncharged single element chemical compounds formed by nitrogen atoms and containing more than two nuclides of this element (from N4 to N120, oligomeric and polymeric polynitrogens) have been systematized and generalized. It has been noticed that these data have a predominantly predictive character and were obtained mainly using quantum chemical calculations of various levels (HF, DFT, MP, CCSD etc.). The possibility of the practical application of these single element compounds has been considered. The review mainly covers articles published in the last 25 years. The bibliography contains 128 references.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-N8.pdf",
+   "N7.pdf",
+   "N20.pdf",
+   "N10-N60.pdf",
+   "N6-3N2.pdf",
+   "N8.pdf",
+   "N8b.pdf",
+   "N8c.pdf",
+   "N12-N8.pdf",
+   "N5-N6-abinitio.pdf",
+   "n7b.pdf",
+   "jp0141833.pdf",
+   "jp0208182.pdf",
+   "N10_acyc.pdf",
+   "N11.pdf",
+   "N7c.pdf",
+   "N60_marek_03.pdf",
+   "2004_3_IJQC_Polynitrogen Clusters Containing Five-Membered Rings.pdf",
+   "jp0378889.pdf",
+   "N10_marek_03.pdf",
+   "N20_05.pdf",
+   "N_nanotubes_06.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4405253645": {
+  "id": "https://openalex.org/W4405253645",
+  "title": "High-Pressure Synthesis of K 4 N 6 with All Nitrogen Atoms Forming Aromatic Hexazine [N 6 ] 4\u2013 Anions",
+  "year": 2026,
+  "doi": "https://doi.org/10.1021/jacs.5c21993",
+  "abstract": "Realizing compounds entirely composed of aromatic hexazine N 6 rings with high stability is a long-term challenge. Existing high-pressure synthesized compounds contain a maximum of 5.36% N atoms, forming aromatic [N 6 ] 4\u2013 rings. We predict that all N atoms contribute to aromatic [N 6 ] 4\u2013 rings in K 4 N 6, which become stable at 60 GPa and can stably exist up to 600 K at 0 GPa. Furthermore, K and KN 3 are suggested as precursors for the synthesis of K 4 N 6 . Following this approach, based on the diamond anvil cell, K 4 N 6 with 100% nitrogen atoms forming aromatic hexazine [N 6 ] 4\u2013 rings is synthesized at 45 GPa after laser heating and identified by synchrotron X-ray diffraction and Raman spectroscopy. Our results bring us closer to achieving aromatic N 6 rings at ambient condition.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2360551814": {
+  "id": "https://openalex.org/W2360551814",
+  "title": "Theoretical Study of Potential Energy Surfaces for N12 Clusters",
+  "year": 2002,
+  "doi": "https://doi.org/10.1021/jp020110n",
+  "abstract": "Two new isomers of N 12 clusters were reported in addition to the four isomers previously studied. The decomposition pathways of these six N 12 isomers were studied by using the density functional theory (DFT) method at the B3LYP/6-31G* level. Relative energies were further calculated at the B3LYP/6-311+G(3df, 2p)//B3LYP/6-31G* level. DFT predicts that the dissociation of diazobispentazole proceeds via ring breaking and the barrier height is only 4.0 kcal/mol at the B3LYP/6-311+G(3df,2p)//B3LYP/6-31G* level. The dissociation reaction of N 12 consisting of an aromatic N 5 ring and a N 7 open chain prefers ring breaking, at a cost of 9.2 kcal/mol, to breaking a bond in the side chain. For open-chain N 12 ( C 2 h ) isomer, the B3LYP/6-311+G(3df,2p)//B3LYP/6-31G* barrier height for the N 2 elimination reaction is 14.5 kcal/mol. As for the cyclic and cagelike isomers, their decomposition barrier heights are all much lower than 10 kcal/mol. From the results presented here, it seems that these six isomers are not kinetically stable enough because of their lower barrier heights of decomposition.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-C2O2-28.pdf",
+   "N20.pdf",
+   "N10-N60.pdf",
+   "N6-3N2.pdf",
+   "N8.pdf",
+   "N8c.pdf",
+   "ja002253y.pdf",
+   "N12-N8.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1998798347": {
+  "id": "https://openalex.org/W1998798347",
+  "title": "Theoretical Study on \u201cMultilayer\u201d Nitrogen Cages",
+  "year": 2006,
+  "doi": "https://doi.org/10.1021/jp056435w",
+  "abstract": "The relative stabilities of nonisomers are investigated. Twenty-two species of nitrogen cage molecules N(2n) (N6 (D(3h)), N8 (Oh), N10 (D(5h)), N12 (D(6h)), N12 (D(3d)), N16 (D(4d)), N18 (D(3h)), N20 (Ih), N24 (D(3d)), N24 (D(4h)), N24 (D(6d)), N30 (D(3h)), N30 (D(5h)), N32 (D(4d)), N36 (D(3d)), N40 (D(4h)), N42 (D(3h)), N48 (D(4d)), N48 (D(3d)), N54 (D(3h)), N56 (D(4h)), and N60 (D(3d))), which are divided into four sets, have been studied in detail. The geometries and varieties of energies are examined extensively, and NBO analysis and AIM analysis are applied to investigate the bonding properties of the cage molecules. The introducing of the concept of \"layer\" can well assist in explaining why one nonisomer molecule is more stable than another one. The results show that the lengths of bonds, on both sides of which are five-membered rings (referred to as pentagons), are the shortest and the orbital energies are the lowest. The nonlocalized electron numbers of orbitals, on at least one side of which is a triangle, are the greatest. Pentagons play a major role in the stability of a cage molecule, and the three-membered rings (referred to as triangles) play the second one. The layers in nitrogen cage molecules also contribute to the relative stabilities.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N20.pdf",
+   "N10-N60.pdf",
+   "N10_acyc.pdf",
+   "jp0378889.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2952838036": {
+  "id": "https://openalex.org/W2952838036",
+  "title": "Azido-Nitrene Is Probably the N4 Molecule Observed in Mass Spectrometric Experiments",
+  "year": 2003,
+  "doi": "https://doi.org/10.1021/jp034017q",
+  "abstract": "Ab initio calculations determining structures and stabilities of the tetranitrogen N 4 \u2022+ /N 4 system and mass spectrometric experiments were carried out in an attempt to understand the processes occurring in a recent neutralization\u2212reionization mass spectrometric (NRMS) experiment starting from a linear N 4 \u2022+ radical cation (Cacace et al. Science, 2002, 295, 480). Calculations were performed using RCCSD(T) and MRCISD+Q methods with the 6-311+G(3df) basis set. The most stable bound tetranitrogen molecule is an azidonitrene (N 3 \u2212N) featuring a triplet 3 A\u2018 \u2018 ground state and being 56 kJ/mol below the singlet tetrahedral T d isomer. The singlet azidonitrene has an open-shell 1 A\u2018 \u2018 state and the corresponding singlet\u2212triplet energy gap amounts to 69 kJ/mol. In both states, fragmentation giving two N 2 moieties needs to overcome a barrier height of about 55 kJ/mol. A remarkable difference between N 4 isomers is that ionization of triplet azidonitrene leads to the linear 2 \u03a3 ground-state radical cation, whereas removal of an electron from singlet tetrahedrane (N 4, T d ) gives rise to a cyclic three-membered ring belonging to a \u03a0-type excited state. The standard heats of formation are evaluated as follows: \u0394 (triplet azidonitrene) = 714 \u00b1 20 kJ/mol, \u0394 (singlet azidonitrene) = 783 \u00b1 20 kJ/mol, \u0394 (N 4, T d ) = 770 \u00b1 20 kJ/mol, and \u0394 (N 4 \u2022+ ) = 1398 \u00b1 20 kJ/mol. The adiabatic ionization energies are estimated as IE a (triplet azidonitrene) = 7.3 \u00b1 0.3 eV and IE a (N 4, T d ) = 10.4 \u00b1 0.3 eV. When repeating the NRMS experiments using our tandem mass spectrometer and operating conditions, the collisional activation (CA) spectrum of N 4 \u2022+ could be recorded, whereas we could not reproduce the neutraliza tion \u2212 re ionization spectrum reported by Cacace et al. These results suggest that although azido-nitrene was apparently generated in NRMS experiments, only a very small fraction of the N 4 neutral could effectively be reionized, and the resulting spectra could not be reproduced easily, when changing even slightly the experimental conditions.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-C2O2-28.pdf",
+   "N4-N8.pdf",
+   "N4+.pdf",
+   "N4b.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2004160448": {
+  "id": "https://openalex.org/W2004160448",
+  "title": "High-level computational study on the thermochemistry of saturated and unsaturated three- and four-membered nitrogen and phosphorus rings",
+  "year": 1997,
+  "doi": "https://doi.org/10.1002/(sici)1097-461x(1997)62:4<373::aid-qua5>3.0.co;2-t",
+  "abstract": "The heats of formation and strain energies for saturated and unsaturated three- and four-membered nitrogen and phosphorus rings have been calculated using G2 theory. G2 heats of formation (\u0394Hf298) of triaziridine [(NH)3], triazirine (N3H), tetrazetidine [(NH)4], and tetrazetine (N4H2) are 405.0, 453.7, 522.5, and 514.1 kJ mol\u22121, respectively. Tetrazetidine is unstable (121.5 kJ mol\u22121 at 298 K) with respect to its dissociation into two trans-diazene (N2H2) molecules. The dissociation of tetrazetine into molecular nitrogen and trans-diazene is highly exothermic (\u0394H298 = \u2212308.3 kJ mol\u22121 calculated using G2 theory). G2 heats of formation (\u0394Hf298) of cyclotriphosphane [(PH)3], cyclotriphosphene (P3H), cyclotetraphosphane [(PH)4], and cyclotetraphosphene (P4H2) are 80.7, 167.2, 102.7, and 170.7 kJ mol\u22121, respectively. Cyclotetraphosphane and cyclotetraphosphene are stabilized by 145.8 and 101.2 kJ mol\u22121 relative to their dissociations into two diphosphene molecules or into diphosphene (HP(DOUBLE BOND)PH) and diphosphorus (P2), respectively. The strain energies of triaziridine [(NH)3], triazirine (N3H), tetrazetidine [(NH)4], and tetrazetine (N4H2) were calculated to be 115.0, 198.3, 135.8, and 162.0 kJ mol\u22121, respectively (at 298 K). While the strain energies of the nitrogen three-membered rings in triaziridine and triazirine are smaller than the strain energies of cyclopropane (117.4 kJ mol\u22121) and cyclopropene (232.2 kJ mol\u22121), the strain energies of the nitrogen four-membered rings in tetrazetidine and tetrazetine are larger than those of cyclobutane (110.2 kJ mol\u22121) and cyclobutene (132.0 kJ mol\u22121). In contrast to higher strain in cyclopropane as compared with cyclobutane, triaziridine is less strained than tetrazetidine. The strain energies of cyclotriphosphane [(PH)3, 21.8 kJ mol\u22121], cyclotriphosphene (P3H, 34.6 kJ mol\u22121), cyclotetraphosphane [(PH)4, 24.1 kJ mol\u22121], and cyclotetraphosphene (P4H2, 18.5 kJ mol\u22121), calculated at the G2 level are considerably smaller than those of their carbon and nitrogen analog. Cyclotetraphosphene containing the P(DOUBLE BOND)P double bond is less strained than cyclotetraphosphane, in sharp contrast to the ratio between the strain energies for the analogous unsaturated and saturated carbon and nitrogen rings. \u00a9 1997 John Wiley & Sons, Inc. Int J Quant Chem 62: 373\u2013384, 1997",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4c.pdf"
+  ]
+ },
+ "https://openalex.org/W1485443967": {
+  "id": "https://openalex.org/W1485443967",
+  "title": "On the nature of bonding in N5+ ion",
+  "year": 2001,
+  "doi": "https://doi.org/10.1016/s0166-1280(01)00404-3",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-C2O2-28.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2054484871": {
+  "id": "https://openalex.org/W2054484871",
+  "title": "Modeling of synthesis and dissociation of the N4 nitrogen cluster of D2H symmetry",
+  "year": 2009,
+  "doi": "https://doi.org/10.1007/s11182-010-9362-9",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-C2O2-28.pdf"
+  ]
+ },
+ "https://openalex.org/W3174266921": {
+  "id": "https://openalex.org/W3174266921",
+  "title": "Stability of neutral molecular polynitrogens: energy content and decomposition mechanisms",
+  "year": 2021,
+  "doi": "https://doi.org/10.1039/d1ra03259c",
+  "abstract": "case, each employing different accuracy levels, and the decomposition of caged structures has been little explored. Here we explore the stability and decomposition of several neutral molecular polynitrogens of different sizes and shapes using a common and accurate theoretical framework in order to compare among them, search for patterns and identify potential candidates for synthesis. We focus especially on new caged geometries, and our results indicate that the prismatic ones can be expected to present higher energy densities and be very stable with respect to unimolecular decomposition. It is shown that the energy content can be clearly stratified between chain, ring, cage and prismatic cage structures.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N8e.pdf",
+   "N10-N60.pdf",
+   "N6-3N2.pdf",
+   "N8b.pdf",
+   "N8c.pdf",
+   "N12-N8.pdf",
+   "N5-N6-abinitio.pdf",
+   "jp0208182.pdf",
+   "N10_acyc.pdf",
+   "N10.pdf",
+   "2004_3_IJQC_Polynitrogen Clusters Containing Five-Membered Rings.pdf",
+   "N10_marek_03.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2326613939": {
+  "id": "https://openalex.org/W2326613939",
+  "title": "New Isomers of N8 without Double Bonds",
+  "year": 1997,
+  "doi": "https://doi.org/10.1021/jp962878b",
+  "abstract": "Quantum mechanical methods have been used to examine isomers of N 8 . In addition to the previously studied octaazacubane structure ( O h symmetry, 1 ), we have investigated two new structures, of D 2 h ( 2 ) and C 2 v ( 3 ) symmetry, without N N double bonds. The C 2 v structure may be designated octaazacuneane. The following basis sets and methods have been employed to optimize geometries: (1) (SCF, CISD, CCSD)/DZP; (2) (SCF, MP2, B3LYP, B3P86, BHLYP)/6-31G*; (3) B3LYP/6-311+G*. The single-point energies have also been estimated at the CISD+Q/DZP level of theory with CISD/DZP geometries and at the CCSD(T)/DZP level with CCSD/DZP geometries. The harmonic vibrational frequencies and their infrared intensities have also been predicted with the SCF, MP2, and DFT methods. The results show that the two new isomers are both minima on the N 8 potential energy hypersurface and of higher energy than isomers containing N N double bonds. Among the three isomers with only single bonds, the ones with the higher symmetry have higher energies.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-C2O2-28.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1972219694": {
+  "id": "https://openalex.org/W1972219694",
+  "title": "Theoretical study of the N10 clusters without double bonds",
+  "year": 2001,
+  "doi": "https://doi.org/10.1002/1097-461x(2001)82:1<34::aid-qua1013>3.0.co;2-1",
+  "abstract": "Quantum chemical ab initio methods have been used to examine nine N10 clusters without double bonds. In additional to the three N10 isomers previously studied in the literature, six new N10 structures were investigated. Fully geometry optimization, harmonic vibrational frequency, and thermodynamics calculation of nine different N10 molecules were performed at the RHF/6-31G*, B3LYP/6-31G*, and MP2/6-31G* levels. All of the nine structures were found to be local minima on the energy hypersurface at the RHF/6-31G* level, whereas eight structures are stable at the B3LYP/6-31G* level. At the MP2/6-31G* level, seven local minima were found. They would be potential high-energy density material (HEDM). According to the results presented herein, the structure N10[V(C2v)] is the most stable molecule of all the N10 clusters without double bonds. \u00a9 2001 John Wiley & Sons, Inc. Int J Quant Chem 82: 34\u201343, 2001",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N18.pdf"
+  ]
+ },
+ "https://openalex.org/W2023094095": {
+  "id": "https://openalex.org/W2023094095",
+  "title": "Ionic nitrogen clusters",
+  "year": 2003,
+  "doi": "https://doi.org/10.1016/s0166-1280(02)00532-8",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N8e.pdf",
+   "N20.pdf",
+   "N10-N60.pdf",
+   "N6-3N2.pdf"
+  ]
+ },
+ "https://openalex.org/W2055631852": {
+  "id": "https://openalex.org/W2055631852",
+  "title": "Theoretical investigation on the cylinder-shaped N84 cage",
+  "year": 2007,
+  "doi": "https://doi.org/10.1016/j.cplett.2007.10.076",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N20.pdf",
+   "N10-N60.pdf",
+   "N8b.pdf",
+   "N12-N8.pdf",
+   "jp0141833.pdf",
+   "N10_acyc.pdf",
+   "jp0378889.pdf",
+   "N10_marek_03.pdf",
+   "N_nanotubes_06.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W3111388802": {
+  "id": "https://openalex.org/W3111388802",
+  "title": "Tetra-, hexa-, and octanitrogen molecules: a quantum chemical design and thermodynamic properties",
+  "year": 2020,
+  "doi": "https://doi.org/10.1007/s11172-020-3001-6",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N20.pdf",
+   "N12-N8.pdf",
+   "N10_marek_03.pdf"
+  ]
+ },
+ "https://openalex.org/W2006890876": {
+  "id": "https://openalex.org/W2006890876",
+  "title": "Structures and stability of N13 cluster",
+  "year": 2003,
+  "doi": "https://doi.org/10.1080/00268970310001593303",
+  "abstract": "Quantum chemical studies for the nine N13 isomers with low spin were carried out at the UHF/6-31G*, UB3LYP/6-31G* and UMP2/6-311G* levels of theory. The most stable N13 isomer is structure 1 with C2v symmetry, which contains two separated pentazole rings connected by three nitrogen atoms. The results show that structures 1, 2, 3, 4 and 5 which are composed of the pentazole ring are more stable than the open chain structure 6 and structures 8 and 9 which contain the four- and six-membered rings. This suggests that the pentazole ring is a fundamental stable structural unit, which is applicable not only for the even-numbered nitrogen clusters, but also for the large odd-numbered clusters.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-N8.pdf",
+   "N7.pdf",
+   "N5+.pdf",
+   "N11.pdf",
+   "N7c.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2094314421": {
+  "id": "https://openalex.org/W2094314421",
+  "title": "Possibility of a pressure\u2010induced 2N2 \u2192 N4 reaction",
+  "year": 2003,
+  "doi": "https://doi.org/10.1002/qua.10746",
+  "abstract": "Abstract The CAS\u2010SCF energy of an N4 cluster for a fixed value of the system volume (constrained to a D2d symmetry) is studied. It is shown that, for a wide range of volumes, two minima exist: one corresponding to two separated N2 molecules and one to an N4 cluster with tetrahedric shape. For small values of the volume, the energy of the tetrahedric form becomes lower than the energy of the two N2 molecules. This suggests the possibility that, at high densities, tetrahedric N4 might be more stable than two N2 molecules, with a pressure\u2010drive phase transition between the two forms occurring at a very high pressure. \u00a9 2003 Wiley Periodicals, Inc. Int J Quantum Chem, 2004",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N8e.pdf",
+   "N10-N60.pdf"
+  ]
+ },
+ "https://openalex.org/W2107374300": {
+  "id": "https://openalex.org/W2107374300",
+  "title": "THE DISSOCIATION AND ISOMERIZATION REACTIONS OF N 11 ISOMERS",
+  "year": 2003,
+  "doi": "https://doi.org/10.1142/s0219633603000306",
+  "abstract": "The dissociation and isomerization reactions of N 11 isomers, including the two structures 1 and 3 previously studied as well as the three new structures 2, 4, and 5, were investigated by the density functional theory (DFT) at the B3LYP/6-31G(d), B3LYP/6-311G(d), and B3LYP/6-311+G(3df)//B3LYP/6-311G(d) levels of theory. The results indicate that, similar to previous results on N 9 and N 10 isomers, the barrier heights for structures 1 and 2 to lose N 2 are about 10\u201315 kcal/mol whereas the barrier heights for structures 1\u20133 to lose N 3 are about 25\u201330 kcal/mol. Therefore, it seems that N 2 is easier to be eliminated than is N 3 from the relatively larger nitrogen isomers. In addition, for structures 1 and 3, both dissociation and isomerization can occur in the N8\u2013N9 bond, due partly to its character in having an aromatic bond. Moreover, the isomerization is preferred compared with dissociation because of its relatively lower energy barrier height.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N4-C2O2-28.pdf",
+   "N4-N8.pdf",
+   "N7.pdf",
+   "N4b.pdf",
+   "N6-3N2.pdf",
+   "N8.pdf",
+   "N8c.pdf",
+   "N5-N6-abinitio.pdf",
+   "jp0141833.pdf",
+   "N10_acyc.pdf",
+   "N11.pdf",
+   "N7c.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W3166382853": {
+  "id": "https://openalex.org/W3166382853",
+  "title": "Accessing the applicability of the MBE approach for constructing potential energy surfaces of nitrogen clusters",
+  "year": 2021,
+  "doi": "https://doi.org/10.1016/j.chemphys.2021.111272",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N18.pdf",
+   "N7.pdf",
+   "N20.pdf",
+   "N5.pdf",
+   "N10-N60.pdf",
+   "N8b.pdf",
+   "N8c.pdf",
+   "N12-N8.pdf",
+   "jp0141833.pdf",
+   "N10_acyc.pdf",
+   "N7c.pdf",
+   "jp0378889.pdf",
+   "N10_marek_03.pdf",
+   "N_nanotubes_06.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2141097545": {
+  "id": "https://openalex.org/W2141097545",
+  "title": "A theoretical study of saturated sp3 nitrogen rings",
+  "year": 2008,
+  "doi": "https://doi.org/10.1016/j.theochem.2008.05.005",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N8e.pdf",
+   "N20.pdf",
+   "N10-N60.pdf",
+   "N4b.pdf",
+   "N6-3N2.pdf",
+   "N5+.pdf",
+   "N10_acyc.pdf",
+   "N60_marek_03.pdf",
+   "jp0378889.pdf",
+   "N20_05.pdf",
+   "N_nanotubes_06.pdf"
+  ]
+ },
+ "https://openalex.org/W2083406888": {
+  "id": "https://openalex.org/W2083406888",
+  "title": "Possible Reaction Pathway of HN3 + N5+ and Stability of the Products' Isomers",
+  "year": 2002,
+  "doi": "https://doi.org/10.1021/jp013865n",
+  "abstract": "The potential energy surfaces of N 8 H + involving the synthesis pathway of N 5 + + HN 3 \u2192 N 8 H +, the isomerization of ortho-N 8 H + \u2192 int-N 8 H +, and the decomposition reaction of int-N 8 H + \u2192 N 2 H + + 3N 2 were investigated. The structures were optimized by hybrid density functional theory. Relative energies were also calculated using second-order configuration interaction with single and double excitations. The barrier heights of the synthesis pathway in the forward and reverse directions were predicted to be 32.4 and 26.4 kcal/mol, and those of the isomerization and decomposition reactions were 64.9 and 65.3 kcal/mol at the QCISD/6-311++G** level, respectively. A calculation of rate constants for the synthesis and dissociation pathways of N 8 H + ( C S ) was done by the variational transition state theory. The electron densities of species involved in the potential energy surface were calculated and analyzed. The results will provide data for the design of high-energy density materials.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N8e.pdf",
+   "N5.pdf",
+   "N8.pdf",
+   "N8c.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4396776630": {
+  "id": "https://openalex.org/W4396776630",
+  "title": "Intramolecular steric and relaxation analysis of nitrogen clusters",
+  "year": 2024,
+  "doi": "https://doi.org/10.1016/j.comptc.2024.114638",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N10-N60.pdf",
+   "N12-N8.pdf",
+   "jp0378889.pdf",
+   "N10_marek_03.pdf",
+   "N_nanotubes_06.pdf"
+  ]
+ },
+ "https://openalex.org/W7131073458": {
+  "id": "https://openalex.org/W7131073458",
+  "title": "High-Pressure Synthesis of K <sub>4</sub> N <sub>6</sub> with All Nitrogen Atoms Forming Aromatic Hexazine [N <sub>6</sub> ] <sup>4\u2013</sup> Anions",
+  "year": 2026,
+  "doi": "https://doi.org/10.1021/jacs.5c21993",
+  "abstract": "rings at ambient condition.",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W7155040847": {
+  "id": "https://openalex.org/W7155040847",
+  "title": "Rational design of nitrogen-rich cage energetic molecules: Balancing energy and stability through controlled nitrogen connectivity",
+  "year": 2026,
+  "doi": "https://doi.org/10.1016/j.fuel.2026.139544",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-6-8.pdf",
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W2019240116": {
+  "id": "https://openalex.org/W2019240116",
+  "title": "Experimental Detection of Tetranitrogen",
+  "year": 2002,
+  "doi": "https://doi.org/10.1126/science.1067681",
+  "abstract": "Tetranitrogen (N4), which has been the subject of great theoretical interest, has been prepared from the N4+ cation and positively detected as a gaseous metastable molecule with a lifetime exceeding 1 microsecond in experiments based on neutralization-reionization mass spectrometry. An examination of the geometry of N4+ and the fragmentation pattern of the (14)N2(15)N2 neutral molecule has revealed that the latter is characterized by an open-chain geometry with two distinct, closely bound N2 units joined by a longer weaker bond.",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "N4c.pdf",
+   "N4+.pdf",
+   "N4b.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4413446338": {
+  "id": "https://openalex.org/W4413446338",
+  "title": "Dual-aromaticity in nitrogen-rich compounds: from fundamental concepts to the application of high-energy-density materials",
+  "year": 2025,
+  "doi": "https://doi.org/10.1016/j.ccr.2025.217081",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "N10-N60.pdf",
+   "azidopentazole.pdf",
+   "N5+.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4282915833": {
+  "id": "https://openalex.org/W4282915833",
+  "title": "A novel all-nitrogen molecular crystal N 16 as a promising high-energy-density material",
+  "year": 2022,
+  "doi": "https://doi.org/10.1039/d2dt00820c",
+  "abstract": "A new all-nitrogen molecular crystal N 16 with aromatic units, high molecular symmetry, and efficient crystal packing is predicted as a promising high-energy-density material that can be obtained under high pressure.",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "N20.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1630101489": {
+  "id": "https://openalex.org/W1630101489",
+  "title": "A theoretical study of the azide (N3) doublet states. A new route to tetraazatetrahedrane (N4): N+N3\u2192N4",
+  "year": 2002,
+  "doi": "https://doi.org/10.1063/1.1476310",
+  "abstract": "The potential energy surfaces for the low-lying doublet states of the azide radical (N3) have been computed at the complete active space self-consistent field (CASSCF) level with the CAS(15,12) active space. The cc-pVTZ and aug-cc-pVTZ basis sets have been employed throughout the present work. Energies, geometries and harmonic frequencies were determined for the N3 linear ground electronic state (2\u03a0g), a stable C2v ring structure (2B1), and a Cs transition state (2A\u2033) connecting the ring and linear structures. Other N3 (C2v) stationary points (2A2, B12, and A12) have been characterized, as well. The vertical excitation energies for the doublet excited states of the N3 linear (2\u03a0g) and stable ring (2B1) isomers were calculated using CASSCF and multireference configuration interaction [MRCI-SD(Q)] methods. A new route to tetraazatetrahedrane [N4(Td)] has been proposed on the N4 singlet potential energy surface within Cs symmetry. MRCI-SD(Q) calculations predict that N4 (Td) can be formed from atomic nitrogen in the D2 state and N3 (C2v, B12) in a barrierless exothermic reaction. The energy difference (D0) is 135.4 kcal/mol at the MRCI-SD(Q) level.",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "N4c.pdf",
+   "N4b.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4389886194": {
+  "id": "https://openalex.org/W4389886194",
+  "title": "Novel cage-like all-nitrogen molecular crystal stable under ambient conditions",
+  "year": 2023,
+  "doi": "https://doi.org/10.1016/j.vacuum.2023.112909",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "N8c.pdf",
+   "N60_marek_03.pdf"
+  ]
+ },
+ "https://openalex.org/W1885618648": {
+  "id": "https://openalex.org/W1885618648",
+  "title": "Bicyclic CN 2 O 2 as a high-energy density material: promising or not?",
+  "year": 2015,
+  "doi": "https://doi.org/10.1039/c5ra06797a",
+  "abstract": "A previously unreported decomposition transition state TS2 was located, which could significantly reduce the decomposition barrier of C to be less than the half of the previously reported value. So C seems unlikely to act as a molecular HEDM!",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W4410757489": {
+  "id": "https://openalex.org/W4410757489",
+  "title": "Theoretical prediction of pressure-stabilized all-nitrogen N 12 molecular crystals with \u03c0\u2013\u03c0 stacking",
+  "year": 2025,
+  "doi": "https://doi.org/10.1039/d5cp01409c",
+  "abstract": "crystalline possessed excellent detonation velocity and pressure among the known all-nitrogen molecular crystals. This work enhances the understanding of nitrogen chemistry and provides new insights into the stabilization of all-nitrogen compounds through \u03c0-\u03c0 stacking.",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "N18.pdf",
+   "N10-N60.pdf",
+   "2004_3_IJQC_Polynitrogen Clusters Containing Five-Membered Rings.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1977684859": {
+  "id": "https://openalex.org/W1977684859",
+  "title": "On the possibility of detecting tetraazatetrahedrane (N4) in liquid or solid nitrogen by Fourier transform Raman spectroscopy",
+  "year": 2001,
+  "doi": "https://doi.org/10.1002/jrs.686",
+  "abstract": "Abstract The detection limit of N4 (at Td and D2h symmetry) by the Fourier transform (FT) Raman technique was determined in liquid and solid nitrogen using a modified commercial FT\u2010Raman spectrometer. The detection limit was determined by combining experimental signal strength and noise levels of N2 in liquid and solid nitrogen with ab initio quantum mechanical (QM) calculations of the Raman intensities of N2 and N4 (Td and D2h). The QM calculations were performed at the B3LYP/6\u2013311G(d) level. The detection limit was found to be 34 ppm of N4(Td) in N2(liq) and 80 ppm in N2(solid), using an 8 h measurement time and a laser power of 1000 mW. The paper also reports calculated Raman spectra of N4 (Td and D2h) at the B3LYP/6\u2013311G(d) level and a new harmonic wavenumber scaling factor, s = 0.953447, for nitrogen\u2010containing molecules at the B3LYP/6\u2013311G(d) level. The Raman spectrum of N4(Td) consists of three lines, at 728.35, 938.93 and 1321.58 cm\u22121, with Raman scattering activities of 17.5, 36.2 and 30.0 \u00c54 u\u22121, respectively. Copyright \u00a9 2001 John Wiley & Sons, Ltd.",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf"
+  ]
+ },
+ "https://openalex.org/W1520527321": {
+  "id": "https://openalex.org/W1520527321",
+  "title": "Polynitrogens as promising high-energy density materials: computational design",
+  "year": 2003,
+  "doi": "https://doi.org/10.1016/s1380-7323(03)80016-x",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "N4c.pdf",
+   "N4-N8.pdf",
+   "N18.pdf",
+   "N20.pdf",
+   "N10-N60.pdf",
+   "N4b.pdf",
+   "N6-3N2.pdf",
+   "N8.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "jp0141833.pdf",
+   "jp0208182.pdf",
+   "N10_acyc.pdf",
+   "N10.pdf",
+   "N11.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2073205668": {
+  "id": "https://openalex.org/W2073205668",
+  "title": "A theoretical study on the stability of N15+ cluster",
+  "year": 2003,
+  "doi": "https://doi.org/10.1039/b209547e",
+  "abstract": "Ab initio (MP2) and density functional theory (DFT) methods have been used to examine three isomers of the N15+ cluster with the 6-31G* basis set. The most stable isomer is the trans structure (CS), containing one aromatic N5 ring and two N5 side chains. The decomposition pathways of the three isomers were studied at the B3LYP/6-31G* level of theory. Relative energies were refined at the level of B3LYP/6-311G(3df,2p)//B3LYP/6-31G* + ZPE (B3LYP/6-31G*). The decomposition reactions of the global minimum prefer side-chain fission, with barriers of 9.3 and 12.0 kcal mol\u22121 for N2 and N5+ (C2v) fission reactions, respectively. The ring breaking reaction has a barrier of 19.4 kcal mol\u22121. The corresponding side-chain fission barriers for the second structure (C2v), which is a cis isomer, are predicted to be 9.3 kcal mol\u22121 and 12.1 kcal mol\u22121, respectively. The barrier height for breaking the center ring of the three connected N5 rings of the third structure (C2) is predicted to be 8.0 kcal mol\u22121.",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "N7.pdf",
+   "N10-N60.pdf",
+   "N4b.pdf",
+   "N6-3N2.pdf",
+   "N8c.pdf",
+   "N5-N6-abinitio.pdf",
+   "n7b.pdf",
+   "N11.pdf",
+   "N7c.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4220940734": {
+  "id": "https://openalex.org/W4220940734",
+  "title": "Conferring all-nitrogen aromatics extra stability by acidic trapping",
+  "year": 2022,
+  "doi": "https://doi.org/10.1016/j.molliq.2022.118939",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-C2O2-28.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1967896823": {
+  "id": "https://openalex.org/W1967896823",
+  "title": "Tetrazete (N4). Can it be prepared and observed?",
+  "year": 2000,
+  "doi": "https://doi.org/10.1016/s0009-2614(00)00926-x",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4c.pdf",
+   "N4-N8.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1842108827": {
+  "id": "https://openalex.org/W1842108827",
+  "title": "A theoretical study of the structures and stabilities of N4O2isomers",
+  "year": 2005,
+  "doi": "https://doi.org/10.1080/00268970512331317345",
+  "abstract": "Five N4O2 isomers and their possible decomposition pathways were investigated with M\u00f8ller\u2013Plesset perturbation theory (MP2) and density functional theory (DFT). The most stable isomer is the open-chain C2v structure, which has not been reported before. For all five N4O2 isomers, dissociation energies and eight transition states were studied in the present paper. The open-chain isomer 1 and the planar (C2h) isomer 3 could be potential candidates for high energy density materials (HEDM) due to their large dissociation energy and moderate dissociation barrier.",
+  "cites_our_sources": [
+   "N4c.pdf",
+   "N10_acyc.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W7171905138": {
+  "id": "https://openalex.org/W7171905138",
+  "title": "Tetrazete (N4):can it be prepared and observed?",
+  "year": 2000,
+  "doi": null,
+  "abstract": "",
+  "cites_our_sources": [
+   "N4c.pdf",
+   "N4-N8.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2044767278": {
+  "id": "https://openalex.org/W2044767278",
+  "title": "Global ab initio ground-state potential energy surface of N4",
+  "year": 2013,
+  "doi": "https://doi.org/10.1063/1.4811653",
+  "abstract": "We present a global ground-state potential energy surface for N4 suitable for treating high-energy vibrational-rotational energy transfer and collision-induced dissociation in N2-N2 collisions. To obtain the surface, complete active space second-order perturbation theory calculations were performed for the ground singlet state with an active space of 12 electrons in 12 orbitals and the maug-cc-pVTZ triple zeta basis set. About 17,000 ab initio data points have been calculated for the N4 system, distributed along nine series of N2 + N2 geometries and three series of N3 + N geometries. The six-dimensional ground-state potential energy surface is fitted using least-squares fits to the many-body component of the electronic energies based on permutationally invariant polynomials in bond order variables.",
+  "cites_our_sources": [
+   "N4-N8.pdf"
+  ]
+ },
+ "https://openalex.org/W2386952364": {
+  "id": "https://openalex.org/W2386952364",
+  "title": "A Quantum Chemical Study of N14 Cluster",
+  "year": 2004,
+  "doi": "https://doi.org/10.1023/b:stuc.0000011247.54952.89",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4-N8.pdf",
+   "N12-N8.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2900224341": {
+  "id": "https://openalex.org/W2900224341",
+  "title": "Screening for potential energetic C\u2013N cages with high energy and good stability: a theoretical comparative study",
+  "year": 2018,
+  "doi": "https://doi.org/10.1080/08927022.2018.1540870",
+  "abstract": "This paper presents a theoretical study on carbon-nitrogen cages as potentially high energy density materials (HEDMs) using density functional theory. The energetic properties, detonation performance, and stability of two C6N6H12 cages were researched comparison with two similar common cage compounds hexaazaisowurtzitane and cubane. Results indicate that both of two C6N6H12 cages have high positive heat of formation and good stability. Their densities and detonation characteristics are equivalent or slightly superior to those of hexaazaisowurtzitane and cubane, indicating that they have good detonation performance.",
+  "cites_our_sources": [
+   "N4-N8.pdf",
+   "N7.pdf",
+   "N20.pdf",
+   "N6-3N2.pdf",
+   "N5+.pdf",
+   "jp0141833.pdf",
+   "N10_acyc.pdf",
+   "N10.pdf",
+   "N7c.pdf",
+   "N20_05.pdf"
+  ]
+ },
+ "https://openalex.org/W2148111603": {
+  "id": "https://openalex.org/W2148111603",
+  "title": "Time-of-flight mass spectroscopic detection of new elemental and mixed small atomic clusters in the laser evaporation of carbon nitride",
+  "year": 1999,
+  "doi": "https://doi.org/10.1070/mc1999v009n01abeh001019",
+  "abstract": "New, positively-charged elemental and mixed atomic carbon\u2013nitrogen clusters have been detected by time-of-flight mass spectroscopy in the laser evaporation of carbon nitride C3N4.25.",
+  "cites_our_sources": [
+   "N4-N8.pdf"
+  ]
+ },
+ "https://openalex.org/W2029285248": {
+  "id": "https://openalex.org/W2029285248",
+  "title": "How does electron delocalization affect the electronic energy? A survey of neutral poly-nitrogen clusters",
+  "year": 2011,
+  "doi": "https://doi.org/10.1016/j.comptc.2011.07.013",
+  "abstract": "",
+  "cites_our_sources": [
+   "N18.pdf",
+   "N8e.pdf",
+   "N20.pdf",
+   "N5+.pdf",
+   "N10.pdf",
+   "2004_3_IJQC_Polynitrogen Clusters Containing Five-Membered Rings.pdf"
+  ]
+ },
+ "https://openalex.org/W2015780054": {
+  "id": "https://openalex.org/W2015780054",
+  "title": "Dissociation reaction of N8 azapentalene to 4N2: A theoretical study",
+  "year": 2000,
+  "doi": "https://doi.org/10.1002/(sici)1097-461x(2000)77:1<311::aid-qua29>3.0.co;2-l",
+  "abstract": "We present a theoretical study on the dissociation reaction of N8 azapantalene to four N2 molecules. The process proceeds via isomerization of N8 azapentalene to N8 azidopentazole, which then dissociates directly into four nitrogen molecules. The calculations have determined the relative energies of the two isomers and the two transition states involved in the dissociation process. The results show azidopentazole to be 13 kcal/mol more stable than azapentalene. The barrier to dissociation into four N2 molecules is computed to be 19 kcal/mol. It is concluded that N8 is not stable enough to be considered as a candidate for a high-energy density material. The calculations have been carried out using multiconfigurational self-consistent field and second-order perturbation theory. \u00a9 2000 John Wiley & Sons, Inc. Int J Quant Chem 77: 311\u2013315, 2000",
+  "cites_our_sources": [
+   "N18.pdf",
+   "N8e.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1613296766": {
+  "id": "https://openalex.org/W1613296766",
+  "title": "An isomeric study of N5+, N5, and N5\u2212: a Gaussian-3 investigation",
+  "year": 2000,
+  "doi": "https://doi.org/10.1016/s0009-2614(00)01071-x",
+  "abstract": "",
+  "cites_our_sources": [
+   "N7.pdf",
+   "N5.pdf",
+   "N7c.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W3047513237": {
+  "id": "https://openalex.org/W3047513237",
+  "title": "DFT and CIS (D) theoretical study on the ground and excited states of pentanitrogen cation",
+  "year": 2020,
+  "doi": "https://doi.org/10.1002/qua.26393",
+  "abstract": "Abstract Different isomers of N5+ were modeled at DFT(PBE0)/aug\u2010cc\u2010pV(Q + d)Z, and their ground(transition) state characteristics were assessed through frequency calculations. Single\u2010point energies were accomplished at PBE0/aug\u2010cc\u2010pV(5 + d)Z. Nonlinear optical susceptibilities (NLO) of isomers were accomplished using Firefly, while the linear optical invariant was examined using the finite\u2010field method, Firefly, and modified dipole field tensor in the presence of two different screening factors. The excited states, singlets and triplets, of were modeled at the CIS and CIS(D) and then their optical parameters were estimated at TDFT(PBE0)/aug\u2010cc\u2010pV(Q + d)Z using Firefly. The singlet is found the most stable isomer, with the inversional rate constant larger than that of the Cs isomer and high energy barrier with the triplet counterpart. Isomers 2, 3, and 4 are found local minima, while 5 and 6 are saddle points: transition states between equivalent invertomers. Energy calculations of the singlet and triplet isomers were in excellent agreement with the literature. An excellent correlation is found between the average polarizability and the impulse factor. Substantial variations were found between the singlet and triplet excited states in terms of energy, geometry, and optical properties from one side and with from the other side. Reactivity indices showed that N1 and N5 are the optimum nucleophilic and electrophilic reactivity sites.",
+  "cites_our_sources": [
+   "N7.pdf",
+   "N5+.pdf",
+   "N10.pdf",
+   "N7c.pdf",
+   "N10_marek_03.pdf"
+  ]
+ },
+ "https://openalex.org/W2022714578": {
+  "id": "https://openalex.org/W2022714578",
+  "title": "Structures and kinetic stability of N7 cluster",
+  "year": 2003,
+  "doi": "https://doi.org/10.1016/s0009-2614(02)01806-7",
+  "abstract": "",
+  "cites_our_sources": [
+   "N7.pdf",
+   "N4b.pdf",
+   "N6-3N2.pdf",
+   "N8c.pdf",
+   "N5-N6-abinitio.pdf",
+   "N10.pdf",
+   "N7c.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1982589716": {
+  "id": "https://openalex.org/W1982589716",
+  "title": "Synthesis reaction pathway of nitrogen-rich ionic compound N7H2+",
+  "year": 2002,
+  "doi": "https://doi.org/10.1016/s0009-2614(02)01042-4",
+  "abstract": "",
+  "cites_our_sources": [
+   "N7.pdf",
+   "N8e.pdf",
+   "N5.pdf",
+   "N8.pdf",
+   "N5-N6-abinitio.pdf",
+   "n7b.pdf",
+   "N7c.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4411183163": {
+  "id": "https://openalex.org/W4411183163",
+  "title": "A careful scrutiny of the aromaticity in anionic polynitrogen clusters",
+  "year": 2025,
+  "doi": "https://doi.org/10.1039/d5cp01974e",
+  "abstract": "using a multifaceted approach that combines nucleus-independent chemical shift (NICS) analysis and the zz component of the magnetic shielding tensor. To further unravel the intricate electronic structures of these clusters, we employ state-of-the-art electronic descriptors, including the electron localization function (ELF) and adaptive natural density partitioning (AdNDP). Moreover, the propensity of these polynitrogen species for \u03c0-stacking interactions is meticulously evaluated using the Localized Orbital Locator Integrated Pi Over Plane (LOLIPOP) method. Our findings offer valuable insights into the fundamental electronic nature of polynitrogen clusters, shedding light on their stability and potential for supramolecular assembly.",
+  "cites_our_sources": [
+   "N7.pdf",
+   "N10-N60.pdf",
+   "N7c.pdf",
+   "N60_marek_03.pdf",
+   "jp0378889.pdf",
+   "N20_05.pdf"
+  ]
+ },
+ "https://openalex.org/W1484986430": {
+  "id": "https://openalex.org/W1484986430",
+  "title": "A theoretical study of the nitrogen clusters formed from the ions N3\u2212, N5+, and N5\u2212",
+  "year": 2001,
+  "doi": "https://doi.org/10.1063/1.1370063",
+  "abstract": "The results of a theoretical study on the formation of the nitrogen cluster N10 from the ionic species N5+ and N5\u2212 are presented. The possibility to form N8 from N5+ and N3\u2212 has also been studied but no stable form was found. Structural and vibrational data are given for the different clusters. It is suggested that the anion N5\u2212 might be stable enough to be synthesized. The calculations have been carried out using multiconfigurational self-consistent-field wave functions and second-order perturbation theory.",
+  "cites_our_sources": [
+   "N8e.pdf",
+   "N10-N60.pdf",
+   "N6-3N2.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2832353851": {
+  "id": "https://openalex.org/W2832353851",
+  "title": "A genetic algorithm survey on closed-shell atomic nitrogen clusters employing a quantum chemical approach",
+  "year": 2018,
+  "doi": "https://doi.org/10.1007/s00894-018-3724-6",
+  "abstract": "",
+  "cites_our_sources": [
+   "N8e.pdf",
+   "N10-N60.pdf",
+   "N8b.pdf",
+   "N8c.pdf",
+   "N5+.pdf",
+   "jp0208182.pdf",
+   "N10_acyc.pdf",
+   "N10_marek_03.pdf"
+  ]
+ },
+ "https://openalex.org/W4280552277": {
+  "id": "https://openalex.org/W4280552277",
+  "title": "Novel All-Nitrogen Molecular Crystals Composed of Tetragonal N4 Molecules",
+  "year": 2022,
+  "doi": "https://doi.org/10.3390/ijms23105503",
+  "abstract": "A computational study promises insight into molecular crystals consisting of the tetrahedral form of N4 molecules (Td-N4). Here, our efforts are focused on theoretically predicting the existence of the molecular crystals consisting of Td-N4 molecules. On the basis of the first principles of Born-Oppenheimer molecular dynamics under constant temperature and pressure, and geometry optimizations under hydrostatic pressures without any constrained parameters, molecular crystals consisting of Td-N4 molecules were confirmed to be dynamically and thermally metastable. Our analysis shows that, with high detonation performance and high stability, these Td-N4 molecular crystals can indeed be potential candidates as high-energy density explosives.",
+  "cites_our_sources": [
+   "N8e.pdf"
+  ]
+ },
+ "https://openalex.org/W1995271211": {
+  "id": "https://openalex.org/W1995271211",
+  "title": "Density functional calculation of structure and stability of nitrogen clusters N10, N12, and N20",
+  "year": 2003,
+  "doi": "https://doi.org/10.1016/s0166-1280(02)00695-4",
+  "abstract": "",
+  "cites_our_sources": [
+   "N8e.pdf",
+   "N10-N60.pdf",
+   "N6-3N2.pdf",
+   "N12-N8.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2018051661": {
+  "id": "https://openalex.org/W2018051661",
+  "title": "A multi-configurational study of the one-dimensional dissociation of azidopentazole (N8) and derived N7CH isomers",
+  "year": 2003,
+  "doi": "https://doi.org/10.1016/j.theochem.2003.08.137",
+  "abstract": "",
+  "cites_our_sources": [
+   "N8e.pdf",
+   "N8.pdf",
+   "N8b.pdf",
+   "N8c.pdf",
+   "azidopentazole.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2059050330": {
+  "id": "https://openalex.org/W2059050330",
+  "title": "A Gaussian-3 investigation on the stabilities and bonding of the nine N10 clusters",
+  "year": 2005,
+  "doi": "https://doi.org/10.1016/j.theochem.2005.05.035",
+  "abstract": "",
+  "cites_our_sources": [
+   "N8e.pdf",
+   "N8.pdf",
+   "N12-N8.pdf",
+   "N5-N6-abinitio.pdf",
+   "n7b.pdf",
+   "N10_acyc.pdf",
+   "jp0378889.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4394849810": {
+  "id": "https://openalex.org/W4394849810",
+  "title": "Predicting molecular crystals of polynitrogen (N6) structures with cage-like geometries using ab initio evolutionary algorithm",
+  "year": 2024,
+  "doi": "https://doi.org/10.1016/j.cplett.2024.141262",
+  "abstract": "",
+  "cites_our_sources": [
+   "N8e.pdf",
+   "N10-N60.pdf"
+  ]
+ },
+ "https://openalex.org/W3024170812": {
+  "id": "https://openalex.org/W3024170812",
+  "title": "Molecular structures and thermodynamics of stable N4, N6 and N8 neutral poly-nitrogens according to data of QCISD(T)/TZVP method",
+  "year": 2020,
+  "doi": "https://doi.org/10.1016/j.cplett.2020.137594",
+  "abstract": "",
+  "cites_our_sources": [
+   "N20.pdf"
+  ]
+ },
+ "https://openalex.org/W4360952134": {
+  "id": "https://openalex.org/W4360952134",
+  "title": "Structure and Optical Properties of High-Energy Nitrogen Clusters and Dimers on their Basis",
+  "year": 2023,
+  "doi": "https://doi.org/10.1007/s11182-023-02879-3",
+  "abstract": "",
+  "cites_our_sources": [
+   "N20.pdf",
+   "N60_marek_03.pdf",
+   "jp0378889.pdf",
+   "N_nanotubes_06.pdf"
+  ]
+ },
+ "https://openalex.org/W4417435373": {
+  "id": "https://openalex.org/W4417435373",
+  "title": "Computational investigation of the [N7]3\u2212 anion and related full-nitrogen ring systems",
+  "year": 2025,
+  "doi": "https://doi.org/10.1007/s00214-025-03250-0",
+  "abstract": "",
+  "cites_our_sources": [
+   "N20.pdf"
+  ]
+ },
+ "https://openalex.org/W2005668287": {
+  "id": "https://openalex.org/W2005668287",
+  "title": "Searching for ways to create energetic materials based on polynitrogen compounds (review)",
+  "year": 2010,
+  "doi": "https://doi.org/10.1007/s10573-010-0020-x",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4+.pdf",
+   "N10-N60.pdf",
+   "N4b.pdf",
+   "N5+.pdf",
+   "N60_marek_03.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4206141897": {
+  "id": "https://openalex.org/W4206141897",
+  "title": "Emission of Nitrogen Molecules at Tight Focusing of Femtosecond Laser Pulses in Air",
+  "year": 2022,
+  "doi": "https://doi.org/10.1007/s11182-022-02499-3",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4+.pdf"
+  ]
+ },
+ "https://openalex.org/W2022974778": {
+  "id": "https://openalex.org/W2022974778",
+  "title": "Density Functional Theoretical Study of Polynitrogen Compounds N5+Y\u2212 (Y=B(CF3)4, BF4, PF6 and B(N3)4)",
+  "year": 2012,
+  "doi": "https://doi.org/10.1002/cjoc.201280011",
+  "abstract": "Abstract The structures and the stabilities of polynitrogen compounds N5+Y\u2212 [Y=B(CF3)4, BF4, PF6, and B(N3)4], as the potential high energy density compounds, have been investigated at the B3LYP/6\u201031G(d,p) and B3LYP/6\u2010311+G(d,p) levels. On the basis of our geometry optimization calculations, the structural properties of the N5+Y\u2212 compounds are discussed, and it is found that the combination of the N5+ cation and the Y\u2212 anions leads to distortion of the structures of the Y\u2212 anions. Based on the TS calculations for the N2\u2010loss dissociations of the N5+Y\u2212 compounds, the stabilities of these compounds are discussed, and the following conclusion can be drawn that among the four compounds, N5+B(CF3)4\u2212 is the most stable one and N5+B(N3)4\u2212 is the most unstable, and the relative stability of these compounds is always consistent using different basis sets. From these discussions, it is revealed that there are close correlations between the stuctrual distortions of the Y? anions and the stabilities of the N5+Y\u2212 compounds, and between the nitrogen content in the compounds and the stabilities of the N5+Y\u2212 compounds.",
+  "cites_our_sources": [
+   "N5.pdf",
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W2886501713": {
+  "id": "https://openalex.org/W2886501713",
+  "title": "A density functional study on some cyclic N10 isomers",
+  "year": 2018,
+  "doi": "https://doi.org/10.1016/j.dt.2018.08.005",
+  "abstract": "Polynitrogen compounds, comprising only nitrogen atoms, are rare. They are considered as promising candidates of clean (green) high energy density materials because of their high energy content and their sole decomposition product is N2. Extending the previous work which was on cyclic N8 isomers, in this study some cyclic N10 isomers having 1\u20134 cycles are considered within the limitations of density functional theory at the levels of B3LYP/6-311++G(d,p) and B3LYP/cc-PVTZ. Some of the structures, including the monocyclic one, decompose by eliminating certain number of N2 units while some remain intact. All the stable isomers (1\u20133, 6\u20138) investigated presently are highly endothermic that they are candidates for clean high energy materials. Certain quantum chemical properties, IR and UV-VIS spectra as well as the specific impulse values for the stable structures are reported.",
+  "cites_our_sources": [
+   "N5.pdf",
+   "N12-N8.pdf",
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W3151702704": {
+  "id": "https://openalex.org/W3151702704",
+  "title": "How stable can the pentanitrogen cation be in kinetics?",
+  "year": 2021,
+  "doi": "https://doi.org/10.1039/d1cc01250a",
+  "abstract": "For the 22 year-old pentanitrogen cation N5+ (01), we surprisingly found that the previously reported transition states (TSs) do not correspond to N2-extrusion. We located the real N2-extrusion TS, which can well reconcile the hitherto remaining inconsistency between the gas-phase and salt-like forms of 01 both in structure and energetics.",
+  "cites_our_sources": [
+   "N5.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "N10.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2980275585": {
+  "id": "https://openalex.org/W2980275585",
+  "title": "Contemplation on Some Prismatic Polynitrogen Structures \u2013 A DFT Treatment",
+  "year": 2019,
+  "doi": "https://doi.org/10.1002/zaac.201900131",
+  "abstract": "Polynitrogen compounds, are rare molecules having only nitrogen atoms. In recent years, they have been considered as promising candidates of clean (green) high energy density materials. They possess high energy content and their sole decomposition product is N2. Presently some prismatic polynitrogen structures (N6 \u2013 N14) are considered within the limitations of density functional theory at the levels of B3LYP/6\u2010311++G(d,p) and B3LYP/cc\u2010PVTZ. The calculations reveal that they are all highly endothermic but stable. Certain quantum chemical properties, IR and UV/Vis spectra are reported. Homolytic bond cleavage of top rings are considered. Then, the transition state and activation energies, and also homolytic bond dissociation energies for the top rings have been calculated at the level of UB3LYP/6\u2010311++G(d,p). Also NICS(0) values have been calculated at the level of B3LYP/6\u2010311++G(d,p). The results indicate that N6 and N10 have aromatic and nonaromatic top (and also base) rings, respectively. All the rest of the structures have antiaromatic rings (all the structures have antiaromatic N4 rings).",
+  "cites_our_sources": [
+   "N5.pdf",
+   "N12-N8.pdf",
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W2585216704": {
+  "id": "https://openalex.org/W2585216704",
+  "title": "Super high-energy density single-bonded trigonal nitrogen allotrope\u2014a chemical twin of the cubic gauche form of nitrogen",
+  "year": 2017,
+  "doi": "https://doi.org/10.1039/c6cp08723j",
+  "abstract": "A new ambient-pressure metastable single-bonded nitrogen allotrope was predicted using reliable theoretical methods. The predicted allotrope has a number of similarities with the experimentally detected cubic gauche nitrogen allotrope.",
+  "cites_our_sources": [
+   "N10-N60.pdf",
+   "ja002253y.pdf",
+   "N12-N8.pdf",
+   "N5+.pdf",
+   "jp0141833.pdf",
+   "N10.pdf",
+   "N60_marek_03.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W3037212293": {
+  "id": "https://openalex.org/W3037212293",
+  "title": "Bipentazole (N10): A Low-Energy Molecular Nitrogen Allotrope with High Intrinsic Stability",
+  "year": 2020,
+  "doi": "https://doi.org/10.1021/acs.jpclett.0c01542",
+  "abstract": "In this Letter, we report a crystal structure prediction and characterization of a molecular nitrogen allotrope N 10 (bipentazole) using state-of-the-art computational methods. To date, in the form of a P 2 1 space group crystal, this allotrope is the most stable predicted form of nitrogen, other than N 2, in the pressure range 0\u201342 GPa. Its metastability at ambient conditions was justified using phonon dispersion and mechanical properties calculations as well as ab initio molecular dynamics simulations. Due to a high intrinsic stability caused by aromaticity, bipentazole may appear to be the first nitrogen allotrope stable enough for a large-scale synthesis at ambient conditions. The calculations of propulsive characteristics revealed that bipentazole is an excellent \u201cgreen\u201d energetic material. A potential strategy for the synthesis of this compound is offered and rationalized. The unique electronic structure of bipentazole makes it a strongly electrophilic all-nitrogen reagent, which can exhibit unusual chemistry.",
+  "cites_our_sources": [
+   "N10-N60.pdf",
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W1966591337": {
+  "id": "https://openalex.org/W1966591337",
+  "title": "Energetic potential of compositions based on high-enthalpy polynitrogen compounds",
+  "year": 2009,
+  "doi": "https://doi.org/10.1007/s10573-009-0021-9",
+  "abstract": "",
+  "cites_our_sources": [
+   "N10-N60.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4385487230": {
+  "id": "https://openalex.org/W4385487230",
+  "title": "Polynitrogen clusters interaction with water: experimental and theoretical perspectives",
+  "year": 2023,
+  "doi": "https://doi.org/10.1088/1361-6463/acec84",
+  "abstract": "Abstract Polynitrogen clusters are of great interest as potential high-energy-density materials (HEDMs). However, it is still a challenge to effectively manufacture pure nitrogen clusters. Here, we present a method to produce all-nitrogen clusters ranging in size from 3 to 10 using a self-developed apparatus consisting of a laser vaporization cluster source and a mass spectrometer. The results indicate that the mass peak of the N4 + cluster is dominant, and the cooling of the cluster source with liquid nitrogen effectively enhanced the intensities of larger nitrogen clusters. The trace amounts of water in the carrier gas affects the relative signal intensities of nitrogen clusters, suggesting that water molecules can affect their stabilities. The geometrical structures of the N n + / 0 (n = 3\u201310) clusters are determined by CALYPSO cluster structural search method and density functional theory calculations. A series of promising polynitrogen clusters, such as Z-shaped N 4 + / 0 clusters and bicyclic N 8 + / 0 clusters, are identified. The molecular dynamics simulations indicate the decomposition energy barrier of (N4\u2013H2O)+ cluster is lower than that of N4 + cluster by 2.3 kcal mol\u22121, while the decomposition energy barrier of (N8\u2013H2O)+ cluster is higher than that of N8 + cluster by 1.4 kcal mol\u22121. These findings provide useful information for the generation and stabilization of polynitrogen clusters, which are valuable for the design and synthesis of HEDMs.",
+  "cites_our_sources": [
+   "N10-N60.pdf",
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W3022309793": {
+  "id": "https://openalex.org/W3022309793",
+  "title": "Pentazoles",
+  "year": 2008,
+  "doi": "https://doi.org/10.1016/b978-008044992-0.00525-3",
+  "abstract": "",
+  "cites_our_sources": [
+   "N10-N60.pdf",
+   "azidopentazole.pdf",
+   "ja002253y.pdf",
+   "N12-N8.pdf",
+   "N5-N6-abinitio.pdf",
+   "N10.pdf",
+   "N11.pdf",
+   "2004_3_IJQC_Polynitrogen Clusters Containing Five-Membered Rings.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2999448486": {
+  "id": "https://openalex.org/W2999448486",
+  "title": "Stabilization of small nitrogen clusters via spatial constraint",
+  "year": 2020,
+  "doi": "https://doi.org/10.1088/1742-6596/1435/1/012062",
+  "abstract": "Abstract We apply density functional theory to calculate activation barriers for dissociations of small all-nitrogen clusters N4 and N6. The effect of external spatial constraint was also considered. We found that spatial constraint results in significant stabilization of both regarded clusters. So, the spatial constraint can be considered as an efficient method for stabilization of high-energy nitrogen structures.",
+  "cites_our_sources": [
+   "N10-N60.pdf",
+   "N10_acyc.pdf",
+   "N_nanotubes_06.pdf"
+  ]
+ },
+ "https://openalex.org/W2471630861": {
+  "id": "https://openalex.org/W2471630861",
+  "title": "Polynigrogen Energetic Materials",
+  "year": 2016,
+  "doi": "https://doi.org/10.9766/kimst.2016.19.3.319",
+  "abstract": "Current research trends of prediction of possible structures, synthesis and explosive characteristics of polynitrogen molecules(PNs) are reviewed. Theoretically PNs are composed only of nitrogen atoms, in which N-N bonds are either single or double bonds, and thus when these molecules decompose, release of enormous energy is accompanied. From the middle of 20th century energetic material chemists have been seeking possible structures and the methods of synthesis of these new materials. As a results, from $N_4$ to $N_{60}$ together with their ions are predicted, and experimental chemists have been trying to synthesize these materials with a few success, including the famous ${N_5}^+$ ion in 1999. Although experimental successes are very rare beyond $N_5$ until today, the author believes that renovative ideas together with sincere efforts will bring someday next generation of high energy materials such as nitrogen fullerene( $N_{60}$ ) in reality.",
+  "cites_our_sources": [
+   "N10-N60.pdf",
+   "N4b.pdf",
+   "N5-N6-abinitio.pdf",
+   "N10.pdf",
+   "N60_marek_03.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W3134566105": {
+  "id": "https://openalex.org/W3134566105",
+  "title": "Theoretical study on the two novel planar-type all-nitrogen N44\u2212 anions: Structures, stability, reaction rate and their stable mechanisms via protonation",
+  "year": 2021,
+  "doi": "https://doi.org/10.1016/j.cplett.2021.138519",
+  "abstract": "",
+  "cites_our_sources": [
+   "N4b.pdf",
+   "ja002253y.pdf",
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W2016056369": {
+  "id": "https://openalex.org/W2016056369",
+  "title": "Theoretical Study of [N3X]+ (X = O, S, Se, Te) Systems",
+  "year": 2003,
+  "doi": "https://doi.org/10.1021/jp034083s",
+  "abstract": "A series of [N 3 X] + (X = O, S, Se, Te) compounds have been examined with ab initio and density functional theory (DFT) methods. To our knowledge, these compounds, except for [N 3 O] +, are first reported here. The capped triangle structures are global minima for all singlet [N 3 X] + systems. Several decomposition and isomerization pathways for the [N 3 X] + species have been investigated. The capped triangle [N 3 X] + structures are kinetically unstable, and they will easily dissociate into ground-state NX + and N 2 molecules. The pyramidal [N 3 X] + species are likely to be stable because of their moderate dissociation or isomerization barriers (25.4\u221245.0 kcal/mol), and they may be regarded as suitable candidates for high energy-density materials (HEDMs) if they can be synthesized. The rhombus [N 3 S] + is also likely to be stable, but the rhombus [N 3 Te] + is not likely to be stable, and if it is formed in any process, it will transform into the pyramidal structure.",
+  "cites_our_sources": [
+   "N4b.pdf",
+   "N6-3N2.pdf",
+   "N8c.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4411201953": {
+  "id": "https://openalex.org/W4411201953",
+  "title": "Preparation of a neutral nitrogen allotrope hexanitrogen C2h-N6",
+  "year": 2025,
+  "doi": "https://doi.org/10.1038/s41586-025-09032-9",
+  "abstract": "Abstract Compounds consisting only of the element nitrogen (polynitrogens or nitrogen allotropes) are considered promising clean energy-storage materials owing to their immense energy content that is much higher than hydrogen, ammonia or hydrazine, which are in common use, and because they release only harmless nitrogen on decomposition 1 . However, their extreme instability poses a substantial synthetic challenge and no neutral molecular nitrogen allotrope beyond N 2 has been isolated 2,3 . Here we present the room-temperature preparation of molecular N 6 (hexanitrogen) through the gas-phase reaction of chlorine or bromine with silver azide, followed by trapping in argon matrices at 10 K. We also prepared neat N 6 as a film at liquid nitrogen temperature (77 K), further indicating its stability. Infrared and ultraviolet\u2013visible (UV-Vis) spectroscopy, 15 N-isotope labelling and ab initio computations firmly support our findings. The preparation of a metastable molecular nitrogen allotrope beyond N 2 contributes to our fundamental scientific knowledge and possibly opens new opportunities for future energy-storage concepts.",
+  "cites_our_sources": [
+   "N6-3N2.pdf",
+   "N5+.pdf",
+   "N10_acyc.pdf",
+   "N_nanotubes_06.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2037279072": {
+  "id": "https://openalex.org/W2037279072",
+  "title": "THEORETICAL PREDICTION OF POTENTIAL ENERGY SURFACE FOR N 14 CLUSTER",
+  "year": 2003,
+  "doi": "https://doi.org/10.1142/s0219633603000331",
+  "abstract": "In addition to four isomers of N 14 cluster previously reported, one new isomer was investigated. The decomposition and isomerization pathways of these five N 14 isomers were studied using the density functional theory (DFT) method. Relative energies were refined at the B3LYP/6-311+G(3df, 2p)//B3LYP/6-31G* level of theory. The present study shows that the decomposition barrier heights for the isomers 1, 2, and 3 are all much lower than 20 kcal/mol, which hints the fact that it may be possible to observe these three isomers only as short-lived species at room temperature. The barrier height for the cis-trans isomerization reaction of the isomers 4 and 5 is about 43.3 kcal/mol at the B3LYP/6-113+G(3df, 2p)//B3LYP/6-31G* level of theory. Unfortunately, however, the decomposition barrier height for the isomer 4 is about 17.9 kcal/mol. For the isomer 5, one barrier height corresponding to the - N 4 side chain breaking to lose the N 2 molecules is about 32.9 kcal/mol, however, the other barrier height corresponding to the - N 5 side chain breaking to lose a N 2 molecule is about 17.1 kcal/mol. From the study presented here, it seems that these five N 14 isomers are not kinetically stable enough to serve as high energy density materials (HEDMs).",
+  "cites_our_sources": [
+   "N6-3N2.pdf",
+   "N8c.pdf",
+   "ja002253y.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "jp0208182.pdf",
+   "N10_acyc.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4401706037": {
+  "id": "https://openalex.org/W4401706037",
+  "title": "Hexanitrogen (N6): A Synthetic Leap Towards Neutral Nitrogen Allotropes",
+  "year": 2024,
+  "doi": "https://doi.org/10.26434/chemrxiv-2024-90vvx",
+  "abstract": "The pursuit of nitrogen allotropes is considered a Holy Grail in high-energy-density materials research because they lend themselves as the cleanest envisionable energy storage materials by producing only benign N2 upon energy release. Here, we present the room temperature preparation of N6 (hexanitrogen) in the gas-phase through the reaction of Cl2 or Br2 with AgN3, followed by trapping in argon matrices at 10 K. We also prepared neat N6 as a film at liquid nitrogen temperature (77 K), indicating its unexpectedly high stability. Infrared and UV/Vis spectroscopy, 15N-isotope labelling experiments, and ab initio computations at the CCSD(T)/cc-pVTZ level of theory support our findings. The preparation of a metastable nitrogen allotrope beyond N2 opens new vistas for making long sought after, high-energy materials.",
+  "cites_our_sources": [
+   "N6-3N2.pdf",
+   "N_nanotubes_06.pdf"
+  ]
+ },
+ "https://openalex.org/W1997234189": {
+  "id": "https://openalex.org/W1997234189",
+  "title": "Computational Studies on Polynitrohexaazaadmantanes as Potential High Energy Density Materials",
+  "year": 2006,
+  "doi": "https://doi.org/10.1021/jp0575557",
+  "abstract": "Polynitrohexaazaadamantanes (PNHAAs) have been the subject of much recent research because of their potential as high energy density materials (HEDMs). The B3LYP/6-31G method was employed to evaluate the heats of formation (HOFs) for PNHAAs by designing isodesmic reactions. The HOFs are found to be correlative with the number (n) and the space orientations of nitro groups. Detonation velocities (D) and detonation pressures (P) were estimated for PNHAAs by using the well-known Kamlet-Jacobs equations, based on the theoretical densities (rho) and HOFs. It is found that D and P increase as n ranges from 1 to 6, and PNHAAs with 4-6 nitro groups meet the criteria of an HEDM. When n is over 6, rho of PNHAAs slightly increases; however, the chemical energy of detonation (Q) decreases so greatly that both D and P decrease. The calculations on bond dissociation energies suggest that the N-N bond be the trigger bond during the pyrolysis initiation process of each PNHAA, and with increasing n, N-N bond dissociation energy (E(N-N)) decreases on the whole, that is to say, the relative stability of PNHAAs decreases. All E(N-N)(s) of PNHAAs are more than 30 kcal.mol(-1), which further proves that four PNHAAs with 4-6 nitro groups can be used as the candidates of HEDMs. Considering the synthesis difficulty and the performance as an energetic compound, we finally recommended 2,4,6,8,10-pentanitrohexaazaadamantane as the target HEDM for PNHAAs.",
+  "cites_our_sources": [
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W2116007136": {
+  "id": "https://openalex.org/W2116007136",
+  "title": "High\u2010Energy\u2010Density Materials: Synthesis and Characterization of N5+[P(N3)6]\u2212, N5+ [B(N3)4]\u2212, N5+ [HF2]\u2212\u22c5n HF, N5+ [BF4]\u2212, N5+ [PF6]\u2212, and N5+ [SO3F]\u2212",
+  "year": 2004,
+  "doi": "https://doi.org/10.1002/anie.200454242",
+  "abstract": "23 nitrogens and only one phosphorus: The N5+ ion is combined with energetic anions in the form of N5+ [P(N3)6]\u2212 and N5+ [B(N3)4]\u2212 (see scheme), containing 91 and 96 wt %, respectively, of nitrogen. Also, the thermally unstable compound N5HF2\u22c5n HF is prepared by metathesis from N5SbF6 and CsHF2. Its usefulness as a reagent for the synthesis of new N5+ salts is demonstrated with the preparation of N5PF6, N5BF4, and N5SO3F.",
+  "cites_our_sources": [
+   "N8c.pdf",
+   "ja002253y.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W110210304": {
+  "id": "https://openalex.org/W110210304",
+  "title": "Nitrogen-Rich Heterocycles",
+  "year": 2007,
+  "doi": "https://doi.org/10.1007/430_2006_055",
+  "abstract": "",
+  "cites_our_sources": [
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W2034959179": {
+  "id": "https://openalex.org/W2034959179",
+  "title": "Polynitrogen Chemistry: Preparation and Characterization of (N5)2SnF6, N5SnF5, and N5B(CF3)4",
+  "year": 2003,
+  "doi": "https://doi.org/10.1002/chem.200304973",
+  "abstract": "Metathetical processes were used to convert N5SbF6 into N5[B(CF3)4] and (N5)2SnF6. The latter salt is especially noteworthy because it contains two N5+ ions per anion, thus demonstrating that salts with touching polynitrogen cations can be prepared. This constitutes an important milestone towards our ultimate goal of synthesizing a stable, ionic nitrogen allotrope. The stepwise decomposition of (N5)2SnF6 yielded N5SnF5. Multinuclear NMR spectra show that in HF the SnF5- ion exists as a mixture of Sn2F(10)(2-) and Sn4F(20)(4-) ions. Attempts to isolate FN5 from the thermolysis of (N5)2SnF6 were unsuccessful, yielding only the expected decomposition products, FN3, N2, trans-N2F2, NF3, and N2.",
+  "cites_our_sources": [
+   "N8c.pdf",
+   "ja002253y.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2019221951": {
+  "id": "https://openalex.org/W2019221951",
+  "title": "Computational studies on the heats of formation, energetic properties, and thermal stability of energetic nitrogen-rich furazano[3,4-b]pyrazine-based derivatives",
+  "year": 2012,
+  "doi": "https://doi.org/10.1016/j.comptc.2012.05.013",
+  "abstract": "",
+  "cites_our_sources": [
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W2063293016": {
+  "id": "https://openalex.org/W2063293016",
+  "title": "Theoretical study on a novel high-energy density material 4,6,10,12-tetranitro-5,11-bis(nitroimino)-2,8-dioxa-4,6,10,12-tetraaza-tricyclo[7,3,0,03,7]dodecane",
+  "year": 2014,
+  "doi": "https://doi.org/10.1039/c3ra46107f",
+  "abstract": "A novel high-energy density material (HEDM) 4,6,10,12-tetranitro-5,11-bis(nitroimino)-2,8-dioxa-4,6,10,12-tetraaza-tricyclo[7,3,0,03,7]dodecane was designed and studied by a density functional theory (DFT) method. The geometric structure and thermodynamic properties were investigated at the B3LYP/6-31G (d,p) level. The heat of formation (HOF) and detonation properties were predicted by isodesmic reactions and Kamlet\u2013Jacobs equations. The bond dissociation energy (BDE) and impact sensitivity were also studied to give a better understanding of its chemical and physical properties. The calculated results indicate that 4,6,10,12-tetranitro-5,11-bis(nitroimino)-2,8-dioxa-4,6,10,12-tetraaza-tricyclo[7,3,0,03,7]dodecane belongs to the P space group, with cell parameters Z = 2, a = 13.554 \u00c5, b = 8.552 \u00c5, c = 15.575 \u00c5, \u03b1 = 70.638\u00b0, \u03b2 = 29.515\u00b0 and \u03b3 = 82.702\u00b0. In view of the heat of formation (HOF, 530.36 kJ mol\u22121), detonation velocity (D, 9.72 km s\u22121), detonation pressure (P, 45.12 GPa), bond dissociation energy (BDE, 109.85 kJ mol\u22121) and impact sensitivity (h50, 20.79 cm), it is predicted that 4,6,10,12-dinitro-5,11-bis(nitroimino)-2,8-dioxa-4,6,10,12-tetraaza-tricyclo[7,3,0,03,7] dodecane could be considered as a potential candidate high-energy density compound.",
+  "cites_our_sources": [
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W2953347770": {
+  "id": "https://openalex.org/W2953347770",
+  "title": "Cage Isomers of N14 and N16: Nitrogen Molecules That Are Not a Multiple of Six",
+  "year": 2004,
+  "doi": "https://doi.org/10.1021/jp046496e",
+  "abstract": "Molecules consisting entirely or predominantly of nitrogen are the focus of much research for their potential as high energy density materials (HEDM). Recent theoretical predictions on cage stability for N 12, N 18, N 24, N 30, and N 36 indicate that the most thermodynamically stable isomer has 3-fold symmetry ( D 3 h or D 3 d symmetry point group). Such molecules have a triangle\u2212pentagon bonding group on each end with a band of hexagons around the midsection. However, the existence of this symmetric isomer depends on the number of nitrogen atoms being a multiple of six. In the current study stability trends are addressed for two molecule sizes where this symmetric option does not exist, namely, N 14 and N 16 . Isomer energies for these molecules are calculated using Hartree\u2212Fock theory, density functional theory (B3LYP), and perturbation theory (MP4) along with the correlation-consistent basis sets of Dunning. At each molecule size the most stable cage is identified, and the structural features leading to cage stability are discussed.",
+  "cites_our_sources": [
+   "N8c.pdf",
+   "jp0208182.pdf",
+   "N10_acyc.pdf",
+   "N10.pdf",
+   "N11.pdf",
+   "jp0378889.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4235854792": {
+  "id": "https://openalex.org/W4235854792",
+  "title": "High\u2010Energy\u2010Density Materials: Synthesis and Characterization of N5+[P(N3)6]\u2212, N5+ [B(N3)4]\u2212, N5+ [HF2]\u2212\u22c5n HF, N5+ [BF4]\u2212, N5+ [PF6]\u2212, and N5+ [SO3F]\u2212",
+  "year": 2004,
+  "doi": "https://doi.org/10.1002/ange.200454242",
+  "abstract": "Stickstoff\u2013Phosphor 23:1. Das N5+-Ion wurde mit energetischen Anionen in Form der Salze N5+[P(N3)6]\u2212 und N5+[B(N3)4]\u2212 mit 91 bzw. 96 Gew.-% Stickstoff kombiniert (siehe Schema). Die thermisch instabile Verbindung N5HF2\u22c5n HF, hergestellt durch Metathese von N5SbF6 und CsHF2 , wurde als Reagens in der Synthese der neuen N5+-Salze N5PF6, N5BF4 und N5SO3F eingesetzt.",
+  "cites_our_sources": [
+   "N8c.pdf",
+   "ja002253y.pdf",
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1966297267": {
+  "id": "https://openalex.org/W1966297267",
+  "title": "Theoretical studies on the structures, heats of formation, energetic properties and pyrolysis mechanisms of nitrogen-rich difurazano[3,4-b:3\u2032,4\u2032-e]piperazine derivatives and their analogues",
+  "year": 2012,
+  "doi": "https://doi.org/10.1007/s11224-012-0133-9",
+  "abstract": "",
+  "cites_our_sources": [
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W2903907909": {
+  "id": "https://openalex.org/W2903907909",
+  "title": "Molecular design of all nitrogen pentazole\u2010based high energy density compounds with oxygen balance equal to zero",
+  "year": 2018,
+  "doi": "https://doi.org/10.1002/jccs.201800363",
+  "abstract": "We designed a new family of pentazole\u2010based high energy density compounds with oxygen balance equal to zero by introducing \u2212NH2, \u2212NO2, \u2212N3, \u2212CF2NF2, and \u2212C[NO2]3, and the properties including density, heats of formation, detonation performances, and impact sensitivity were investigated using density functional theory. The results show that half of these new energetic molecules exhibit higher densities than RDX (1.82 g/cm3), in which H5 gives the highest density of 2.09 g/cm3. Among all the 54 designed molecules, 22 compounds have higher D and P than RDX and eleven compounds have higher D and P than HMX, indicating that designing the pentazole\u2010based derivatives with oxygen balance equal to zero is a very effective way to obtain potential energetic compounds with outstanding detonation properties. Taking both the detonation performance and stability into consideration, nine compounds may be recognized as potential candidates of high energy density compounds. It is expected that our results will contribute to the theoretical design of new\u2010generation energetic explosives.",
+  "cites_our_sources": [
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W2953038963": {
+  "id": "https://openalex.org/W2953038963",
+  "title": "What Makes an N12 Cage Stable?",
+  "year": 2003,
+  "doi": "https://doi.org/10.1021/ic034696j",
+  "abstract": "Much recent attention has been given to molecules containing only nitrogen atoms. Such molecules N(x) can undergo the reaction N(x) --> (x/2)N(2), which is very exothermic. These molecules are potential candidates for high energy density materials (HEDM). However, many all-nitrogen molecules dissociate too easily to be stable, practical energy sources. It is important to know which nitrogen molecules will be stable and which will not. In the current study, a variety of N(12) cages with all single bonds are examined by theoretical calculations to determine which ones are the most thermodynamically stable. Calculations are carried out using Hartree-Fock (HF) theory, gradient-corrected density functional theory (DFT), and Moller-Plesset perturbation theory (MP2 and MP4). Relative energies among the various isomers are calculated and trends are examined in order to determine which structural features lead to the most energetically favorable molecules.",
+  "cites_our_sources": [
+   "N8c.pdf",
+   "ja002253y.pdf",
+   "jp0208182.pdf",
+   "N10_acyc.pdf",
+   "N10.pdf",
+   "N11.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2951480232": {
+  "id": "https://openalex.org/W2951480232",
+  "title": "Trends in Stability for N18 Cages",
+  "year": 2004,
+  "doi": "https://doi.org/10.1021/jp0481153",
+  "abstract": "Nitrogen molecules N x have been extensively studied for their potential as high energy density materials (HEDM). Cages of three-coordinate nitrogen have been studied to determine the structural features that result in the most stable isomers. N 12 cages, for example, have been shown to follow a general trend that molecules with more pentagons in the network are more stable than other molecules. Larger N x cages (24 or more atoms) do not follow this trend, favoring cylindrical structures over spherical ones with larger numbers of pentagons. To determine which trends intermediate-sized N x cages follow, a series of N 18 cages are studied by theoretical calculations of their stability. Geometries are optimized by using Hartree\u2212Fock theory and perturbation theory (MP3), with single energies calculated with the fourth-order perturbation theory (MP4). The correlation-consistent CC-PVDZ basis of Dunning is employed. The major result is a loose trend favoring pentagons, with the most stable molecules being the ones with an optimal combination of pentagons and triangles.",
+  "cites_our_sources": [
+   "N8c.pdf",
+   "jp0208182.pdf",
+   "N10_acyc.pdf",
+   "N10.pdf",
+   "N11.pdf",
+   "jp0378889.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2272682590": {
+  "id": "https://openalex.org/W2272682590",
+  "title": "Isomerization Pathways of ONCNO: Unstable or Metastable?",
+  "year": 2016,
+  "doi": "https://doi.org/10.1021/acs.jpca.5b12275",
+  "abstract": "Fulminates containing the CNO(-) ion have been widely utilized as high-energy density materials (HEDMs) for more than 120 years. Yet no purely covalently bound CNO molecule, i.e., nitrile oxide, is known to behave as an HEDM. In this study, we performed a thorough investigation of the potential energy surface of nitrile oxide ONCNO and related isomers, applying various sophisticated methods including G4, CBS-QB3, W1BD, CCSD(T)/CBS, and CASPT2/CBS. The Gibbs free energy calculations showed that the decomposition of ONCNO to the considerably endothermic products CNO + NO is favored compared to that into the highly exothermic products CO2 + N2. Thus, ONCNO fails to be the long expected nitrile oxide HEDM. However, with the rate-determining barrier of 23.3 kcal mol(-1) at the W1BD level, ONCNO should be experimentally accessible.",
+  "cites_our_sources": [
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W919085158": {
+  "id": "https://openalex.org/W919085158",
+  "title": "Quantum Chemical Study of Aminonitrocyclopentanes as Possible High Energy Density Materials (HEDMs)",
+  "year": 2013,
+  "doi": null,
+  "abstract": "Nitro and amine groups were introduced into the cyclopentane skeleton, and the heats of formation, detonation performance, bond dissociation energies, and impact sensitivity for these aminonitrocyclopentanes were calculated in detail at the B3LYP/6-311G** level. The results show that all of the derivatives have negative heats of formation, which are influenced by the position of the substituent groups. Their stabilities were estimated and analyzed according to their bond dissociation energies and calculated characteristic H50 values. Most of the compounds were found to have a lower impact sensitivity than HMX. Furthermore, the detonation velocities and detonation pressures were predicted via the Kamlet-Jacobs equation. Of all these aminonitrocyclopentanes, E has the best detonation properties (\u03c1 = 2.05 g/cm3, D = 9.11 m/s, P = 39.62 GPa) and can be considered as a candidate high energy density material.",
+  "cites_our_sources": [
+   "N8c.pdf"
+  ]
+ },
+ "https://openalex.org/W3096034279": {
+  "id": "https://openalex.org/W3096034279",
+  "title": "All-Nitrogen Cages and Molecular Crystals: Topological Rules, Stability, and Pyrolysis Paths",
+  "year": 2020,
+  "doi": "https://doi.org/10.3390/computation8040091",
+  "abstract": "We combined ab initio molecular dynamics with the intrinsic reaction coordinate in order to investigate the mechanisms of stability and pyrolysis of N4 \u00f7 N120 fullerene-like nitrogen cages. The stability of the cages was evaluated in terms of the activation barriers and the activation Gibbs energies of their thermal-induced breaking. We found that binding energies, bond lengths, and quantum-mechanical descriptors failed to predict the stability of the cages. However, we derived a simple topological rule that adjacent hexagons on the cage surface resulted in its instability. For this reason, the number of stable nitrogen cages is significantly restricted in comparison with their carbon counterparts. As a rule, smaller clusters are more stable, whereas the earlier proposed large cages collapse at room temperature. The most stable all-nitrogen cages are the N4 and N6 clusters, which can form the van der Waals crystals with densities of 1.23 and 1.36 g/cm3, respectively. The examination of their band structures and densities of electronic states shows that they are both insulators. Their power and sensitivity are not inferior to the modern advanced high-energy nanosystems.",
+  "cites_our_sources": [
+   "N8c.pdf",
+   "N60_marek_03.pdf",
+   "jp0378889.pdf",
+   "N20_05.pdf",
+   "N_nanotubes_06.pdf"
+  ]
+ },
+ "https://openalex.org/W4214952035": {
+  "id": "https://openalex.org/W4214952035",
+  "title": "Theoretical design of nitrogen-rich cages for energetic materials",
+  "year": 2022,
+  "doi": "https://doi.org/10.1016/j.comptc.2022.113659",
+  "abstract": "",
+  "cites_our_sources": [
+   "ja002253y.pdf",
+   "N5+.pdf",
+   "jp0141833.pdf",
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W2909282602": {
+  "id": "https://openalex.org/W2909282602",
+  "title": "Cage-like $\\text{N}_{10}^{6-}$ salt with N-N single bonds",
+  "year": 2019,
+  "doi": "https://doi.org/10.1209/0295-5075/124/67004",
+  "abstract": "All-nitrogen salts have attracted much attention because of their potential applications as high-energy density materials for explosive or propulsion. Here, we design a cage-like N 10 6 \u2212 salt Be 3 N 10 with pure N-N single bonds via releasing the pressure of the cage-like diamondoid \u201cN 10 \u201d, high-pressure phase of nitrogen, and introducing beryllium atoms to stabilize the crystal. At ambient conditions, Be 3 N 10 comprises two N 10 6 \u2212 anions and six Be 2+ cations in a unit cell with high space symmetry (space group I / 43 m ). The Be 3 N 10 salt is kinetically and thermodynamically stable with a 3.06 eV band gap at 0 GPa and room temperature. Further analysis of the chemical bonding pattern and electronic properties reveals that the introduced Be atoms contribute electrons to passivate the dangling bonds of the N 10 cluster, and stabilize the system through both Coulomb interactions and covalent bonds. The outstanding properties, including high-energy density (5.75 kJ/g), high nitrogen content (83.8%), and high dynamical stability, make Be 3 N 10 a promising high-energy density material. Our work represents a significant step toward the all-nitrogen salt with pure N-N single bonds.",
+  "cites_our_sources": [
+   "ja002253y.pdf",
+   "N5+.pdf",
+   "N10_marek_03.pdf"
+  ]
+ },
+ "https://openalex.org/W4285244136": {
+  "id": "https://openalex.org/W4285244136",
+  "title": "Insights into the energetic performance from structures: a density functional theory study on N 6",
+  "year": 2022,
+  "doi": "https://doi.org/10.1039/d2nj02558b",
+  "abstract": "This work presented a DFT study of three bi-ring N 6 isomers, and their structure\u2013property relationships were fully explored. Caged N 6 exhibits the highest energetic performance, revealing its great potential as a new HEDM.",
+  "cites_our_sources": [
+   "ja002253y.pdf",
+   "N5+.pdf",
+   "jp044970a.pdf"
+  ]
+ },
+ "https://openalex.org/W7118194374": {
+  "id": "https://openalex.org/W7118194374",
+  "title": "The structure of symmetric azoazoles according to ab initio computations",
+  "year": 2026,
+  "doi": "https://doi.org/10.1007/s11224-025-02688-z",
+  "abstract": "Abstract We present a structural study of a family of azo compounds\u2014azo derivatives of azoles (azoazoles, Az1\u2013N=N\u2013Az2)\u2014focusing on the thirty-nine symmetric members (Az1 = Az2), ranging from pyrrole to pentazole. These compounds can act as photoswitches, meaning they can reversibly interconvert between two isomeric forms upon exposure to light. The calculated geometries are compared with experimental structures available in the Cambridge Structural Database. Rotation around the Az\u2013N single bond gives rise to three conformers ( A , B , and C ), which exhibit various noncovalent interactions analyzed using the Quantum Theory of Atoms-in-Molecules (QTAIM) and Noncovalent Interaction (NCI) approaches. Finally, three spectroscopic properties\u2014electronic, vibrational, and especially NMR\u2014are compared with experimental data and critically evaluated against calculated values.",
+  "cites_our_sources": [
+   "ja002253y.pdf"
+  ]
+ },
+ "https://openalex.org/W2114974396": {
+  "id": "https://openalex.org/W2114974396",
+  "title": "Density functional theoretical study of A series of pentazolide compounds $$\\hbox{A}_{\\it n}(\\hbox{N}_5)_{\\rm 6-{\\it n}}^{\\it q}$$ (A = B, Al, Si, P, and S; n = 1\u20133; q = +1, 0, \u22121, \u22122, and \u22123)",
+  "year": 2007,
+  "doi": "https://doi.org/10.1007/s00214-007-0269-7",
+  "abstract": "",
+  "cites_our_sources": [
+   "N12-N8.pdf",
+   "N5-N6-abinitio.pdf",
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W2768373768": {
+  "id": "https://openalex.org/W2768373768",
+  "title": "Novel rubidium poly-nitrogen materials at high pressure",
+  "year": 2017,
+  "doi": "https://doi.org/10.1063/1.5004416",
+  "abstract": "First-principles crystal structure search is performed to predict novel rubidium poly-nitrogen materials at high pressure by varying the stoichiometry, i.e., relative quantities of the constituent rubidium and nitrogen atoms. Three compounds of high nitrogen content, RbN5, RbN2, and Rb4N6, are discovered. Rubidium pentazolate (RbN5) becomes thermodynamically stable at pressures above 30 GPa. The charge transfer from Rb to N atoms enables aromaticity in cyclo-N5\u2212 while increasing the ionic bonding in the crystal. Rubidium pentazolate can be synthesized by compressing rubidium azide (RbN3) and nitrogen (N2) precursors above 9.42 GPa, and its experimental discovery is aided by calculating the Raman spectrum and identifying the features attributed to N5\u2212 modes. The two other interesting compounds, RbN2 containing infinitely long single-bonded nitrogen chains and Rb4N6 consisting of single-bonded N6 hexazine rings, become thermodynamically stable at pressures exceeding 60 GPa. In addition to the compounds with high nitrogen content, Rb3N3, a new compound with 1:1 RbN stoichiometry containing bent N3 azides is found to exist at high pressures.",
+  "cites_our_sources": [
+   "N5-N6-abinitio.pdf"
+  ]
+ },
+ "https://openalex.org/W2109365015": {
+  "id": "https://openalex.org/W2109365015",
+  "title": "Thermal stability of the N10 compound with extended nitrogen chain",
+  "year": 2013,
+  "doi": "https://doi.org/10.1039/c3ra42439a",
+  "abstract": "1,1\u2032-Azobis(tetrazole) (N10) as a potential eco-friendly material, has the highest nitrogen content among the azo-stabilized poly-nitrogen compounds. The detailed potential energy surface of N10 was thoroughly investigated using M06-2X, MP2 and CCSD(T) calculations, and the main decomposition pathways were calculated by canonical transition state theory modeling. Amongst all the channels studied, ring opening of the N10 compound, followed by N2 elimination to form the linear molecule Im8 is predicted to be the primary decomposition channel. The linear species formed (Im8) is characterized by a successive four-nitrogen atom chain stabilized by two terminal HNC groups. Its thorough decomposition reaction is strongly exothermic with a barrier height of 67.5 kcal mol\u22121. TST calculations were performed to probe the influence of temperature on the rate coefficients at 1 atm. Based on the thermal decomposition mechanism of N10, the novel species N12 and N14 were explored. These longer nitrogen chain compounds having higher nitrogen content than N10 are strongly expected to improve performance of high energy density materials. It is found that the predicted structures could exist at room temperature by comparison of their energetic barriers with the corresponding primary N2-elimination reaction of N10.",
+  "cites_our_sources": [
+   "N5-N6-abinitio.pdf"
+  ]
+ },
+ "https://openalex.org/W1989063615": {
+  "id": "https://openalex.org/W1989063615",
+  "title": "Electronic Structure Analysis and Electron Detachment Energies of Polynitrogen Pentagonal Aromatic Anions",
+  "year": 2006,
+  "doi": "https://doi.org/10.1021/jp0632743",
+  "abstract": "Various decouplings of the electron propagator have been employed to provide theoretical comparison to experimental electron detachment energies for the pyrrolide, imidazolide, and pyrazolide anions. Predictions for isoelectronic anions in which CH groups are replaced by N atoms also are reported. The ab initio electron propagator results agree closely with experimental values, and the associated Dyson orbitals provide a detailed catalog of bonding changes as the number and positions of N atoms vary within the set of pentagonal aromatic anions.",
+  "cites_our_sources": [
+   "N5-N6-abinitio.pdf",
+   "N5+.pdf",
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W3202280275": {
+  "id": "https://openalex.org/W3202280275",
+  "title": "Kinetic Stability of Pentazole",
+  "year": 2021,
+  "doi": "https://doi.org/10.1021/acs.jpca.1c06252",
+  "abstract": "The utility of high energy density materials (HEDMs) comes from their thermodynamic properties which arise from specific structural features that contribute to energy storage. Studies of such structural features seek to increase our understanding of these energy storage mechanisms in order to further enhance their properties. High-nitrogen-containing HEDMs are of particular interest because they are less toxic than traditional HEDMs. Pentazole is the largest of the nitrogen rings which has been synthesized and considered for an HEDM; however, few experimental studies exist due to the difficulty involved in the synthesis, and most previous theoretical studies employed composite methods where lower level geometries were used with higher level methods. Here, the decomposition reaction of pentazole is studied. Geometries, fundamental frequencies, and energies for each of the stationary points of the decomposition pathway are computed using ab initio methods up to CCSDT(Q). Decomposition rates are calculated over a range of temperatures using canonical transition state theory in order to determine the kinetic stability of pentazole. Based on the present results, it would be difficult for pentazole to act as an HEDM, requiring temperatures close to 200 K to achieve a suitable level of stability.",
+  "cites_our_sources": [
+   "N5-N6-abinitio.pdf"
+  ]
+ },
+ "https://openalex.org/W2990758283": {
+  "id": "https://openalex.org/W2990758283",
+  "title": "Mixed cationic clusters of nitrogen and hydrogen",
+  "year": 2020,
+  "doi": "https://doi.org/10.1063/1.5140850",
+  "abstract": "The addition of small impurities, such as a single proton charge carrier, in noble gas clusters has recently been shown to have considerable effects on their geometries and stabilities. Here, we report on a mass spectrometric study of cationic clusters of N2 molecules and the effects that adding hydrogen, in the form of D2, has on the systems. Protonated nitrogen clusters formed by the breakup of D2 are shown to have similar behaviors as protonated rare gas clusters. For larger systems consisting of different mixtures of intact N2 and D2, different molecular species are found to be interchangeable sometimes with regard to magic numbers. This is especially true for the (N2)n(D2)mD+ systems with n + m = 17, which is particularly abundant for all measured combinations of n and m.",
+  "cites_our_sources": [
+   "N5-N6-abinitio.pdf"
+  ]
+ },
+ "https://openalex.org/W3034804027": {
+  "id": "https://openalex.org/W3034804027",
+  "title": "Properties and Promise of Catenated Nitrogen Systems As High-Energy-Density Materials",
+  "year": 2020,
+  "doi": "https://doi.org/10.1021/acs.chemrev.9b00804",
+  "abstract": "The properties of catenated nitrogen molecules, molecules containing internal chains of bonded nitrogen atoms, is of fundamental scientific interest in chemical structure and bonding, as nitrogen is uniquely situated in the periodic table to form kinetically stable compounds often with chemically stable N\u2013N bonds but which are thermodynamically unstable in that the formation of stable multiply bonded N 2 is usually thermodynamically preferable. This unique placement in the periodic table makes catenated nitrogen compounds of interest for development of high-energy-density materials, including explosives for defense and construction purposes, as well as propellants for missile propulsion and for space exploration. This review, designed for a chemical audience, describes foundational subjects, methods, and metrics relevant to the energetic materials community and provides an overview of important classes of catenated nitrogen compounds ranging from theoretical investigation of hypothetical molecules to the practical application of real-world energetic materials. The review is intended to provide detailed chemical insight into the synthesis and decomposition of such materials as well as foundational knowledge of energetic science new to most chemists.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W4392550707": {
+  "id": "https://openalex.org/W4392550707",
+  "title": "Taming cyclo-pentazolate anions with a hydrogen-bonded organic framework",
+  "year": 2024,
+  "doi": "https://doi.org/10.1038/s43246-024-00467-7",
+  "abstract": "Abstract Because of its high energy, aromaticity, and carbon- and hydrogen-free structure, the cyclo-pentazolate anion (c-N5-) has attracted increased attention as a potential polynitrogen structural unit for the research of next-generation high energy density materials. However, the poor thermal stability of c-N5--based compounds has become an important factor restricting their development. Here, we show that a hydrogen-bonded organic framework (HOF) self-assembles with and stabilizes c-N5-, with c-N5- situated in the pores of the resulting framework through the formation of symmetrical c-N5- hydrogen bonds as the main stabilizing factors. These factors result in an onset decomposition temperature of 153 \u00b0C for the c-N5-@HOF portion, which exceeds the thermal stabilities generally observed for c-N5--based derivatives of below 135 \u00b0C. We envisage that further c-N5--based materials with enhanced stabilities and better performance will be developed in the future.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W1981142576": {
+  "id": "https://openalex.org/W1981142576",
+  "title": "On the Way to \u201cSolid Nitrogen\u201d at Normal Temperature and Pressure? Binary Azides of Heavier Group 15 and 16 Elements",
+  "year": 2004,
+  "doi": "https://doi.org/10.1002/anie.200401748",
+  "abstract": "Caution explosive! Homoleptic azides are of great interest as polynitrogen compounds particularly because of their high energy content. A recent breakthrough is the first synthesis and characterization of the highly sensitive neutral tellurium azide [Te(N3)4] and of ionic (N5)+[P(N3)6]\u2212 containing 23 nitrogen atoms.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W2098330504": {
+  "id": "https://openalex.org/W2098330504",
+  "title": "Synthesis and Characterization of (Z)\u2010[N3NFO]+ and (E)\u2010[N3NFO]+",
+  "year": 2007,
+  "doi": "https://doi.org/10.1002/anie.200700130",
+  "abstract": "A new stable polynitrogen ion: The second known example of a stable nitrogen fluoride oxide ion, [N3NFO]+, was prepared as its [SbF6]\u2212 salt and characterized by multinuclear NMR and vibrational spectroscopy and electronic-structure calculations. The cation is planar and exists as two stereoisomers (see picture; N blue, O red, F dark blue).",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W4296086629": {
+  "id": "https://openalex.org/W4296086629",
+  "title": "Density functional theory studies on N4 and N8 species: Focusing on various structures and excellent energetic properties",
+  "year": 2022,
+  "doi": "https://doi.org/10.3389/fchem.2022.993036",
+  "abstract": "All-nitrogen materials, as a unique branch of energetic materials, have gained huge attentions, of which cyclo-N5\u2212 derivatives are the representative synthetically reported materials. However, the energetic performance of cyclo-N5\u2212 compounds has certain limitations and cannot go beyond that of CL-20. In order to reach the higher energy, in this work, we presented two kinds of polynitrogen species, N4 and N8. Two isomers of N4 and four isomers of N8 were fully calculated by using density functional theory (DFT). Theoretical results show that all these polynitrogen materials exhibit excellent heats of formation (7.92\u201316.60 kJ g\u22121), desirable detonation performance (D: 9766\u201311620 m s\u22121; p: 36.8\u201361.1 GPa), as well as the remarkable specific impulses (330.1\u2013436.2 s), which are much superior to CL-20. Among them, N4-2 (tetraazahedrane) (D: 10037 m s\u22121; p: 40.1 GPa; Isp: 409.7 s) and cube N8-4 (D: 11620 m s\u22121; p: 61.1 GPa; Isp: 436.2 s) have the highest energetic properties, which are expected to become promising high-energy-density-materials. Moreover, electrostatic surface potentials, Frontier molecular orbitals, infrared spectra, natural bond orbital charges, and weak interactions were also investigated to further understand their relationship between structure and performance.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W3083696206": {
+  "id": "https://openalex.org/W3083696206",
+  "title": "Density functional theory studies on two novel poly\u2010nitrogen compounds: N5+N3\u2212 and N5+N5\u2212",
+  "year": 2020,
+  "doi": "https://doi.org/10.1002/poc.4135",
+  "abstract": "Abstract Density functional theory (DFT) methods with B3LYP/6\u2010311++g(d,p) level of theory were employed to study two poly\u2010nitrogen salts N5+N3\u2212 and N5+N5\u2212. The optimized geometries and thermochemical parameters, frontier molecular orbitals, molecular electrostatic potential, and predicted infrared (IR) spectra were calculated for inspecting the molecular stabilities, electronic structures, and chemical reactivity. The energetic properties including densities, solid state heats of formation, heats of detonation, detonation velocities, and detonation pressures of N5+N3\u2212 and N5+N5\u2212 were also calculated. Results show that the planar N5+N3\u2212 and N5+N5\u2212 have higher heats of formation (>1000 kJ mol\u22121) than that of HMX (116.1 kJ mol\u22121) and CL\u201020 (365.4 kJ mol\u22121). The detonation velocity of N5+N3\u2212 is 9.29 km s\u22121, which is comparable with HMX (9.22 km s\u22121). Especially, N5+N5\u2212 has a higher detonation velocity (10.21 km s\u22121) than HMX and CL\u201020, which means it could be an excellent high\u2010energy\u2010density material (HEDM). However, they have a very small energy gap between the highest occupied molecular orbital (HOMO) and lowest unoccupied molecular orbital (LUMO), which predicts that they have poor stabilities.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W3207492212": {
+  "id": "https://openalex.org/W3207492212",
+  "title": "All-nitrogen spiropentadiene\u2014N5+",
+  "year": 2021,
+  "doi": "https://doi.org/10.1063/5.0070369",
+  "abstract": ") family, the only experimentally known isomer is the V-shaped structure 01. Here, we showed that a super-high-energy (\u223c100 kcal/mol above 01) all-nitrogen spiropentadiene 02 with considerable \u03c3-delocalization deserves pursuit as the first spirocyclic all-nitrogen molecule, at least spectroscopical.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W3142273176": {
+  "id": "https://openalex.org/W3142273176",
+  "title": "Stabilization mechanisms of three novel full-nitrogen molecules",
+  "year": 2021,
+  "doi": "https://doi.org/10.1007/s00706-021-02755-1",
+  "abstract": "",
+  "cites_our_sources": [
+   "N5+.pdf",
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W3139874342": {
+  "id": "https://openalex.org/W3139874342",
+  "title": "Cis\u2013Trans Isomerization and Thermal Decomposition Mechanisms of a Series of Nx (x = 4, 8, 10, 11) Chain-Catenated Energetic Crystals",
+  "year": 2021,
+  "doi": "https://doi.org/10.1021/acs.jpca.0c11432",
+  "abstract": "Nitrogen-rich compounds based on heteroaromatic rings with different lengths of nitrogen chains are at the forefront of the energetic materials field. We studied the decomposition processes and reaction kinetics of a series of N x ( x = 4, 8, 10, 11) chain-catenated energetic crystals at various temperatures (2400\u20133000 K) based on a combinational strategy based on density functional tight binding molecular dynamics (DFTB-MD) simulations and density functional theory (DFT). The results show that the thermal decomposition and reaction kinetics are dependent on both the temperature and nitrogen chain\u2019s length. There are two sequential stages in the initial decomposition process for the crystals N 8 and N 10: (i) competition between cis\u2013trans isomerization and initial unimolecular decomposition and (ii) subsequent complicated global decomposition reactions. Increasing either the temperature or nitrogen chain\u2019s length will accelerate the competition and make initial decomposition dominate. However, cis\u2013trans isomerization does not occur in the crystals N 4 and N 11 . The dominant initiation paths for N 4, N 8, and N 10 occur in the heterocycle and in the bond between the heterocycle and azo group, while that for N 11 is ring elimination. The decomposition reactions exhibit a clear first-order kinetics character. The energy paths based on DFT calculations are determined as an addition to the DFTB-MD results. Our findings provide insights into the comprehensive understanding of thermal decomposition behaviors of nitrogen chain-catenated and even all-nitrogen energetic materials.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W7167213305": {
+  "id": "https://openalex.org/W7167213305",
+  "title": "The quest for ever more energetic materials",
+  "year": 2026,
+  "doi": "https://doi.org/10.1039/d6ta04463h",
+  "abstract": "This review traces the evolutionary trajectory of energetic materials from conventional compounds to nitrogen-rich and poly-nitrogen systems, highlighting the balance between energy and safety in next-generation high-performance explosives.",
+  "cites_our_sources": [
+   "N5+.pdf",
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W2043263709": {
+  "id": "https://openalex.org/W2043263709",
+  "title": "New Signal Processing Method for the Faster Observation of Natural-Abundance 15N NMR Spectra and Its Application to N5+",
+  "year": 2005,
+  "doi": "https://doi.org/10.1021/ic051705a",
+  "abstract": "The new harmonic inversion noise reduction method was applied to (15)N natural-abundance NMR spectroscopy and N(5)SbF(6). This method is superior to conventional Fourier transform methods for processing FIDs and permits the detection of natural abundance (15)N NMR signals with significantly reduced numbers of scans and improved sensitivity. In addition to the confirmation of the previously reported chemical shifts for N(5)(+), the one bond coupling between N(beta) and N(gamma) could be observed for the first time. Its absolute value is compared to known coupling constants of other covalent azides and the free azide ion.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W2054099409": {
+  "id": "https://openalex.org/W2054099409",
+  "title": "Theoretical Study on the Reactions of the Cyclic Trinitrogen Radical toward Oxygen and Water",
+  "year": 2009,
+  "doi": "https://doi.org/10.1021/jp810741v",
+  "abstract": "Recently, the detection of the neutral simplest all-nitrogen ring, cyclic-N(3) radical, has been realized via various techniques, which has led to numerous studies on its structures, energetics, and spectroscopy. In particular, it has been postulated as a possible building block of high energy density materials. Yet, its intermolecular reactivity is poorly understood. In this paper, we for the first time studied the reactions of cyclic-N(3) with the widespread oxygen and water at the CCSD(T)/aug-cc-pVTZ //B3LYP/6-311++G(d,p)+ZPVE and G3B3//B3LYP/6-311++G(d,p) (italics) levels. An addition-elimination mechanism was revealed for the cyclic-N(3) + O(2) reaction that results in the elementary product N(2) + NO + (3)O with an overall barrier as high as 11.8 (11.0) kcal/mol. The calculated low rate constants (even at high temperatures) show that the cyclic-N(3) radical is stable against oxygen. The cyclic-N(3) + H(2)O reaction is associated with a quasi H-abstraction mechanism forming the product cyclic-N(3)H + OH with the rather high barrier of 35.7 (36.2) kcal/mol. This indicates that cyclic-N(3) is chemically inert toward H(2)O. Chemical implications of the present work are discussed.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W2152808168": {
+  "id": "https://openalex.org/W2152808168",
+  "title": "All Nitrogen or High Nitrogen Compounds as High Energy Density Materials",
+  "year": 2005,
+  "doi": null,
+  "abstract": "The goals of this research were the identification of potential polynitrogen HEDM candidates and the design of strategies and experimental approaches for their attempted syntheses. This program was a Phase I Small Business Technology Transfer Program (STTR) contract with the Air Force Office of Scientific Research (Contract FA9550-04-C-0112). It was carried by ERC- Incorporated as the Small Business and the University of Southern California as the Academic Institution. The following goals have been accomplished: 1. The N3+ cation was identified as a promising HEDM target, and the feasibility of different synthetic approaches was evaluated. 2. It was shown that the previously reported claim for a bulk synthesis of N(sub 5)- is invalid, and theoretical calculations were carried out to define favorable approaches for its synthesis. 3. The usefulness of a novel nitrogen-NMR technique for recording 15N-spectra in natural abundance was demonstrated for N(SUB 5)+ and will be very useful for the identification of new polynitrogens. 4. The novel cation, N(sub 2)CN+, has been tentatively identified. 5. Numerous new polyazides have been prepared and characterized and demonstrate the potential of this family of compounds. 6. The novel N(sub 3)NOF+ cation has been prepared and characterized. Tentative evidence has been obtained for the existence of a new exciting, room- temperature-stable (N3)(sub2)N0+ cation. 7. The feasibility of using HOF for the oxygenation of nitrogen atoms was confirmed and has potential applications to polynitrogen chemistry.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W4384206941": {
+  "id": "https://openalex.org/W4384206941",
+  "title": "The structural, electronic properties, pressure response and decomposition mechanism of bispentazole (N10) with first principles calculations",
+  "year": 2023,
+  "doi": "https://doi.org/10.1016/j.rinp.2023.106743",
+  "abstract": "Bispentazole (N10) is one of the recently-found full-nitrogen energetic materials, which have remarkable performance in the pursuit of higher energy and greener explosive. Therefore, the structural, electronic properties, pressure response, and decomposition mechanism of four types of N10, namely P21-N10, I-N10, V-N10, and P-N10, are investigated using first-principles calculations. Our results show that all the structures are thermodynamic stability, and P21-N10 and P-N10 are dynamical stability. All N10 structures belong to insulators with indirect band gaps. The results show that the N-N bond on the five-membered cyclic ring, which is on the opposite side of the N-N bond connected to the two five-membered cyclic rings, is relatively weak. From the decomposition pathway of the N10 molecule, it can be observed that the product N2 is gradually separated from two cyclic N5 rings in the molecule. The result demonstrated that the N-N bond in full-nitrogen materials can release energy by breaking of N-N bond to form the stable N2. The calculated three reaction energy barriers means that the decomposition temperature of N10 is lower than that of N8 and N6. Finally, the released energy as 168.0 kcal/mol indicates that the N10 molecule can release a lot of energy when it decomposes.",
+  "cites_our_sources": [
+   "N5+.pdf"
+  ]
+ },
+ "https://openalex.org/W207550768": {
+  "id": "https://openalex.org/W207550768",
+  "title": "Computational Aspects of Nitrogen-Rich HEDMs",
+  "year": 2007,
+  "doi": "https://doi.org/10.1007/430_2006_053",
+  "abstract": "",
+  "cites_our_sources": [
+   "jp0141833.pdf",
+   "N60_marek_03.pdf",
+   "jp0378889.pdf",
+   "N10_marek_03.pdf",
+   "jp044970a.pdf",
+   "N20_05.pdf",
+   "N_nanotubes_06.pdf"
+  ]
+ },
+ "https://openalex.org/W4406895989": {
+  "id": "https://openalex.org/W4406895989",
+  "title": "Cyclo\u2010N9\u2212: a Novel 5/6 Fused Polynitrogen Anion for High Energy Density Materials",
+  "year": 2025,
+  "doi": "https://doi.org/10.1002/advs.202414394",
+  "abstract": "Abstract After cyclo\u2010pentazolate anion, a 5/6 fused structure of N9\u2212 is constructed, and four novel nitrogen\u2010rich ionic compounds are assembled on its basis. The results of the quantum calculations revealed an uneven distribution of electrons on cyclo\u2010N9\u2212, with significant charge density near the N5/N9 atoms and an ADCH charge of \u22120.425. The relative strength of chemical bonds is assessed through bond order analysis, which is further supplemented by transition state theory and ab initio molecular dynamics, ultimately leading to the identification of the decomposition pathways of cyclo\u2010N9\u2212. The aromaticity of cyclo\u2010N9\u2212 and its individual sub\u2010rings is cleverly validated through a combination of NICS_ZZ and ICSS methods. Among the eight systems, cyclo\u2010N9\u2212 forms hydrogen bonds with other cations, and IGMH analysis revealed significant LP\u2010\u03c0 and \u03c0\u2013\u03c0 stacking interactions between [N7H4+] and cyclo\u2010N9\u2212, both of which enhance system stability. The theoretical energy densities in all systems are at the forefront in the currently emerging nitrogen\u2010rich compounds. Attributed to its extraordinarily high enthalpy of formation, the detonation performance of [N7H4+] [N9\u2212] is particularly excellent. However, [NH3OH+] [N9\u2212] exhibits better stability and most exciting performance, making it a highly promising candidate with application potential.",
+  "cites_our_sources": [
+   "jp0208182.pdf"
+  ]
+ },
+ "https://openalex.org/W4308901120": {
+  "id": "https://openalex.org/W4308901120",
+  "title": "Construction mechanisms of a new generation of high-energy all- and high-nitrogen materials under extreme conditions: Ab initio molecular dynamics simulations from pentazole compounds",
+  "year": 2022,
+  "doi": "https://doi.org/10.1016/j.cej.2022.140359",
+  "abstract": "",
+  "cites_our_sources": [
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W811183061": {
+  "id": "https://openalex.org/W811183061",
+  "title": "High Energy Density Materials (HEDM): Overview, Theory and Synthetic Efforts at FOI",
+  "year": 2007,
+  "doi": null,
+  "abstract": "",
+  "cites_our_sources": [
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W2966439453": {
+  "id": "https://openalex.org/W2966439453",
+  "title": "Structures, Stability, and Decomposition Dynamics of the Polynitrogen Molecule N 5 + B(N 3 ) 4 \u2013 and Its Dimer [N 5 + ] 2 [B(N 3 ) 4 \u2013 ] 2",
+  "year": 2019,
+  "doi": "https://doi.org/10.1021/acs.jpca.9b03704",
+  "abstract": "There is much current interest in materials that are made entirely or mostly of nitrogen atoms. Such materials, polynitrogens, may reveal new aspects of nitrogen chemistry, and are believed to provide a possible basis for novel energetic substances. An interesting family of such materials, in which the N 5 + group appears as a cation, was prepared by K. O. Christe and co-workers. Little is known as yet on the microscopic properties of these materials. In this paper, we report theoretical calculations to predict the structure, energetic stability and decomposition dynamics of the polynitrogen molecule N 5 + B(N 3 ) 4 \u2013, the building block of a solid prepared by Christe, and of the dimer of this molecule. The structures are computed at the B3LYP-D3 level of DFT. ab initio molecular dynamics simulations are used to explore the thermal stability of the species and the decomposition mechanism. It is found that the N 5 + B(N 3 ) 4 \u2013 ion-pair decomposes on a picosecond time scale at T = 200 K, with an ultrafast release of four N 2 molecules, which is very exothermic. The species B(N 3 ) 3 is a product. The dimer is considerably more stable. Sensitivity of the process to temperature and to an applied force is reported. Possible applications of this material are briefly discussed.",
+  "cites_our_sources": [
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W4401793225": {
+  "id": "https://openalex.org/W4401793225",
+  "title": "Creating Cyclo-N5+ Cations and Assembling N5+N5\u2013 Salts via Electronegativity Comatching in Tailored Ionic Compounds",
+  "year": 2024,
+  "doi": "https://doi.org/10.1021/acs.jpcc.4c04367",
+  "abstract": "The recent discovery of crystalline pentazolates marks a major advance in polynitrogen chemistry and raises prospects of making the long-touted potent propellant N 5 + N 5 \u2013 salt. However, despite the synthesis of cyclo-N 5 \u2013 anions in pentazolates, countercation cyclo-N 5 + remains elusive due to the strong oxidizing power of the pentazole ion; moreover, pure N 5 + N 5 \u2013 salt is known to be unstable. Here, we devise a new strategy for making rare cyclo-N 5 + cations and assembling the long-sought N 5 + N 5 \u2013 salt in tailored ionic compounds, wherein the negative/positive host ions act as oxidizing/reducing agents to form cyclo-N 5 + /N 5 \u2013 species. This strategy is implemented via an advanced computational crystal structure search, which identifies X N 5 N 5 F (X = Li, Na, and K) compounds that stabilize at high pressures and remain viable at ambient pressure\u2013temperature conditions based on ab initio molecular dynamics simulations. This finding opens an avenue for creating and stabilizing the N 5 + N 5 \u2013 salt assembly in ionic compounds, where cyclo-N 5 species are oxidized/reduced via comatching with host ions of high/low electronegativity. The present results demonstrate novel polynitrogen chemistry, and these findings offer new insights and prospects for the design and synthesis of diverse chemical species that exhibit unusual charge states, bonding structures, and superior functionality.",
+  "cites_our_sources": [
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W2952869152": {
+  "id": "https://openalex.org/W2952869152",
+  "title": "ChemInform Abstract: On the Stability of N5+N5\u2010.",
+  "year": 2002,
+  "doi": "https://doi.org/10.1002/chin.200229002",
+  "abstract": "Abstract ChemInform is a weekly Abstracting Service, delivering concise information at a glance that was extracted from about 100 leading journals. To access a ChemInform Abstract of an article which was published elsewhere, please select a \u201cFull Text\u201d option. The original article is trackable via the \u201cReferences\u201d option.",
+  "cites_our_sources": [
+   "N10.pdf"
+  ]
+ },
+ "https://openalex.org/W4409360112": {
+  "id": "https://openalex.org/W4409360112",
+  "title": "Theoretical studies on the long nitrogen chain structure and the constructing mechanism of a catenated N11 cation",
+  "year": 2025,
+  "doi": "https://doi.org/10.1139/cjc-2024-0155",
+  "abstract": "The long nitrogen chain compound, as a potential energetic material, exhibits remarkable explosive properties. Therefore, it is imperative to conduct an in-depth investigation into its structural characteristics and construction mechanism. Herein, a catenated N11 cation was theoretically studied. It has a relatively low sensitivity and a possible decomposition mechanism triggered by the weak N\u2212N bonds, which agrees well with the experimental results. We proposed a synthesis mechanism involving the N\u2212N bond formation and the two-step proton shift with energy barriers of 6.63, 57.53, and 43.81 kcal mol\u22121, respectively. The proton shift effectively strengthens the newly formed N\u2212N bond while maintaining structural balance. Furthermore, a comparative reaction was studied to highlight the value of utilizing heterocyclic nitrogen structures for developing long nitrogen chain energetic compounds. These results give theoretical support for developing new high energy density materials and all-nitrogen energetic materials.",
+  "cites_our_sources": [
+   "jp0378889.pdf"
+  ]
+ },
+ "https://openalex.org/W2606302242": {
+  "id": "https://openalex.org/W2606302242",
+  "title": "Smallest fullerene-like clusters in two-probe device junctions: first principle study",
+  "year": 2017,
+  "doi": "https://doi.org/10.1080/00268976.2017.1314033",
+  "abstract": "First principle calculations based on density functional theory are realised to investigate the electron transport of the smallest fullerene-like clusters as two-probe junction devices. The junction devices are constructed by mechanically controlled break junction techniques to ensure the maximum stability of the Be20, B20 and N20 cluster molecular junctions. We investigate the density of states, transmission spectrum, molecular orbitals, current and differential conductance characteristics at discrete bias voltages to gain insight about the various transport phenomena occurring in these nano-junctions. The results show that B20 molecule when stringed to gold electrodes works as an ideal nano-device similar to the pure C20 device and is more symmetric in its characteristic nature. However, in N20 molecular device, the conduction is negligible due to the higher atomic interactions within N20 molecule, despite the fact that it is constructed with penta-valent atoms.",
+  "cites_our_sources": [
+   "N20_05.pdf"
+  ]
+ },
+ "https://openalex.org/W1978290458": {
+  "id": "https://openalex.org/W1978290458",
+  "title": "Discovery of Singlet Diradicals: Theoretical Study on the Cage Species C14N12\u2212H6 and Its Six Derivatives",
+  "year": 2007,
+  "doi": "https://doi.org/10.1021/jp072460l",
+  "abstract": "In this work, the geometries, harmonic vibrational frequencies, and high-energy density material (HEDM) properties of a novel species and its six derivatives with the general formula C14N12-R6 (R = H, OH, F, CN, N3, NH2, and NO2) have been investigated at the restricted and unrestricted B3LYP/cc-pVDZ levels of theory. Natural bond orbital (NBO), natural orbital (NO), and atoms in molecules (AIM) analyses are applied to examine their electronic topologies. It is found that for the four species of R = H, CN, N3, and NO2, (1) there exist high LUMO occupation numbers, (2) there is considerable spin density congregated on the two central carbon atoms, (3) there exists through space interaction (or intramolecular interaction, which is one of the stabilizing factors of a diradicaloid) between the two central carbon atoms, (4) the distance (about 3 A) between the two central carbon atoms (as the apexes of two trigonal pyramids with their bases facing each other) is suitable and favorable for diradical formation. All the results support that these four species are diradicals or diradicaloids. Furthermore, the appreciable singlet-triplet energy gaps indicate that these four diradicals tend to have a singlet ground state. There is a moderate HOMO-LUMO gap (on the order of 1.5 to 2.1 eV) for these four species. These four singlet diradicals may be novel organic semiconductor materials or nonlinear optical materials. On the other hand, the remaining three species, with R = OH, F, and NH2, are not diradicaloids.",
+  "cites_our_sources": [
+   "N_nanotubes_06.pdf"
+  ]
+ },
+ "https://openalex.org/W2757927775": {
+  "id": "https://openalex.org/W2757927775",
+  "title": "The crystal density of nitrogen cubane and other polynitrogen species",
+  "year": 2017,
+  "doi": "https://doi.org/10.1007/s00894-017-3454-1",
+  "abstract": "",
+  "cites_our_sources": [
+   "N_nanotubes_06.pdf"
+  ]
+ },
+ "https://openalex.org/W2049503597": {
+  "id": "https://openalex.org/W2049503597",
+  "title": "N5+: ein neuartiges homoleptisches Polystickstoff-Ion als Substanz mit hoher Energiedichte",
+  "year": 1999,
+  "doi": "https://doi.org/10.1002/(sici)1521-3757(19990712)111:13/14<2112::aid-ange2112>3.0.co;2-i",
+  "cited_by_count": 98,
+  "abstract": "Das dritte Beispiel erst f\u00fcr eine homoleptische Polystickstoff-Verbindung ist nach N2 und N3\u2212 das N5+-Ion; es ist erstaunlich stabil und kann in makroskopischem Ma\u00dfstab als AsF6\u2212-Salz isoliert werden. Das Vorliegen der hier gezeigten, berechneten C2v-symmetrischen Struktur wurde durch IR- und Raman- sowie 14N- und 15N-NMR-spektroskopische Untersuchungen am isotopenmarkierten Produkt best\u00e4tigt.",
+  "cites_our_sources": [
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4285168102": {
+  "id": "https://openalex.org/W4285168102",
+  "title": "Nitro-based and nitro-free tri-cationic azole salts: a unique class of energetic green tri-ionic salts obtained from the reaction with nitrogen-rich bases",
+  "year": 2022,
+  "doi": "https://doi.org/10.1039/d2ma00406b",
+  "cited_by_count": 15,
+  "abstract": "Nitrogen-rich heterocycles are essential for designing novel energetic green materials with the combination of high explosive performance and acceptable mechanical sensitivities.",
+  "cites_our_sources": [
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W1965710030": {
+  "id": "https://openalex.org/W1965710030",
+  "title": "Theoretical study of the pentanitrogen cation (N5+)",
+  "year": 2000,
+  "doi": "https://doi.org/10.1016/s0009-2614(99)01320-2",
+  "cited_by_count": 47,
+  "abstract": "",
+  "cites_our_sources": [
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4237915130": {
+  "id": "https://openalex.org/W4237915130",
+  "title": "Homopolyatomare Stickstoffverbindungen",
+  "year": 1999,
+  "doi": "https://doi.org/10.1002/(sici)1521-3757(19990903)111:17<2694::aid-ange2694>3.0.co;2-0",
+  "cited_by_count": 13,
+  "abstract": "Neue Stickstoffverbindungen mit hoher Energiedichte sind etwas n\u00e4her ger\u00fcckt, seit Christe et al. die Synthese des N5+-Ions gelungen ist. Hier wird das derzeitige experimentelle und theoretische Wissen \u00fcber Nn-Verbindungen vorgestellt. Nach den Rechnungen sind Molek\u00fcle mit Pentazol-Einheiten am aussichtsreichsten.",
+  "cites_our_sources": [
+   "poly-N.pdf (GS)"
+  ]
+ },
+ "https://openalex.org/W4243593974": {
+  "id": "https://openalex.org/W4243593974",
+  "title": "Pentazoles",
+  "year": 2021,
+  "doi": "https://doi.org/10.1016/b978-0-12-818655-8.00123-2",
+  "cited_by_count": 0,
+  "abstract": "",
+  "cites_our_sources": [
+   "poly-N.pdf (GS)"
+  ]
+ }
+}

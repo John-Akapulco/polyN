@@ -1,30 +1,31 @@
-\noindent\textbf{Table S1.} Structures fragment\'ees~: le candidat se s\'epare en plusieurs esp\`eces mol\'eculaires distinctes (aucune paire N--N restante sous 1,7~\AA\ entre les morceaux), pas un cluster N$_x$ li\'e unique. Retir\'ees des tableaux principaux (\S\ref{sec:provenance}) et de la comparaison de stabilit\'e. Repr\'esentations avant/apr\`es en Figure~S4.\par\vspace{4pt}
-\begin{longtable}{@{}p{4.4cm}ccp{1.6cm}cc@{}}
-\scriptsize
+\noindent\textbf{Tableau S1.} Structures fragment\'ees~: le candidat se s\'epare en plusieurs esp\`eces mol\'eculaires distinctes (aucune paire N--N restante sous 1,7~\AA\ entre les morceaux), pas un cluster N$_x$ li\'e unique. N'apparaissent pas dans les Tableaux~2--4 (\S\ref{sec:provenance}) ni dans la comparaison de stabilit\'e DFT/xTB (\S\ref{sec:ranking}). La colonne \emph{d\'ej\`a fragment\'e \`a xTB} indique si la g\'eom\'etrie de d\'epart (avant tout calcul DFT) \'etait elle-m\^eme d\'ej\`a s\'epar\'ee en plusieurs morceaux -- auquel cas la fragmentation est ant\'erieure \`a cette campagne DFT (artefact du criblage GFN2-xTB en amont), et non un r\'esultat de l'optimisation DFT. Repr\'esentations avant/apr\`es en Figure~S1.\par\vspace{4pt}
+{\scriptsize
+\begin{longtable}{@{}p{4.0cm}ccp{1.6cm}cp{1.7cm}c@{}}
 \label{tab:fragmented}\\
 \toprule
-\textbf{Nom} & \textbf{N} & \textbf{Charge} & \textbf{Fragments (tailles)} & \textbf{Niveau} & \textbf{R\'ef.} \\
+\textbf{Nom} & \textbf{N} & \textbf{Charge} & \textbf{Fragments (tailles)} & \textbf{Niveau} & \textbf{D\'ej\`a frag.\ \`a xTB} & \textbf{R\'ef.} \\
 \midrule\endfirsthead
-\multicolumn{6}{c}{\small (suite)}\\ \toprule\endhead
+\multicolumn{7}{c}{\small (suite)}\\ \toprule\endhead
 \bottomrule\endfoot
 \bottomrule\endlastfoot
-\texttt{N5\_anion\_anion\_007} & 5 & - & 2$+$3 & DFT & our work \\
-\texttt{N5\_anion\_anion\_008} & 5 & - & 2$+$3 & DFT & our work \\
-\texttt{N5\_anion\_anion\_002} & 5 & - & 2$+$3 & DFT & our work \\
-\texttt{N5\_anion\_anion\_005} & 5 & - & 2$+$3 & DFT & our work \\
-\texttt{N5\_anion\_anion\_009} & 5 & - & 2$+$3 & DFT & our work \\
-\texttt{N5\_anion\_anion\_004} & 5 & - & 2$+$3 & DFT & our work \\
-\texttt{N5\_anion\_anion\_003} & 5 & - & 2$+$3 & DFT & our work \\
-\texttt{N5\_cation\_cation\_007} & 5 & + & 2$+$3 & DFT & our work \\
-\texttt{N6\_neutral\_neutral\_004} & 6 & 0 & 2$+$2$+$2 & DFT & our work \\
-\texttt{N7\_anion\_anion\_006} & 7 & - & 2$+$5 & xtb & our work \\
-\texttt{N9\_anion\_anion\_009} & 9 & - & 2$+$7 & xtb & our work \\
-\texttt{N9\_anion\_anion\_007} & 9 & - & 3$+$6 & xtb & our work \\
-\texttt{N9\_anion\_anion\_020} & 9 & - & 2$+$7 & xtb & our work \\
-\texttt{N9\_cation\_cation\_001} & 9 & + & 2$+$2$+$5 & DFT & our work \\
-\texttt{N10\_neutral\_neutral\_008} & 10 & 0 & 5$+$5 & xtb & our work \\
-\texttt{N10\_neutral\_neutral\_009} & 10 & 0 & 3$+$7 & xtb & our work \\
-\texttt{N11\_anion\_anion\_018} & 11 & - & 3$+$8 & DFT & our work \\
-\texttt{N11\_anion\_anion\_011} & 11 & - & 3$+$3$+$5 & DFT & our work \\
-\texttt{N14\_neutral\_neutral\_004} & 14 & 0 & 2$+$2$+$2$+$3$+$5 & DFT & our work \\
+\texttt{N5\_anion\_anion\_003} & 5 & - & 2$+$3 & DFT & \checkmark~(2$+$3) & our work \\
+\texttt{N5\_anion\_anion\_005} & 5 & - & 2$+$3 & DFT & \checkmark~(2$+$3) & our work \\
+\texttt{N5\_anion\_anion\_009} & 5 & - & 2$+$3 & DFT & \checkmark~(2$+$3) & our work \\
+\texttt{N5\_anion\_anion\_007} & 5 & - & 2$+$3 & DFT & non (DFT seul) & our work \\
+\texttt{N5\_anion\_anion\_008} & 5 & - & 2$+$3 & DFT & non (DFT seul) & our work \\
+\texttt{N5\_anion\_anion\_002} & 5 & - & 2$+$3 & DFT & \checkmark~(2$+$3) & our work \\
+\texttt{N5\_anion\_anion\_004} & 5 & - & 2$+$3 & DFT & non (DFT seul) & our work \\
+\texttt{N5\_cation\_cation\_007} & 5 & + & 2$+$3 & DFT & non (DFT seul) & our work \\
+\texttt{N6\_neutral\_neutral\_004} & 6 & 0 & 2$+$2$+$2 & DFT & non (DFT seul) & our work \\
+\texttt{N7\_anion\_anion\_006} & 7 & - & 2$+$5 & xtb & \checkmark~(2$+$5) & our work \\
+\texttt{N9\_anion\_anion\_020} & 9 & - & 2$+$7 & xtb & \checkmark~(2$+$7) & our work \\
+\texttt{N9\_anion\_anion\_007} & 9 & - & 3$+$6 & xtb & \checkmark~(3$+$6) & our work \\
+\texttt{N9\_anion\_anion\_009} & 9 & - & 2$+$7 & xtb & \checkmark~(2$+$7) & our work \\
+\texttt{N9\_cation\_cation\_001} & 9 & + & 2$+$2$+$5 & DFT & non (DFT seul) & our work \\
+\texttt{N10\_neutral\_neutral\_009} & 10 & 0 & 3$+$7 & xtb & \checkmark~(3$+$7) & our work \\
+\texttt{N10\_neutral\_neutral\_008} & 10 & 0 & 5$+$5 & xtb & \checkmark~(5$+$5) & our work \\
+\texttt{N11\_anion\_anion\_018} & 11 & - & 3$+$8 & DFT & non (DFT seul) & our work \\
+\texttt{N11\_anion\_anion\_011} & 11 & - & 3$+$3$+$5 & DFT & \checkmark~(3$+$3$+$5) & our work \\
+\texttt{N14\_neutral\_neutral\_004} & 14 & 0 & 2$+$2$+$2$+$3$+$5 & DFT & non (DFT seul) & our work \\
 \end{longtable}
+}

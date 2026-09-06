@@ -1,0 +1,226 @@
+{
+ "https://openalex.org/W1965007433": {
+  "id": "https://openalex.org/W1965007433",
+  "title": "ChemInform Abstract: On the Bonding Nature of the N5+ (=N(N2)2+) Cation and Related Species N(CO)x+, N(NH3)x+, and NRx+, x = 1, 2 and R: He, Ne, Ar, Kr. Do We Really Need the Resonance Concept?",
+  "year": 2002,
+  "doi": "https://doi.org/10.1002/chin.200228002",
+  "abstract": "Abstract ChemInform is a weekly Abstracting Service, delivering concise information at a glance that was extracted from about 100 leading journals. To access a ChemInform Abstract of an article which was published elsewhere, please select a \u201cFull Text\u201d option. The original article is trackable via the \u201cReferences\u201d option.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2951459289"
+  ]
+ },
+ "https://openalex.org/W2581953223": {
+  "id": "https://openalex.org/W2581953223",
+  "title": "Polynitrogen chemistry enters the ring",
+  "year": 2017,
+  "doi": "https://doi.org/10.1126/science.aal5057",
+  "abstract": "A cyclo -N 5 \u2212 anion has been synthesized as a stable salt and characterized",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2184578977"
+  ]
+ },
+ "https://openalex.org/W2049776374": {
+  "id": "https://openalex.org/W2049776374",
+  "title": "The race for the first generation of the pentazolate anion in solution is far from over",
+  "year": 2005,
+  "doi": "https://doi.org/10.1039/b417010e",
+  "abstract": "The previous claim for the first generation of the pentazolate anion in solution was carefully reexamined; no evidence for the formation of cyclo-(N5-) was found under the reported conditions.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2184578977"
+  ]
+ },
+ "https://openalex.org/W2944799972": {
+  "id": "https://openalex.org/W2944799972",
+  "title": "Cycloaddition of molecular dinitrogens: formation of tetrazete anion (N4-; D2h) through associative electron attachment",
+  "year": 2019,
+  "doi": "https://doi.org/10.1080/00268976.2019.1607599",
+  "abstract": "State-specific reaction dynamics induced through the resonant attachment of a low energy electron (LEE) offers hitherto unavailable opportunities for the chemical synthesis of theoretically possible chemical structures. Using ab initio quantum chemical methods, this possibility is illustrated for the cycloaddition reaction of dinitrogen molecules to produce the anion of tetrazete N4\u2212, which is an all-nitrogen cyclic molecule. This LEE induced cycloaddition reaction, which is an associative electron attachment reaction, is initiated by the resonant attachment of a near 12 eV LEE to the dimer of non-interacting molecular dinitrogens, (N2)2. The resulting 2p1h state of the (N2)2 undergoes a barrierless cycloaddition reaction and produce N4\u2212. In this reaction, the kinetic energy of the LEE is stored in the geometrical metastable structure of N4\u2212 and make this process a potential method for storing energy.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2184578977",
+   "https://openalex.org/W2019240116",
+   "https://openalex.org/W1967896823"
+  ]
+ },
+ "https://openalex.org/W7162553769": {
+  "id": "https://openalex.org/W7162553769",
+  "title": "Energetic Processing of Solid Nitrogen: Infrared Identification of N 4 + and Correlated \u03b3-Line Emission under Electron Impact and Extreme-UV Irradiation",
+  "year": 2026,
+  "doi": "https://doi.org/10.1021/acs.jpca.6c02129",
+  "abstract": "We investigate the energetic processing of solid N 2 at 3 K under 300 eV electron impact and extreme-UV irradiation at 58.4 and 68.8 nm by combining in situ IR absorption spectroscopy with simultaneous UV\u2013visible\u2013near-IR luminescence measurements. Electron bombardment produces clear infrared signatures of N 3, N 3 \u2013, and N 4 +, whereas extreme-UV irradiation predominantly yields neutral products, with N 3 as the major nitrogen-bearing species and only weak N 4 + absorption. The accompanying emission spectra reveal the formation of excited N 2 and N atoms under both excitation modes, together with a weak near-IR \u03b3-line. Controlled warm-up of the electron-irradiated samples shows that the \u03b3-line intensity increases sharply between 13 and 18 K, coincident with the most rapid decrease of the N 4 + infrared band, while the N 3 absorption remains nearly unchanged. This correlated behavior is consistent with the \u03b3-line emission being associated with a neutralization-driven relaxation pathway involving an N 4 + -related precursor, although the microscopic emitting state remains to be identified. Preliminary vacuum-ultraviolet photoionization mass spectrometry performed during desorption at 25 K further suggests that irradiated solid N 2 contains metastable higher-order nitrogen reservoirs beyond simple N 2 molecules. These results provide direct spectroscopic constraints on the formation, stabilization, and relaxation of metastable polynitrogen species in condensed nitrogen and show how irradiated solid N 2 can transiently store and redistribute electronic energy through coupled radiative and nonradiative channels.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2184578977"
+  ]
+ },
+ "https://openalex.org/W4390886881": {
+  "id": "https://openalex.org/W4390886881",
+  "title": "Quantum tunneling instability of the mythical hexazine and pentazine",
+  "year": 2024,
+  "doi": "https://doi.org/10.1039/d3cc05840a",
+  "abstract": "Through computational analysis we found that pentazine and hexazine, two hypothetical high-energy density materials, exhibit inherent instability due to quantum tunneling effects. This instability remains even near the absolute zero, and therefore they can be deemed as unsynthesizable. We propose substituents that could potentially stabilize pentazine, especially dimethylamine.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2073149497",
+   "https://openalex.org/W2005668287",
+   "https://openalex.org/W4285244136"
+  ]
+ },
+ "https://openalex.org/W4390102327": {
+  "id": "https://openalex.org/W4390102327",
+  "title": "Bond-alternated and bond-equalized hexazine derivatives",
+  "year": 2023,
+  "doi": "https://doi.org/10.1039/d3cp05546a",
+  "abstract": "Planar hexazines are stabilized by coordinating Lewis acids at alternate positions. Stronger Lewis acids induce bond-equalization, whereas the weaker ones result in bond-alternation.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2073149497"
+  ]
+ },
+ "https://openalex.org/W1979017293": {
+  "id": "https://openalex.org/W1979017293",
+  "title": "The simplest all-nitrogen ring: Photolytically filling the cyclic-N3 well",
+  "year": 2007,
+  "doi": "https://doi.org/10.1063/1.2433723",
+  "abstract": "We report evidence that cyclic-N(3) is exclusively produced in the 157-nm photolysis of ClN(3). Photoproduct translational energy measurements reveal a single-peaked distribution for an N(3)-formation channel with maximum and minimum translational energies matching the theoretically predicted minimum and maximum binding energies of cyclic-N(3), respectively. The absence of linear-N(3) greatly simplifies the data analysis. The zero-Kelvin heat of formation of cyclic-N(3) is derived experimentally (142+/-3.5 kcal/mol) and is in excellent agreement with the best existing determinations from other studies.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2019240116",
+   "https://openalex.org/W1630101489"
+  ]
+ },
+ "https://openalex.org/W4410854388": {
+  "id": "https://openalex.org/W4410854388",
+  "title": "Computational Prediction of a Stable All-Nitrogen Molecular Crystal N 10",
+  "year": 2025,
+  "doi": "https://doi.org/10.2139/ssrn.5274458",
+  "abstract": "",
+  "cites_gen1_ids": [
+   "https://openalex.org/W4282915833",
+   "https://openalex.org/W4389886194"
+  ]
+ },
+ "https://openalex.org/W4413608246": {
+  "id": "https://openalex.org/W4413608246",
+  "title": "Computational prediction of a stable all-nitrogen molecular crystal N10",
+  "year": 2025,
+  "doi": "https://doi.org/10.1063/5.0286764",
+  "abstract": "Polymeric nitrogen is a leading candidate for next-generation high-energy-density materials, with molecular polymeric nitrogen systems often demonstrating superior stability. In this study, we theoretically predicted an all-nitrogen molecular crystal composed of N10 molecules, which was conceptualized as a covalent linkage between a cyclic N5 unit and a chain-like N5 unit, forming a distinctive meteor-hammer-shaped conformation. The molecular crystal exhibited kinetic stability and metastable characteristics under ambient pressure, coupled with exceptional thermal stability. Notably, the structure achieved an energy density of 5.98 kJ/g, surpassing conventional explosives such as TNT and HMX. Its detonation pressure reached 76.70 GPa, while its detonation velocity attained 13.07 km/s. These remarkable properties position the N10 molecular crystal as an ideal high-energy-density material with promising applications in demolition, aerospace, and related fields.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W4282915833",
+   "https://openalex.org/W4389886194",
+   "https://openalex.org/W4410757489",
+   "https://openalex.org/W3037212293"
+  ]
+ },
+ "https://openalex.org/W2002940570": {
+  "id": "https://openalex.org/W2002940570",
+  "title": "Cyclic-N3. II. Significant geometric phase effects in the vibrational spectra",
+  "year": 2005,
+  "doi": "https://doi.org/10.1063/1.1824905",
+  "abstract": "An accurate theoretical prediction of the vibrational spectra for a pure nitrogen ring (cyclic-N(3)) molecule is obtained up to the energy of the (2)A(2)/(2)B(1) conical intersection. A coupled-channel approach using the hyperspherical coordinates and the recently published ab initio potential energy surface [D. Babikov, P. Zhang, and K. Morokuma, J. Chem. Phys. 121, 6743 (2004)] is employed. Two independent sets of calculations are reported: In the first set, the standard Born-Oppenheimer approximation is used and the geometric phase effects are totally neglected. In the second set, the generalized Born-Oppenhimer approximation is used and the geometric phase effects due to the D(3h) conical intersection are accurately treated. All vibrational states are analyzed and assigned in terms of the normal vibration mode quantum numbers. The magnitude of the geometric phase effect is determined for each state. One important finding is an unusually large magnitude of the geometric phase effects in the cyclic-N(3): it is approximately 100 cm(-1) for the low-lying vibrational states and exceeds 600 cm(-1) for several upper states. On average, this is almost two orders of magnitude larger than in the previously reported studies. This unique example suggests a favorable path to experimental validation.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W1630101489"
+  ]
+ },
+ "https://openalex.org/W2330707073": {
+  "id": "https://openalex.org/W2330707073",
+  "title": "Ab Initio Based Double-Sheeted DMBE Potential Energy Surface for N3(2A\u2033) and Exploratory Dynamics Calculations",
+  "year": 2011,
+  "doi": "https://doi.org/10.1021/jp2073396",
+  "abstract": "We report a global accurate double-sheeted potential energy surface for the lowest doublet states with (2)A\u2033 symmetry of the N(3) radical using the double many-body expansion method. The functional form ensures by construction the degeneracy of the two adiabatic sheets along the D(3h) line and the corresponding cusp behavior. Calibrated from multireference configuration interaction energies, it reproduces all the predicted stationary structures on both sheets and ensures a correct description of the dissociation limits. A test quasiclassical trajectory study of N((2)D) + N(2) collisions is also reported in the lowest adiabatic sheet of the potential energy surface. The results commend it for both classical and quantum dynamics studies, while serving as a building block for the potential energy surfaces of larger nitrogen allotropes and azides.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W1630101489",
+   "https://openalex.org/W2005668287",
+   "https://openalex.org/W2054099409"
+  ]
+ },
+ "https://openalex.org/W1671980165": {
+  "id": "https://openalex.org/W1671980165",
+  "title": "Cyclic-N3. I. An accurate potential energy surface for the ground doublet electronic state up to the energy of the A22/2B1 conical intersection",
+  "year": 2004,
+  "doi": "https://doi.org/10.1063/1.1780158",
+  "abstract": "A sophisticated adiabatic ground electronic state potential energy surface for a pure nitrogen ring (cyclic-N3) molecule is constructed based on extensive high-level ab initio calculations and accurate three-dimensional spline representation. Most of the important features of the potential energy surface are presented using various reduced dimensionality slices in internal hyperspherical coordinates as well as full dimensional isoenergy surfaces. Very significant geometric phase effects are predicted in the spectra of rotational-vibrational states of cyclic-N3.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W1630101489"
+  ]
+ },
+ "https://openalex.org/W3040113901": {
+  "id": "https://openalex.org/W3040113901",
+  "title": "Many-Body Permutationally Invariant Polynomial Neural Network Potential Energy Surface for N4",
+  "year": 2020,
+  "doi": "https://doi.org/10.1021/acs.jctc.0c00430",
+  "abstract": "A potential energy surface (PES) for high-energy collisions between nitrogen molecules is useful for modeling chemical dynamics in shock waves and plasmas. In the present work, we fit the many-body (MB) component of the ground-state PES of N 4 to an analytic function using neural networks (NNs) with permutationally invariant polynomials (PIPs). The fitting dataset of the N 4 system is an extension of one used previously, extended with 4859 new CASPT2 points and 13 new CCSD(T) points to reach a total of 21 406 points. The MB-PIP-NN fit required a very complete coverage of the geometry domain in order to get a physical fit, and we devised several tactical steps to achieve this, including trajectory calculations, the comparison of the NN fit with PIP fits with mixed-exponential Gaussian bond order variables, and searching geometry regions with sparse data coverage. With these efforts, the final dataset is more suitable for a NN fit. The energy range of the dataset is much wider than those used in other systems previously fitted by NNs, and there are more rugged surface regions than usual due to locally avoided crossings. The performance of the new MB-PIP-NN fit is compared to that of another new fit to the same data by least-squares methods not employing NNs, and the mean unsigned deviation from the electronic structure calculations is reduced by a factor of 3, although the computing time to calculate a force for a trajectory calculation is larger by an order of magnitude. The accuracy achievable with the NN fit for this difficult system is very impressive, and we anticipate that the NN method can give useful fits to difficult cases that cannot be achieved by more conventional methods.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2044767278"
+  ]
+ },
+ "https://openalex.org/W2982162017": {
+  "id": "https://openalex.org/W2982162017",
+  "title": "A New Genetic Algorithm Approach Applied to Atomic and Molecular Cluster Studies",
+  "year": 2019,
+  "doi": "https://doi.org/10.3389/fchem.2019.00707",
+  "abstract": ") in generating well-adapted offspring. This is done by increasing the creation rate of operators with better performance and decreasing that rate for the ones which poorly fulfill the task of creating favorable new generation. Additionally, several strategies (thirteen at this level of approach) from different optimization techniques were implemented on the actual genetic algorithm. Trials were performed on the general case studies of 26 and 55-atom clusters with binding energy governed by a Lennard-Jones empirical potential with all individuals being created by each of the particular thirteen operators tested. A 18-atom carbon cluster and some polynitrogen systems were also studied within REBO potential and quantum approaches, respectively. Results show that our management strategy could avoid bad operators, keeping the overall method performance with great confidence. Moreover, amongst the operators taken from the literature and tested herein, the genetic algorithm was faster when the generation of new individuals was carried out by the twist operator, even when compared to commonly used operators such as Deaven and Ho cut-and-splice crossover. Operators typically designed for basin-hopping methodology also performed well on the proposed genetic algorithm scheme.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2832353851"
+  ]
+ },
+ "https://openalex.org/W4414020234": {
+  "id": "https://openalex.org/W4414020234",
+  "title": "Theoretical Evaluation of the Energetic Properties of Chain\u2010Like Hexanitrogen*",
+  "year": 2025,
+  "doi": "https://doi.org/10.1002/prep.70045",
+  "abstract": "ABSTRACT The synthesis and characterization of hexanitrogen N 6 have been recently reported in the literature, marking a new milestone in the field of polynitrogen chemistry. The detonation and propulsive properties of N 6 have been thoroughly studied using thermochemical codes. The results show that while N 6 can be classified as a powerful explosive, its performance in terms of detonation velocity and pressure remains lower than that of state\u2010of\u2010the\u2010art explosives such as CL\u201020 and TKX\u201050, primarily due to its moderate density of 1.51 g/cm 3 . However, N 6 displays impressive and unmatched levels of specific impulse and impetus, reaching values higher than 3450 Ns/kg and 2500 J/g, respectively, when compared to CHNO\u2010based energetic materials. Gun propellant compositions incorporating N 6 have also been studied, and their energetic properties discussed, revealing that future stable polynitrogen species could serve as potential energetic additives in gun propellants, resulting in gun propellant formulations that exhibit high energy levels with acceptable combustion temperature values, making them valuable assets in ammunition intended for applications where erosion plays an important role in reducing a weapon's accuracy, range, and lifespan, such as a main battle tank's high muzzle velocity gun.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2005668287",
+   "https://openalex.org/W4411201953"
+  ]
+ },
+ "https://openalex.org/W3134376491": {
+  "id": "https://openalex.org/W3134376491",
+  "title": "From mono-rings to bridged bi-rings to caged bi-rings: a promising design strategy for all-nitrogen high-energy-density materials N10 and N12",
+  "year": 2021,
+  "doi": "https://doi.org/10.1039/d1nj00522g",
+  "abstract": "Four designed bicyclic all-nitrogen compounds with excellent energetic performance ( D : 9878\u201312 293 m s \u22121 ; I sp : 325\u2013434.60 s) were fully studied.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W3037212293",
+   "https://openalex.org/W2049503597"
+  ]
+ },
+ "https://openalex.org/W4416605528": {
+  "id": "https://openalex.org/W4416605528",
+  "title": "Breakthrough in Polynitrogen Chemistry*",
+  "year": 2025,
+  "doi": "https://doi.org/10.1002/prep.70084",
+  "abstract": "In a recent publication, Qian et al. [1] report the synthesis and characterization of the first molecular neutral nitrogen allotrope, C2h\u2212N6. What is the significance of this discovery? Although the existence of the polynitrogen anions, N3\u2212 [2], cyclo\u2212N5\u2212 [3], and of the polynitrogen cation, N5+ [4], had been established, the preparation of a neutral molecular nitrogen allotrope had not been achieved [5]. The synthesis of allotropes of most elements of the periodic table presents few synthetic challenges because the energy differences between the allotropes are very small, and the activation energy barriers toward their interconversion are very large. Typical examples are the carbon allotropes, i.e, diamond, buckyballs, and carbyne. The only exceptions to this general rule are nitrogen and oxygen, where the energy gap between the allotropes is large and the activation barriers toward decomposition are relatively small. Depending on the size of the energy gaps, these allotropes have great potential for energetic materials. For ozone, the energy gap between O3 and O2 is 142 kJ mol\u22121. Although solutions of ozone in liquid oxygen are stable up to about 30 mol\u2212% O3 and have been test fired in the fifties in rocket motors, their use as a rocket propellant was abandoned due to the large difference in the boiling points of O2 (\u2212183\u00b0C) and O3 (\u2212112\u00b0C), resulting in phase separations and the formation of highly explosive, ozone-rich compositions [6]. Based on the predicted enthalpy of formation of free gaseous C2h\u2212N6 of 774.9 kJ mol\u22121 [1], the energy gap between C2h\u2212N6 and N2 (774 kJ mol\u22121) would be very large, and the predicted barriers toward decomposition to N3 and N2 would be only 121 and 67 kJ mol\u22121, respectively, indicating its potential for use as an energetic material. However, after making the required corrections for the calculated enthalpies of sublimation, 102.3 kJ mol\u22121, and vaporization, 50.4 kJ mol\u22121, the predicted energy gap would be reduced to 623 kJ mol\u22121 or 659.4 kJ mol\u22121 at the CBSQB3-level [11]. Since N5+ and N3\u2212 are stable ions, the syntheses of the ionic allotropes [N5]+[N3]\u2212 and [N5]+[cyclo-N5]\u2212 were obvious approaches. However, Born-Haber cycle calculations showed that their lattice energies were insufficient to stabilize the compounds. Experimental proof for this prediction was obtained by combining [N5]+[SbF6]\u2212 with [Cs]+[N3]\u2212 in SO2 at \u2212196\u00b0C. Upon melting of the SO2 at \u221264\u00b0C, the mixture exploded. These results show that ionic nitrogen allotropes are not feasible, and that the synthesis of nitrogen allotropes must be focused on neutral molecular polynitrogens [7]. The closest approximation to an ionic polynitrogen compound was the synthesis and characterization of extremely sensitive [N5]+[B(N3)4]\u2212 [8]. C2h-N6 is the first known neutral molecular allotrope of nitrogen. The energy content of polynitrogens containing positively charged nitrogen have the potential of exceeding those of any previously known non-nuclear energetic material. The difficulty of its synthesis is orders of magnitude more difficult than that of carbon allotropes, which were awarded two Nobel Prizes. The work on C2h-N6 is a breakthrough and, in my opinion, is worthy of a Nobel Prize. This discovery might stimulate further work in molecular neutral polynitrogen chemistry. Data sharing not applicable to this article as no datasets were generated or analysed during the current study.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W4411201953",
+   "https://openalex.org/W2116007136"
+  ]
+ },
+ "https://openalex.org/W4242849286": {
+  "id": "https://openalex.org/W4242849286",
+  "title": "Nucleophiler Angriff von Azid auf elektrophile Azide: Bildung von N6\u2010Einheiten in Hexazen\u2010 und Aminopentazolderivaten",
+  "year": 2020,
+  "doi": "https://doi.org/10.1002/ange.202003010",
+  "abstract": "Abstract Experimente mit selektiver 15N\u2010Markierung best\u00e4tigen den nucleophilen Angriff von Azid auf Iminium\u2010aktivierte, organische Azide, der zu kurzlebigen Hexazenintermediaten f\u00fchrt. Solche Spezies neigen nicht nur zu einer Spaltungsreaktion unter Erzeugung von N\u2010Azidoverbindungen, sondern gehen auch einen Ringschluss unter Bildung beispielloser Amidino\u2010funktionalisierter Pentazole ein. Daher liefert die Einwirkung von zwei \u00c4quivalenten an Natriumazid auf die Stammverbindung der Vilsmeier\u2010Reagenzien ein Aminopentazolderivat als Hauptprodukt, das leicht mithilfe der NMR\u2010Spektroskopie zu charakterisieren ist.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2903907909"
+  ]
+ },
+ "https://openalex.org/W3021153517": {
+  "id": "https://openalex.org/W3021153517",
+  "title": "Frontispiz: Nucleophiler Angriff von Azid auf elektrophile Azide: Bildung von N6\u2010Einheiten in Hexazen\u2010 und Aminopentazolderivaten",
+  "year": 2020,
+  "doi": "https://doi.org/10.1002/ange.202083062",
+  "abstract": "Einfache Substrate, alle kommerziell erh\u00e4ltlich, f\u00fchren zu bisher unbekannten Aminopentazolderivaten. Durch den Einsatz von Na15N3 wird das heterocyclische Produkt mit sechsfacher 15N-Markierung einfach zug\u00e4nglich. Dies erm\u00f6glicht die Strukturaufkl\u00e4rung mithilfe der 15N-NMR-Spektroskopie ohne einen Vergleich mit bekannten Daten.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2903907909"
+  ]
+ },
+ "https://openalex.org/W2899899759": {
+  "id": "https://openalex.org/W2899899759",
+  "title": "To Be or Not To Be Protonated: cyclo-N5\u2013 in Crystal and Solvent",
+  "year": 2018,
+  "doi": "https://doi.org/10.1021/acs.jpclett.8b02841",
+  "abstract": "Pentazole (HN 5 ) and its anion ( cyclo -N 5 \u2013 ) have been elusive for nearly a century because of the unstable N 5 ring. Recently, Zhang et al. reported the first synthesis and characterization of the pentazolate anion cyclo -N 5 \u2013 in (N 5 ) 6 (H 3 O) 3 (NH 4 ) 4 Cl salt at ambient conditions ( Science 2017, 355, 374). However, whether the cyclo -N 5 \u2013 in (N 5 ) 6 (H 3 O) 3 (NH 4 ) 4 Cl salt is protonated or not has been debated (Huang and Xu, Science, 2018, 359, eaao3672; Jiang et al. Science, 2018, 359, aas8953). Herein, we employed ab initio molecular dynamics (AIMD) simulations, which can well present the dynamic behavior at realistic experimental conditions, to examine the potential protonated state of cyclo -N 5 \u2013 in both crystal and dimethyl sulfoxide (DMSO) solvent. Our simulations revealed that the protonation reaction of (N 5 ) 6 (H 3 O) 3 (NH 4 ) 4 Cl \u2192 (N 5 ) 5 (N 5 H)(H 2 O)(H 3 O) 2 (NH 4 ) 4 Cl is thermodynamically spontaneous according to \u0394 G < 0, and the small energy barrier of 12.6 kJ/mol is not enough to prevent the partial protonation of cyclo -N 5 \u2013 due to the temperature effect; consequently, both deprotonated and protonated cyclo -N 5 \u2013 exist in the crystal. In comparison, the DMSO solvent effect can remarkably reduce the difference of proton affinities among cyclo -N 5 \u2013, H 2 O, and NH 3, and the temperature effect can finally break these hydrogen bonds and lead to the deprotonated cyclo -N 5 \u2013 in DMSO solvent. Our AIMD simulations reconcile the recent controversy.",
+  "cites_gen1_ids": [
+   "https://openalex.org/W2768373768"
+  ]
+ }
+}

@@ -10,6 +10,10 @@ frag_rows_all = {r["name"]: r for r in csv.DictReader(
     open("/home/gilles/polyN/orca_jobs/results_fragmentation.csv"))}
 FRAGMENTED = {n for n, r in frag_rows_all.items() if int(r["n_fragments"]) > 1}
 
+import pickle
+prov_state = pickle.load(open("/tmp/provenance_state.pkl", "rb"))
+rel_dH_all, dft_based_all = prov_state["rel_dH"], prov_state["dft_based"]
+
 # ---------------------------------------------------------------------------
 # 2) Tableaux de classement DFT vs xTB, un par famille de charge
 # ---------------------------------------------------------------------------
@@ -44,6 +48,29 @@ for fam, label in [("neutral","neutres"), ("cation","cationiques"), ("anion","an
         fh.write("\n".join(lines))
     print(f"table_ranking_{fam}.tex: {len(rows)} lignes")
 
+    # accord de rang xTB/DFT par groupe (N, famille) : structures dont le
+    # rang xTB de g\'en\'eration == rang DFT final, sur l'effectif total du
+    # groupe -- quantifie l'accord au-del\`a du seul ground state.
+    grp = defaultdict(list)
+    for r in rows:
+        grp[int(r["n_count"])].append(r)
+    parts = []
+    n_match_tot, n_tot = 0, 0
+    for n in sorted(grp):
+        g = grp[n]
+        match = sum(1 for r in g if r["xtb_rank_as_generated"] == r["dft_rank"])
+        n_match_tot += match; n_tot += len(g)
+        parts.append(f"N{n}: {match}/{len(g)}")
+    agree_lines = [
+        r"\noindent\textit{Accord de rang xTB/DFT par groupe} (structure "
+        r"class\'ee au m\^eme rang par les deux m\'ethodes, sur l'effectif "
+        r"total du groupe) : " + ", ".join(parts) +
+        f" -- soit {n_match_tot}/{n_tot} structures au total pour les "
+        + label + ".",
+    ]
+    with open(os.path.join(REPORT_DIR, f"table_ranking_{fam}_agreement.tex"), "w") as fh:
+        fh.write("\n".join(agree_lines))
+
 # ---------------------------------------------------------------------------
 # 3) HOMO/LUMO
 # ---------------------------------------------------------------------------
@@ -57,10 +84,11 @@ lines = [r"{\scriptsize", r"\begin{longtable}{@{}p{4.6cm}p{1.6cm}rrr@{}}",
          r"\multicolumn{5}{c}{\small (suite)}\\ \toprule",
          r"\textbf{Nom} & \textbf{PG} & \textbf{HOMO (eV)} & \textbf{LUMO (eV)} & \textbf{Gap (eV)} \\",
          r"\midrule\endhead", r"\bottomrule\endfoot", r"\bottomrule\endlastfoot"]
+homolumo_rows = [r for r in summ if r.get("homo_eV") and r["name"] not in FRAGMENTED]
+homolumo_rows.sort(key=lambda r: (int(r["n_count"]), r["family"],
+                                   rel_dH_all.get(r["name"], 0.0)))
 seen_n = None
-for r in summ:
-    if not r.get("homo_eV") or r["name"] in FRAGMENTED:
-        continue
+for r in homolumo_rows:
     if r["n_count"] != seen_n:
         lines.append(r"\addlinespace"); seen_n = r["n_count"]
     homo, lumo = float(r["homo_eV"]), float(r["lumo_eV"])
@@ -102,6 +130,19 @@ for name in neutral_names:
     lines.append(f"\\texttt{{{esc(name)}}} & {len(bl)} & {sum(bos)/len(bos):.3f} & {100*short/len(bl):.0f}\\% & {', '.join(c.replace('_',' ') for c in classes)} & {dhf[name]['dHf_kcalmol_xtb']} \\\\")
 lines.append(r"\end{longtable}")
 lines.append(r"\footnotetext[1]{Triple, double ou d\'elocalis\'ee (ordre ${\sim}1{,}5$), \`a l'exclusion des liaisons simples et des contacts non-liants.}")
+lines.append(r"\noindent{\footnotesize\textit{Note~:} $\Delta H_f^{xtb}$ (compos\'es "
+             r"\textbf{neutres} uniquement, cette table) est calcul\'e pour la r\'eaction "
+             r"$(n/2)\,\mathrm{N}_2 \rightarrow \mathrm{N}_n$, soit "
+             r"$\Delta H_f = E(\mathrm{N}_n) - (n/2)\,E(\mathrm{N}_2)$, r\'ef\'erence "
+             r"$\Delta H_f(\mathrm{N}_2)=0$. C'est une d\'efinition \textbf{diff\'erente} "
+             r"de celle utilis\'ee pour les cations/anions (Tableaux~3--4, "
+             r"\S\ref{sec:provenance})~: $\mathrm{N}_5^{-}$(D$_{5h}$)$~+~((n-5)/2)\,"
+             r"\mathrm{N}_2 \rightarrow \mathrm{N}_n^{-}$ et "
+             r"$\mathrm{N}_5^{+}$(C$_{2v}$)$~+~((n-5)/2)\,\mathrm{N}_2 \rightarrow "
+             r"\mathrm{N}_n^{+}$, ancr\'ees sur les $\Delta H_f$ litt\'erature de "
+             r"$\mathrm{N}_5^{-}$/$\mathrm{N}_5^{+}$ (valeurs \S\ref{sec:provenance}) "
+             r"plut\^ot que sur N$_2$ seul -- les deux d\'efinitions ne sont pas "
+             r"directement comparables entre elles.}")
 lines.append(r"}")
 with open(os.path.join(REPORT_DIR, "table_bonds_dhf.tex"), "w") as fh:
     fh.write("\n".join(lines))
@@ -110,17 +151,13 @@ print("table_bonds_dhf.tex:", len(neutral_names), "structures neutres")
 # ---------------------------------------------------------------------------
 # 5) Table S2 (Annexe) : structures avec au moins une frequence imaginaire
 # ---------------------------------------------------------------------------
-import pickle
-prov_state = pickle.load(open("/tmp/provenance_state.pkl", "rb"))
-rel_dH_all, dft_based_all = prov_state["rel_dH"], prov_state["dft_based"]
-
 imag_rows = list(csv.DictReader(open("/home/gilles/polyN/orca_jobs/results_imaginary_modes.csv")))
 by_imag = defaultdict(list)
 for r in imag_rows:
     by_imag[r["name"]].append(r)
 
 summ_by_name = {r["name"]: r for r in summ}
-lines = [r"\noindent\textbf{Table S2.} Structures avec au moins une fr\'equence imaginaire (pas encore de vrai minimum), toutes issues d'un calcul DFT WB97X-D4 termin\'e. "
+lines = [r"\noindent\textbf{Tableau S2.} Structures avec au moins une fr\'equence imaginaire (pas encore de vrai minimum), toutes issues d'un calcul DFT WB97X-D4 termin\'e. "
          r"``Max.\ imaginaire''~: la fr\'equence de plus grande amplitude parmi les modes imaginaires "
          r"(mode dominant de la coordonn\'ee de r\'eaction vers le vrai minimum). $\Delta H$~: \'energie "
          r"relative au ground-state DFT confirm\'e (vrai minimum, non fragment\'e) de la m\^eme "

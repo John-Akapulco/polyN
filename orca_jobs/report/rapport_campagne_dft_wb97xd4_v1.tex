@@ -15,6 +15,9 @@
 \usepackage{parskip}
 \usepackage{helvet}
 \usepackage{amssymb}
+\usepackage{caption}
+\captionsetup{font=small,justification=raggedright,singlelinecheck=false}
+\renewcommand{\tablename}{Tableau}
 \renewcommand{\familydefault}{\sfdefault}
 \sloppy
 \tolerance=9999
@@ -73,6 +76,7 @@ d\'esormais de calculer un $\Delta H_f$ absolu (niveau GFN2-xTB) pour les
 \section{M\'ethode}
 
 \subsection{Origine des candidats}
+\label{sec:origine}
 
 Les 193 structures de d\'epart proviennent du criblage GFN2-xTB de
 \texttt{polyN-pipeline} (g\'en\'eration RDKit ETKDGv3 + \'enum\'eration de
@@ -85,6 +89,76 @@ jeu -- voir \S\ref{sec:provenance}, \`a confirmer.
 Les formules \`a N impair (N$_5$, N$_7$, N$_9$, N$_{11}$, N$_{13}$,
 N$_{15}$) ne sont repr\'esent\'ees qu'en cation/anion (contrainte de
 parit\'e \'electronique), les formules paires principalement en neutre.
+
+\subsection{M\'ethodologies de g\'en\'eration des candidats (pools 1/2/3)}
+\label{sec:pools}
+
+Trois pipelines distincts alimentent, ou peuvent alimenter, l'ensemble des
+candidats N$_x^{q}$ consid\'er\'es dans ce projet. Seul le \textbf{pool~1}
+est \`a l'origine des 193 candidats de cette campagne DFT
+(\S\ref{sec:origine}) ; les pools~2 et~3 sont d\'ecrits ici pour
+compl\'etude m\'ethodologique et parce qu'ils interviennent ailleurs dans
+ce rapport (comparaison de stabilit\'e/topologie, \S\ref{sec:litterature}).
+
+\begin{description}[leftmargin=1.2em,style=nextline]
+\item[Pool~1 -- criblage combinatoire (\texttt{polyN-pipeline}), source de ce rapport]
+G\'en\'eration de topologies candidates par trois voies combin\'ees selon
+la formule~: (i)~\'enum\'eration exhaustive de graphes par
+\texttt{geng}/nauty (degr\'e born\'e), (ii)~substitution isolobale
+C$\to$N appliqu\'ee \`a des squelettes d'hydrocarbures C$_x$H$_y$
+r\'ecup\'er\'es sur PubChem (\texttt{harvest\_hydrocarbons.py} $\to$
+\texttt{cxhx\_to\_nx.py}), (iii)~\'echantillonnage stochastique
+(\texttt{random\_structure\_generator.py}) pour les formules trop
+nombreuses pour l'\'enum\'eration exhaustive. Chaque topologie est
+plong\'ee en 3D (RDKit ETKDGv3), puis optimis\'ee en deux temps au niveau
+GFN2-xTB, filtr\'ee par v\'erification de fr\'equences (rejet des
+points-selles), et s\'electionn\'ee par crit\`ere \'energ\'etique
+(fen\^etre au-dessus du meilleur isom\`ere connu de la formule). Aucune
+contribution du pool~2 n'a \'et\'e identifi\'ee dans les 193 candidats de
+cette campagne (\`a confirmer, \S\ref{sec:provenance}).
+
+\item[Pool~2 -- surrogate adaptatif (\texttt{polyN\_adapt}), non utilis\'e ici]
+Approche g\'en\'eration-par-g\'en\'eration~: une population de graphes
+candidats (\texttt{geng} tant que l'\'enum\'eration exhaustive reste
+praticable, puis mutation locale de l'archive accumul\'ee --
+ajout/retrait d'ar\^ete, permutation double d'ar\^etes, \`a $n$ constant
+-- au-del\`a) est filtr\'ee par un \emph{surrogate} \`a deux volets~: un
+r\'egresseur \`a gradient boost\'e et une r\`egle interpr\'etable, tous
+deux r\'eentra\^\i n\'es \`a chaque g\'en\'eration sur l'archive
+accumul\'ee. Seuls les candidats retenus par le surrogate sont
+r\'eellement relax\'es (GFN2-xTB via \texttt{tblite}, calculateur ASE
+in-process), avec calcul de fr\'equences pour confirmer un vrai minimum.
+Un apprentissage actif priorise l'\'evaluation r\'eelle sur les
+candidats les plus incertains ou les plus proches de la fronti\`ere de la
+fen\^etre d'\'energie (0,2~eV/atome par d\'efaut, recalcul\'ee
+dynamiquement par rapport au meilleur minimum connu) plut\^ot que sur
+tous les candidats accept\'es indistinctement -- objectif~: minimiser le
+nombre de relaxations xTB r\'eellement n\'ecessaires face \`a un espace
+combinatoire trop vaste pour l'\'enum\'eration exhaustive seule. Un
+raffinement post-xTB (Gaussian ou ORCA, chaine d'\'etapes configurable
+YAML, module \texttt{refinement/}) est pr\'evu pour les quelques
+isom\`eres bas en \'energie qui survivent \`a la fen\^etre. \emph{Aucune
+biblioth\`eque de potentiel appris (type MACE) n'intervient comme
+surrogate dans le code actuel} de \texttt{polyN\_adapt} -- v\'erifi\'e
+directement dans \texttt{surrogate/adaptive.py} ; seule une note de
+compatibilit\'e OpenMP (\texttt{README.md}) mentionne \texttt{mace} comme
+biblioth\`eque tierce potentiellement import\'ee par un script externe,
+sans lien avec le m\'ecanisme de filtrage lui-m\^eme.
+
+\item[Pool~3 -- structures issues de la litt\'erature (\texttt{biblio\_polyN})]
+Structures extraites d'articles publi\'es (actuellement 2 sources
+compl\`etement d\'epouill\'ees, r\'ef\'erences~[1]~et~[2] \`a
+l'Annexe~A -- \S\ref{sec:si-references}) et de deux bases externes,
+\texttt{N\_csp} et \texttt{polyN\_study} -- toutes relax\'ees
+localement au m\^eme niveau GFN2-xTB pour permettre une comparaison
+directe. C'est ce pool (337 structures cat\'egoris\'ees par formule et
+charge) qui sert de r\'ef\'erentiel de comparaison en
+\S\ref{sec:litterature}, ind\'ependamment des candidats DFT de ce
+rapport. Une recherche de citations plus large (OpenAlex, 178 articles
+recens\'es dont 156 pas encore r\'eduits en structures nomm\'ees) alimente
+ce m\^eme pool \`a terme -- travail d'extraction restant list\'e \`a
+l'Annexe~A (\S\ref{sec:si-references}).
+\end{description}
 
 \subsection{Niveau de calcul}
 
@@ -147,26 +221,26 @@ d'atomes croissant puis par stabilit\'e au sein de chaque formule
 GFN2-xTB). Chaque ligne \'etant un de nos 193 candidats, \emph{our work}
 s'applique toujours~; quand la topologie correspond en plus \`a un article
 publi\'e, son num\'ero est cit\'e \`a c\^ot\'e (``\texttt{[k], our work}''
--- liste des articles en Annexe~B). Sans correspondance article, seul
+-- liste des articles en Annexe~A). Sans correspondance article, seul
 \emph{our work} appara\^\i t -- ce qui inclut, par choix explicite, les
 correspondances aux bases externes \texttt{N\_csp} et \texttt{polyN\_study}
 (candidats, pas des articles publi\'es) aussi bien que les topologies
 r\'eellement in\'edites.
 
-\textbf{Attention sur la port\'ee de cette bibliographie} : les 22
-r\'ef\'erences num\'erot\'ees ici ([GS], [B], [A1]--[A20]) sont celles pour
-lesquelles \texttt{polyN-pipeline} a d\'ej\`a extrait une structure et
-recalcul\'e son $\Delta H_f$ isodesmique (110 structures nomm\'ees dans
-\texttt{table\_isodesmic\_\{neutre,anion,cation\}.tex}). Le d\'ep\^ot
-contient s\'epar\'ement une recherche de citations bien plus large (135
-articles en g\'en\'eration~1, \texttt{table\_citation\_search.tex} +
-\texttt{\_gen2.tex}) qui n'est \textbf{pas encore} r\'eduite en structures
-nomm\'ees avec r\'ef\'erence -- ces papiers suppl\'ementaires ne peuvent
-donc pas \^etre cit\'es par candidat tant que ce travail d'extraction n'est
-pas fait. Une premi\`ere passe de correction ici (priorit\'e \`a une
-correspondance biblio\_article existante plut\^ot qu'\`a un doublon de
-base externe de m\^eme topologie mais moindre \'energie) a fait passer
-les correspondances de 1 \`a 8 candidats.
+\textbf{Port\'ee de cette bibliographie} (liste compl\`ete num\'erot\'ee
+\`a l'Annexe~A, \S\ref{sec:si-references}) : les r\'ef\'erences~[1]--[22]
+sont celles pour lesquelles \texttt{polyN-pipeline} a d\'ej\`a extrait une
+structure et recalcul\'e son $\Delta H_f$ isodesmique (110 structures
+nomm\'ees dans \texttt{table\_isodesmic\_\{neutre,anion,cation\}.tex}) --
+8 de nos 193 candidats correspondent en plus \`a la topologie d'une de ces
+22 r\'ef\'erences (priorit\'e donn\'ee \`a une correspondance
+\texttt{biblio\_article} sur un doublon de base externe de m\^eme
+topologie mais moindre \'energie). Les r\'ef\'erences~[23]--[178]
+proviennent d'une recherche de citations plus large (OpenAlex, articles
+citant les 38 sources de \texttt{polyN-pipeline}) et n'ont \textbf{pas
+encore} de structure extraite~: elles ne peuvent donc pas \^etre cit\'ees
+par candidat tant que ce travail d'extraction n'est pas fait (liste du
+travail restant, Annexe~A).
 
 \input{table_provenance_neutre.tex}
 \input{table_provenance_cation.tex}
@@ -183,8 +257,11 @@ stabilit\'e que le DFT}, ou si des r\'eordonnancements significatifs
 apparaissent.
 
 \input{table_ranking_neutral.tex}
+\input{table_ranking_neutral_agreement.tex}
 \input{table_ranking_cation.tex}
+\input{table_ranking_cation_agreement.tex}
 \input{table_ranking_anion.tex}
+\input{table_ranking_anion_agreement.tex}
 
 \section{V\'erification des minima}
 \label{sec:minima}
@@ -210,13 +287,19 @@ Un contr\^ole s\'epar\'e de connectivit\'e (composantes connexes du
 graphe N--N \`a 1,70~\AA) identifie par ailleurs \textbf{19 candidats
 fragment\'es} -- deux ou plusieurs esp\`eces mol\'eculaires distinctes
 (ex.\ N$_2$ + N$_3^-$) plut\^ot qu'un cluster N$_x$ li\'e unique, list\'es
-\`a part en Tableau~S1 avec repr\'esentation avant (g\'eom\'etrie xTB de
-d\'epart, topologie intacte) / apr\`es (r\'esultat DFT fragment\'e) en
-Figure~S4. Les tableaux d'analyse (\S\ref{sec:provenance}--\ref{sec:bonds})
-et la comparaison de stabilit\'e (\S\ref{sec:litterature}) portent
-uniquement sur les clusters li\'es~: une esp\`ece dissoci\'ee est souvent
-plus basse en \'energie qu'un vrai cluster li\'e, ce qui fausserait tout
-classement fond\'e sur l'\'energie seule.
+\`a part en Tableau~S1 avec repr\'esentation avant/apr\`es en Figure~S1.
+Ce contr\^ole a \'et\'e appliqu\'e \'egalement \`a la g\'eom\'etrie de
+d\'epart (avant tout calcul DFT) pour les 19~: \textbf{11 des 19 \'etaient
+d\'ej\`a fragment\'ees dans la g\'eom\'etrie GFN2-xTB issue du criblage},
+avant m\^eme d'entrer dans cette campagne DFT (artefact du criblage en
+amont, colonne \emph{d\'ej\`a frag.\ \`a xTB} du Tableau~S1) ; les 8
+autres \'etaient des clusters intacts \`a xTB et n'ont fragment\'e que
+pendant l'optimisation DFT. Les tableaux d'analyse
+(\S\ref{sec:provenance}--\ref{sec:bonds}) et la comparaison de stabilit\'e
+(\S\ref{sec:litterature}) portent uniquement sur les clusters li\'es~: une
+esp\`ece dissoci\'ee est souvent plus basse en \'energie qu'un vrai
+cluster li\'e, ce qui fausserait tout classement fond\'e sur l'\'energie
+seule.
 
 \section{Orbitales fronti\`eres}
 
@@ -247,11 +330,16 @@ tendance qualitativement mais reste bruit\'e).
 \section{Confrontation \`a la litt\'erature et aux bases externes}
 \label{sec:litterature}
 
-Le fichier \texttt{biblio\_polyN/comparison\_table\_3sources.csv} de
-\texttt{polyN-pipeline} catalogue 337 structures connues (articles publi\'es
-+ bases externes \texttt{N\_csp} et \texttt{polyN\_study}, relax\'ees au
-m\^eme niveau GFN2-xTB). Le croisement par (N, charge) avec nos 193
-candidats donne trois r\'esultats compl\'ementaires~:
+Deux ensembles distincts sont compar\'es ici. \textbf{Nos 193 candidats}
+sont le jeu DFT WB97X-D4 de ce rapport~: structures issues du criblage
+GFN2-xTB de \texttt{polyN-pipeline} (§\ref{sec:origine}, Tableaux~2--4).
+\textbf{337 structures connues} d\'esigne un ensemble s\'epar\'e~: le
+fichier \texttt{biblio\_polyN/comparison\_table\_3sources.csv} de
+\texttt{polyN-pipeline}, qui catalogue des structures tir\'ees d'articles
+publi\'es et des bases externes \texttt{N\_csp} et \texttt{polyN\_study},
+toutes relax\'ees ind\'ependamment au m\^eme niveau GFN2-xTB pour permettre
+la comparaison. Le croisement par (N, charge) entre nos 193 candidats et
+ces 337 r\'ef\'erences donne trois r\'esultats compl\'ementaires~:
 
 \begin{itemize}[leftmargin=1.4em]
   \item \textbf{Couverture} : 12 des 19 groupes (89 des 193 structures,
@@ -310,8 +398,8 @@ D\'etail complet et graphique interactif : voir l'artefact
 \renewcommand{\thesection}{\Alph{section}}
 \section{Supporting Information}
 
-Mat\'eriel supl\'ementaire~: tableaux (Table~S1, S2) et figures
-(Figure~S1--S4) num\'erot\'es \`a la suite, s\'epar\'ement des tables et
+Mat\'eriel suppl\'ementaire~: tableaux (Tableau~S1, S2) et figures
+(Figure~S1--S4) num\'erot\'es \`a la suite, s\'epar\'ement des tableaux et
 sections du corps principal.
 
 \subsection{Structures fragment\'ees}
@@ -320,12 +408,6 @@ sections du corps principal.
 \input{table_S1_fragmented.tex}
 
 \bigskip
-\noindent\textbf{Figure S4.} Structures fragment\'ees~: g\'eom\'etrie
-initiale (criblage GFN2-xTB, topologie N$_x$ intacte) \`a gauche,
-r\'esultat de l'optimisation DFT WB97X-D4 (s\'epar\'e en plusieurs
-esp\`eces) \`a droite. 13 candidats -- ceux du Tableau~S1 dont le calcul
-DFT est termin\'e.
-
 \input{annexe_fragmented.tex}
 
 \subsection{Structures avec fr\'equence imaginaire}
@@ -339,17 +421,21 @@ DFT est termin\'e.
 Les 81 candidats confirm\'es comme vrais minima \textbf{non-fragment\'es}
 au moment de la r\'edaction, deux par ligne. Trois figures, class\'ees
 par nombre d'atomes croissant puis par stabilit\'e au sein de chaque
-formule~: Figure~S1 (neutres), Figure~S2 (cations), Figure~S3 (anions).
+formule~: Figure~S2 (neutres), Figure~S3 (cations), Figure~S4 (anions).
 Chaque structure porte son nom, son groupe ponctuel, son $\Delta H$
-(kcal/mol, isom\`ere le plus stable non-fragment\'e de sa formule $=0$),
-le niveau de th\'eorie de ce $\Delta H$ (DFT ou xTB si le DFT n'est pas
-encore termin\'e), et sa r\'ef\'erence (num\'ero(s) d'article ou
-\emph{our work}).
+(kcal/mol), le niveau de th\'eorie de ce $\Delta H$ (DFT ou xTB si le DFT
+n'est pas encore termin\'e), et sa r\'ef\'erence (num\'ero(s) d'article ou
+\emph{our work}). Comme dans les Tableaux~2--4~: $\Delta H$ = \'energie
+d'isom\'erisation \`a N et charge fix\'es, N$_x^{q}$(isom\`ere $i$)
+$\rightarrow$ N$_x^{q}$(isom\`ere le plus stable non-fragment\'e de la
+m\^eme formule), $\Delta H = E(i) - E_{\mathrm{stable}}$ (isom\`ere le
+plus stable $=0$).
 
 \input{annexe_structures.tex}
 
 \clearpage
 \subsection{R\'ef\'erences}
+\label{sec:si-references}
 
 Articles cit\'es dans les tableaux de la section~\ref{sec:provenance}
 (num\'erotation propre \`a ce rapport ; correspondance avec les codes de
