@@ -16,14 +16,18 @@ ORCA_BIN = f"{ORCA_DIR}/orca"
 MODS = "module load gnu12/12.3.0; module load openmpi4/4.1.6"
 
 rows = list(csv.DictReader(open(f"{CCSDT_ROOT}/jobs_list_ccsdt.csv")))
+if len(sys.argv) > 1:
+    only = set(sys.argv[1:])
+    rows = [r for r in rows if r["name"] in only]
+    print(f"filtre applique : {len(rows)}/{len(only)} noms demandes trouves dans le manifeste")
 
 for r in rows:
     name, ncores = r["name"], r["ncores"]
     job_dir = f"{CCSDT_ROOT}/{name}"
     chain = (
-        "{orca} {name}_resym.inp > {name}_resym.out 2> {name}_resym.time; "
+        "/usr/bin/time -v {orca} {name}_resym.inp > {name}_resym.out 2> {name}_resym.time; "
         "if grep -q 'THE OPTIMIZATION HAS CONVERGED' {name}_resym.out; then "
-        "  {orca} {name}_ccsdt.inp > {name}_ccsdt.out 2> {name}_ccsdt.time; "
+        "  /usr/bin/time -v {orca} {name}_ccsdt.inp > {name}_ccsdt.out 2> {name}_ccsdt.time; "
         "else "
         "  echo 'resym did not converge -- ccsdt skipped' > {name}_ccsdt.SKIPPED; "
         "fi"
