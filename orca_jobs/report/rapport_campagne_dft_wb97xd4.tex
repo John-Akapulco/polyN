@@ -135,14 +135,29 @@ correspond \`a la structure litt\'erature.
 Trois tableaux distincts (neutres, cations, anions), tri\'es par nombre
 d'atomes croissant puis par stabilit\'e au sein de chaque formule
 ($\Delta H = 0$ pour l'isom\`ere le plus stable, DFT quand disponible sinon
-GFN2-xTB). La r\'ef\'erence est soit un num\'ero d'article (liste en
-Annexe~B), soit \emph{our work} quand la structure ne correspond \`a
-aucune entr\'ee de la biblio actuelle -- ce qui inclut, par choix
-explicite, les correspondances aux bases externes \texttt{N\_csp} et
-\texttt{polyN\_study} (candidats, pas des articles publi\'es) aussi bien
-que les topologies r\'eellement in\'edites. Un seul candidat de tout le
-jeu correspond effectivement \`a un article publi\'e~: \texttt{N8\_neutral\_neutral\_001}
-$=$ \texttt{N8\_C2v\_ring}, r\'ef\'erence~[1].
+GFN2-xTB). Chaque ligne \'etant un de nos 193 candidats, \emph{our work}
+s'applique toujours~; quand la topologie correspond en plus \`a un article
+publi\'e, son num\'ero est cit\'e \`a c\^ot\'e (``\texttt{[k], our work}''
+-- liste des articles en Annexe~B). Sans correspondance article, seul
+\emph{our work} appara\^\i t -- ce qui inclut, par choix explicite, les
+correspondances aux bases externes \texttt{N\_csp} et \texttt{polyN\_study}
+(candidats, pas des articles publi\'es) aussi bien que les topologies
+r\'eellement in\'edites.
+
+\textbf{Attention sur la port\'ee de cette bibliographie} : les 22
+r\'ef\'erences num\'erot\'ees ici ([GS], [B], [A1]--[A20]) sont celles pour
+lesquelles \texttt{polyN-pipeline} a d\'ej\`a extrait une structure et
+recalcul\'e son $\Delta H_f$ isodesmique (110 structures nomm\'ees dans
+\texttt{table\_isodesmic\_\{neutre,anion,cation\}.tex}). Le d\'ep\^ot
+contient s\'epar\'ement une recherche de citations bien plus large (135
+articles en g\'en\'eration~1, \texttt{table\_citation\_search.tex} +
+\texttt{\_gen2.tex}) qui n'est \textbf{pas encore} r\'eduite en structures
+nomm\'ees avec r\'ef\'erence -- ces papiers suppl\'ementaires ne peuvent
+donc pas \^etre cit\'es par candidat tant que ce travail d'extraction n'est
+pas fait. Une premi\`ere passe de correction ici (priorit\'e \`a une
+correspondance biblio\_article existante plut\^ot qu'\`a un doublon de
+base externe de m\^eme topologie mais moindre \'energie) a fait passer
+les correspondances de 1 \`a 8 candidats.
 
 \input{table_provenance_neutre.tex}
 \input{table_provenance_cation.tex}

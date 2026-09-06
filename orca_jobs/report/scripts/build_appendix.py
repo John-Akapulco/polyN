@@ -16,7 +16,7 @@ def reference_str(name):
     if t and t["matched_origin"] == "biblio_article":
         code = name_to_ref.get(t["matched_name"])
         if code:
-            return f"[{code_to_num[code]}]"
+            return f"[{code_to_num[code]}], our work"
     return "our work"
 
 manifest = list(csv.DictReader(open(f"{REPORT_DIR}/figs/manifest.csv")))

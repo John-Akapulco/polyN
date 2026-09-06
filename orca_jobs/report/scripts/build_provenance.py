@@ -30,11 +30,13 @@ for m in re.finditer(r"\\item\[\[([A-Z0-9]+)\]\]\s*(.+)", open("/tmp/table_refer
     FULL_REFS.setdefault(m.group(1), m.group(2).strip())
 
 def reference_str(name):
+    """Every row is one of our own 193 candidates, so 'our work' always
+    applies; a published-article match is cited alongside it, not instead."""
     t = topo.get(name)
     if t and t["matched_origin"] == "biblio_article":
         code = name_to_ref.get(t["matched_name"])
         if code:
-            return f"[{code_to_num[code]}]"
+            return f"[{code_to_num[code]}], our work"
     return "our work"
 
 # --- relative dH (kcal/mol) within each (n, family) group, best = 0 ---
