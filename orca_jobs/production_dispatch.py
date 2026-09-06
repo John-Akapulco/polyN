@@ -22,15 +22,36 @@ EVENT_LOG = os.path.join(ROOT, "dispatch_events.log")
 
 NAME_RE = re.compile(r"^N(?P<n>\d+)_(?P<family>neutral|cation|anion)_(?P=family)_(?P<rank>\d+)$")
 
-# (node, cores-per-job, category) -- as specified: 24-core lanes on
-# node07/node08 and a 32-core lane on node15 for big clusters (N12-N16);
-# 8-core lanes on node16/node13 for small clusters (N4-N11).
+# (node, cores-per-job, category). Originally 24/32-core lanes on
+# node07/node08/node15 for big clusters (N12-N16) and 8-core lanes on
+# node16/node13 for small ones (N4-N11); once the big queue emptied, all
+# lanes were converted to 8-core small ones (see below) and extended to
+# every reachable node, shared or not.
 NODE_LANES = [
-    ("node07", 24, "big"),
-    ("node08", 24, "big"),
-    ("node15", 32, "big"),
+    # All switched to 8-core small lanes: the big (N12-N16) queue emptied, and
+    # 8 cores is the efficient spot for small clusters anyway (see the core
+    # benchmark -- N4-N11 gain little past 8 cores, so keeping node07/08 at
+    # 24c/job for small jobs would just waste core-hours for no speed benefit).
+    ("node07", 8, "small"),
+    ("node08", 8, "small"),
+    ("node15", 8, "small"),
     ("node16", 8, "small"),
     ("node13", 8, "small"),
+    ("node06", 8, "small"),
+    # Shared nodes -- other users' jobs live here too, so idle capacity is
+    # whatever they aren't using right now. The existing pending-aware
+    # throttle (my_pending_names) keeps us from over-submitting into a node
+    # that's actually busy; node09 is included even though it showed 0 idle
+    # at the time this was added, since the poll re-checks it live anyway.
+    ("node01", 8, "small"),
+    ("node02", 8, "small"),
+    ("node03", 8, "small"),
+    ("node04", 8, "small"),
+    ("node09", 8, "small"),
+    ("node10", 8, "small"),
+    ("node11", 8, "small"),
+    ("node12", 8, "small"),
+    ("node14", 8, "small"),
 ]
 BIG_MIN_N = 12  # N12-N16 => "big", N4-N11 => "small"
 PARTITION = "defq"
