@@ -681,6 +681,41 @@ z\'ero fr\'equence imaginaire (modes~:
 1,174~\AA. Le pool de structures DFT confirm\'ees passe ainsi de 111
 \`a \textbf{112}.
 
+\textbf{N$_{20}$ dod\'eca\`edre -- premi\`ere structure hors de la
+port\'ee N$_4$--N$_{16}$ du pool}. Construite dans un d\'ep\^ot s\'epar\'e
+(\texttt{N\_cages}, \url{https://github.com/John-Akapulco/N_cages}) qui
+explore les cages polyazot\'ees trivalentes (chaque N connect\'e \`a
+exactement 3 voisins) \`a partir de la g\'eom\'etrie EXACTE des solides
+de Platon 3-r\'eguliers et de leurs troncatures, plut\^ot que par
+criblage de graphes~: g\'eom\'etrie id\'eale (ar\^etes \`a 1,45~\AA)
+$\to$ relaxation par champ de force harmonique sur les ar\^etes $\to$
+sym\'etrisation $\to$ GFN2-xTB (optimisation + fr\'equences). Le
+dod\'eca\`edre N$_{20}$ (le "nitrogen dodecahedrane", candidat
+HEDM discut\'e dans la litt\'erature) reste exactement sym\'etrique
+($I_h$) sous GFN2-xTB, confirm\'e ensuite par DFT WB97X-D4/aug-cc-pVTZ
+complet (40~c\oe urs)~: convergence
+propre, \textbf{groupe ponctuel $I_h$ exact d\'etect\'e automatiquement},
+un seul fragment, z\'ero fr\'equence imaginaire. Le pool de structures
+DFT confirm\'ees passe de 112 \`a \textbf{113} -- structure la plus
+grande du pool \`a ce jour (pr\'ec\'edent maximum~: N$_{16}$).
+
+Sur les cages test\'ees dans \texttt{N\_cages} \`a ce jour (2026-09-07)~:
+N$_4$ (t\'etra\`edre) et N$_8$ (cube) confirm\'es mais topologies d\'ej\`a
+connues du pool~; N$_{12}$ (t\'etra\`edre tronqu\'e) et N$_{20}$ minima
+r\'eels et in\'edits~; N$_{24}$ cube tronqu\'e = \textbf{point-selle}
+(pas un minimum r\'eel) tandis que N$_{24}$ octa\`edre tronqu\'e
+(m\^eme formule, topologie diff\'erente) est un minimum confirm\'e~;
+N$_{48}$ (cuboctaèdre tronqu\'e) et N$_{60}$ (dod\'eca\`edre tronqu\'e
+ET icosa\`edre tronqu\'e/"boule", topologie C$_{60}$) se
+\textbf{fragmentent} tous sous GFN2-xTB -- limite probable du champ de
+force de pr\'erelaxation (potentiel harmonique sur les ar\^etes
+uniquement, sans terme angulaire, insuffisant pour contraindre la
+convexit\'e de cages aussi grandes avant la relaxation xTB). Bilan
+honn\^ete, coh\'erent avec le reste de ce rapport~: la construction
+g\'eom\'etrique exacte d'un polyèdre convexe ne garantit PAS la
+stabilit\'e chimique -- seule la v\'erification par fr\'equences
+tranche.
+
 \section{Limites et prochaines \'etapes}
 \label{sec:limites}
 
