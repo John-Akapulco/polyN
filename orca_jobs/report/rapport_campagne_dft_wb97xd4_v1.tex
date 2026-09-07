@@ -716,6 +716,23 @@ g\'eom\'etrique exacte d'un polyèdre convexe ne garantit PAS la
 stabilit\'e chimique -- seule la v\'erification par fr\'equences
 tranche.
 
+\textbf{N$_9^+$ (\texttt{N9\_cation\_cation\_016}, topologie
+"chain") -- nouvelle contribution du pool~2}. La campagne pool~2 N$_9^+$
+(\'enum\'eration \texttt{geng} compl\`ete, 531 graphes) a produit 3
+topologies enti\`erement absentes du pool DFT (v\'erifi\'e par
+isomorphisme de graphe, pas seulement l'\'etiquette)~: "chain",
+"ring-9" et "branched-tree", toutes trois issues d'un
+r\'earrangement structural pendant la relaxation GFN2-xTB (le graphe
+candidat de d\'epart diff\'erait du graphe final). Contr\^ole crois\'e
+par fr\'equences xTB (non fait en interne par pool~2,
+\texttt{run\_frequencies=False})~: les 3 survivent (0 fr\'equence
+imaginaire). Soumises en DFT WB97X-D4/aug-cc-pVTZ (16~c\oe urs)~: la
+premi\`ere \`a terminer, \texttt{chain}, converge proprement, \textbf{un
+seul fragment, z\'ero fr\'equence imaginaire} -- confirm\'ee. Le pool de
+structures DFT confirm\'ees passe de 113 \`a \textbf{114}. Les deux
+autres ("ring-9", "branched-tree") sont encore en cours de
+calcul DFT au moment de cette mise \`a jour.
+
 \section{Limites et prochaines \'etapes}
 \label{sec:limites}
 
