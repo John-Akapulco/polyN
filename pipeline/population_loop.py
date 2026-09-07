@@ -23,7 +23,8 @@ ProcessPoolExecutor plutôt qu'en série ; voir _evaluate_batch.
 from __future__ import annotations
 
 import functools
-from concurrent.futures import ProcessPoolExecutor
+import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterator
@@ -35,8 +36,47 @@ from ..core.graph_descriptors import compute_descriptors
 from ..surrogate.adaptive import AdaptiveSurrogate
 
 
+def _pin_single_thread():
+    """Initializer d'un worker ProcessPoolExecutor : force chaque process a
+    n'utiliser QU'UN SEUL thread pour ses calculs numeriques (OpenMP/BLAS).
+
+    Sans ca, avec n_workers process xTB/tblite lances en parallele sur une
+    machine a n_workers coeurs, chaque process essaie par defaut d'utiliser
+    TOUS les coeurs disponibles pour ses propres threads OpenMP internes --
+    sursouscription massive (n_workers^2 threads en concurrence sur
+    n_workers coeurs). Cause racine identifiee empiriquement sur la
+    campagne N15- anion (job SLURM 59926, 32 workers) : ~30 candidats
+    evalues en 13h30 au lieu des quelques minutes attendues (mesure
+    test_timing_n15.py), avec des pas LBFGS individuels a 40-50s pour un
+    systeme a 15 atomes qui devrait prendre une fraction de seconde.
+    Chaque process n'ayant besoin que d'UN coeur (l'evaluation d'un
+    candidat n'est elle-meme pas parallelisee), fixer explicitement les
+    variables d'environnement de threading a 1 AVANT tout import de
+    tblite/numpy dans le sous-process elimine la contention.
+
+    IMPORTANT -- ceci ne suffit PAS a lui seul avec un ProcessPoolExecutor
+    en mode "fork" (methode de demarrage par defaut sous Linux) : le
+    process parent a deja importe tblite (xtb_bridge.py, au niveau module)
+    AVANT que le pool ne cree ses workers, donc le runtime OpenMP est deja
+    initialise -- et son nombre de threads deja fige -- dans le parent au
+    moment du fork. Les workers forkes heritent de cet etat deja initialise
+    ; positionner les variables d'environnement APRES le fork (ici) arrive
+    trop tard pour changer un pool de threads OpenMP deja cree. Verifie
+    empiriquement : avec seulement cet initializer et un pool "fork", les 4
+    workers d'un test a 4 coeurs consommaient chacun ~1200% CPU (~12
+    coeurs) au lieu de 100%. D'ou l'usage de mp_context=spawn dans
+    _evaluate_batch (cf. ci-dessous) : un worker "spawn" est un interprete
+    Python entierement neuf qui n'a PAS encore importe tblite -- ces
+    variables d'environnement, deja en place avant le premier import de
+    tblite dans ce process neuf, sont bien prises en compte."""
+    import os
+    for var in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS",
+                "NUMEXPR_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"):
+        os.environ[var] = "1"
+
+
 def _evaluate_batch(to_evaluate, control_idx, candidates, evaluate_fn, charge,
-                     slako_dir, eval_dir, n_workers):
+                     slako_dir, eval_dir, n_workers, progress_label=""):
     """
     Evalue chaque candidat d'indice dans `to_evaluate`, en parallele si
     n_workers > 1 -- chaque evaluation (embed 3D -> relaxation -> frequences)
@@ -56,19 +96,51 @@ def _evaluate_batch(to_evaluate, control_idx, candidates, evaluate_fn, charge,
     l'evaluateur par defaut, cf. run_campaign) ; une closure/lambda locale
     echoue avec un PicklingError explicite plutot que de degrader
     silencieusement en execution serie.
+
+    progress_label : prefixe affiche sur chaque ligne de progression (ex.
+    "gen 1") -- lecture des etapes en temps reel plutot qu'un silence total
+    jusqu'a la fin du lot complet (defaut precedent, qui rendait un ralenti-
+    ssement anormal indiscernable d'un blocage sans aller inspecter les
+    horodatages des fichiers sur disque).
     """
     tasks = [(i, i in control_idx, str(eval_dir / f"cand{i:05d}")) for i in sorted(to_evaluate)]
+    n_tasks = len(tasks)
+    t_batch_start = time.monotonic()
 
     if n_workers <= 1:
-        return [(i, is_ctrl, evaluate_fn(candidates[i], charge, slako_dir, wd))
-                for i, is_ctrl, wd in tasks]
+        results = []
+        for k, (i, is_ctrl, wd) in enumerate(tasks, start=1):
+            t0 = time.monotonic()
+            result = evaluate_fn(candidates[i], charge, slako_dir, wd)
+            dt = time.monotonic() - t0
+            status = result.get("integrity_status", "?") if not result.get("error") else f"REJETE ({result['error']})"
+            print(f"[{progress_label}] {k}/{n_tasks} evalue -- cand{i:05d} : "
+                  f"{status} ({dt:.1f}s, cumul {time.monotonic()-t_batch_start:.0f}s)", flush=True)
+            results.append(result)
+        return [(i, is_ctrl, result) for (i, is_ctrl, wd), result in zip(tasks, results)]
 
-    with ProcessPoolExecutor(max_workers=n_workers) as pool:
-        futures = [pool.submit(evaluate_fn, candidates[i], charge, slako_dir, wd)
-                   for i, is_ctrl, wd in tasks]
-        results = [fut.result() for fut in futures]
+    import multiprocessing as mp
+    spawn_ctx = mp.get_context("spawn")
 
-    return [(i, is_ctrl, result) for (i, is_ctrl, wd), result in zip(tasks, results)]
+    results_by_idx = {}
+    with ProcessPoolExecutor(max_workers=n_workers, mp_context=spawn_ctx,
+                              initializer=_pin_single_thread) as pool:
+        future_to_task = {
+            pool.submit(evaluate_fn, candidates[i], charge, slako_dir, wd): (i, is_ctrl)
+            for i, is_ctrl, wd in tasks
+        }
+        n_done = 0
+        for fut in as_completed(future_to_task):
+            i, is_ctrl = future_to_task[fut]
+            result = fut.result()
+            results_by_idx[i] = result
+            n_done += 1
+            status = result.get("integrity_status", "?") if not result.get("error") else f"REJETE ({result['error']})"
+            print(f"[{progress_label}] {n_done}/{n_tasks} evalues -- cand{i:05d} : "
+                  f"{status} (cumul {time.monotonic()-t_batch_start:.0f}s, "
+                  f"{n_workers} workers)", flush=True)
+
+    return [(i, is_ctrl, results_by_idx[i]) for i, is_ctrl, wd in tasks]
 
 
 @dataclass
@@ -115,6 +187,7 @@ def run_campaign(
     control_sample_fraction: float = 0.02,
     seed: int = 0,
     n_workers: int = 1,
+    checkpoint_dir: str | Path | None = None,
 ) -> tuple[Archive, list[GenerationReport]]:
     """
     n_workers : nombre de candidats évalués EN PARALLÈLE au sein d'une même
@@ -163,6 +236,16 @@ def run_campaign(
     control_sample_fraction : fraction des candidats REJETÉS par le
         surrogate, ré-évaluée réellement quand même, pour détecter si le
         filtre écarte à tort de vrais isomères métastables rares.
+    checkpoint_dir : si fourni, un point de sauvegarde (archive + reports +
+        dernière génération complétée) est écrit sur disque (écriture
+        atomique) juste APRÈS que chaque génération ait fini (candidats
+        évalués, archive élaguée, surrogate ré-entraîné) -- granularité PAR
+        GÉNÉRATION, pas par candidat individuel (cf. docstring de
+        pipeline.checkpoint pour la justification). Si un checkpoint existe
+        déjà à cet emplacement au démarrage, les générations déjà
+        complétées sont sautées (source_fn correspondant jamais appelé) et
+        la campagne reprend juste après -- permet de relancer une campagne
+        interrompue (timeout SLURM, scancel, panne) sans repartir de zéro.
     """
     import random
     rng_ctrl = random.Random(seed)
@@ -186,8 +269,25 @@ def run_campaign(
     archive = Archive(window_ev_per_atom=window_ev_per_atom)
     surrogate = AdaptiveSurrogate(window_ev_per_atom=window_ev_per_atom)
     reports: list[GenerationReport] = []
+    start_gen = 1
+
+    if checkpoint_dir is not None:
+        from .checkpoint import checkpoint_path, load_checkpoint, save_checkpoint
+        ckpt_file = checkpoint_path(checkpoint_dir)
+        loaded = load_checkpoint(ckpt_file)
+        if loaded is not None:
+            archive, report_dicts, last_completed = loaded
+            reports = [GenerationReport(**d) for d in report_dicts]
+            surrogate.fit_from_archive(archive)
+            start_gen = last_completed + 1
+            print(f"[reprise] checkpoint trouve ({ckpt_file}) : {last_completed} generation(s) "
+                  f"deja completee(s), archive={len(archive)} structures. Reprise a la generation "
+                  f"{start_gen}.", flush=True)
 
     for gen_idx, (source_fn, budget) in enumerate(zip(candidate_source_per_generation, population_budgets), start=1):
+        if gen_idx < start_gen:
+            continue
+        t_gen_start = time.monotonic()
         candidates = []
         descriptors_cache = []
         for G in source_fn():
@@ -209,6 +309,10 @@ def run_campaign(
         to_evaluate = selected_idx | control_idx
         n_rejected = n_seen - len(to_evaluate)
 
+        print(f"\n=== Generation {gen_idx}/{len(population_budgets)} : {n_seen} candidats vus, "
+              f"{len(to_evaluate)} a evaluer ({len(selected_idx)} selectionnes + {len(control_idx)} "
+              f"controle), archive actuelle={len(archive)} ===", flush=True)
+
         n_ok = 0
         n_new_unique = 0
         n_duplicate_updated = 0
@@ -219,7 +323,7 @@ def run_campaign(
         eval_dir.mkdir(parents=True, exist_ok=True)
         for i, is_control, result in _evaluate_batch(
             to_evaluate, control_idx, candidates, evaluate_fn, charge,
-            slako_dir, eval_dir, n_workers,
+            slako_dir, eval_dir, n_workers, progress_label=f"gen {gen_idx}",
         ):
             G = candidates[i]
             if result.get("error"):
@@ -296,6 +400,16 @@ def run_campaign(
             false_rejection_rate=false_rejection_rate,
         ))
 
+        gen_elapsed = time.monotonic() - t_gen_start
+        print(f"=== Generation {gen_idx} terminee en {gen_elapsed/60:.1f} min : "
+              f"{n_ok}/{len(to_evaluate)} evalues OK, {n_new_unique} nouvelles structures, "
+              f"archive={len(archive)}, meilleure energie={archive.best_energy_per_atom} eV/atome ===",
+              flush=True)
+
+        if checkpoint_dir is not None:
+            save_checkpoint(ckpt_file, archive, reports, last_completed_generation=gen_idx)
+            print(f"[checkpoint] sauvegarde -> {ckpt_file} (generation {gen_idx} completee)", flush=True)
+
     return archive, reports
 
 
@@ -315,11 +429,19 @@ def run_campaign_mutation(
     control_sample_fraction: float = 0.02,
     seed: int = 0,
     n_workers: int = 1,
+    checkpoint_dir: str | Path | None = None,
 ) -> tuple[Archive, list[GenerationReport]]:
     """
     n_workers : voir run_campaign -- même mécanisme (ProcessPoolExecutor,
         embarrassingly parallel par génération), même contrainte de
         picklabilité sur evaluate_fn au-delà de n_workers=1.
+
+    checkpoint_dir : voir run_campaign -- même mécanisme (sauvegarde après
+        chaque génération complète, reprise automatique si un checkpoint
+        existe déjà à cet emplacement). La resynchronisation de la source
+        avec l'archive (source.set_archive, ci-dessous) reste correcte
+        après reprise car elle est refaite à CHAQUE génération à partir de
+        l'archive rechargée, jamais mise en cache entre générations.
 
     Variante de run_campaign pour les GRANDES tailles (n > ~16), où
     l'énumération geng est impraticable : les candidats de chaque
@@ -369,6 +491,20 @@ def run_campaign_mutation(
     archive = Archive(window_ev_per_atom=window_ev_per_atom)
     surrogate = AdaptiveSurrogate(window_ev_per_atom=window_ev_per_atom)
     reports: list[GenerationReport] = []
+    start_gen = 1
+
+    if checkpoint_dir is not None:
+        from .checkpoint import checkpoint_path, load_checkpoint, save_checkpoint
+        ckpt_file = checkpoint_path(checkpoint_dir)
+        loaded = load_checkpoint(ckpt_file)
+        if loaded is not None:
+            archive, report_dicts, last_completed = loaded
+            reports = [GenerationReport(**d) for d in report_dicts]
+            surrogate.fit_from_archive(archive)
+            start_gen = last_completed + 1
+            print(f"[reprise] checkpoint trouve ({ckpt_file}) : {last_completed} generation(s) "
+                  f"deja completee(s), archive={len(archive)} structures. Reprise a la generation "
+                  f"{start_gen}.", flush=True)
 
     for gen_idx in range(1, n_generations + 1):
         budget = population_budgets[min(gen_idx - 1, len(population_budgets) - 1)]
@@ -378,6 +514,10 @@ def run_campaign_mutation(
             [e.final_graph for e in archive.entries],
             [e.energy_ev_per_atom for e in archive.entries],
         )
+
+        if gen_idx < start_gen:
+            continue
+        t_gen_start = time.monotonic()
 
         candidates = []
         descriptors_cache = []
@@ -397,13 +537,17 @@ def run_campaign_mutation(
         to_evaluate = selected_idx | control_idx
         n_rejected = n_seen - len(to_evaluate)
 
+        print(f"\n=== Generation {gen_idx}/{n_generations} : {n_seen} candidats vus, "
+              f"{len(to_evaluate)} a evaluer ({len(selected_idx)} selectionnes + {len(control_idx)} "
+              f"controle), archive actuelle={len(archive)} ===", flush=True)
+
         n_ok = n_new_unique = n_duplicate_updated = n_duplicate_rejected = n_rearranged = 0
         control_energies: list[float] = []  # correction #2
         eval_dir = work_dir / f"gen{gen_idx:03d}"
         eval_dir.mkdir(parents=True, exist_ok=True)
         for i, is_control, result in _evaluate_batch(
             to_evaluate, control_idx, candidates, evaluate_fn, charge,
-            slako_dir, eval_dir, n_workers,
+            slako_dir, eval_dir, n_workers, progress_label=f"gen {gen_idx}",
         ):
             G = candidates[i]
             if result.get("error"):
@@ -476,5 +620,15 @@ def run_campaign_mutation(
             n_control_in_window=n_control_in_window,
             false_rejection_rate=false_rejection_rate,
         ))
+
+        gen_elapsed = time.monotonic() - t_gen_start
+        print(f"=== Generation {gen_idx} terminee en {gen_elapsed/60:.1f} min : "
+              f"{n_ok}/{len(to_evaluate)} evalues OK, {n_new_unique} nouvelles structures, "
+              f"archive={len(archive)}, meilleure energie={archive.best_energy_per_atom} eV/atome ===",
+              flush=True)
+
+        if checkpoint_dir is not None:
+            save_checkpoint(ckpt_file, archive, reports, last_completed_generation=gen_idx)
+            print(f"[checkpoint] sauvegarde -> {ckpt_file} (generation {gen_idx} completee)", flush=True)
 
     return archive, reports
