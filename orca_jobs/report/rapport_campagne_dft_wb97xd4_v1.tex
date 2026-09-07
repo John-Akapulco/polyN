@@ -505,11 +505,41 @@ imaginaire, non-convergence) -- signe que les g\'eom\'etries de d\'epart
 g\'en\'er\'ees pour ces formules sont chimiquement peu viables plut\^ot
 qu'un simple manque de volume~: un r\'e-\'echantillonnage pool~1 cibl\'e
 sur ces groupes pr\'ecis (plut\^ot qu'un changement de g\'en\'erateur)
-est la piste la plus directe. Note d'\'echelle~: le pool~2 \'evalue
-chaque candidat en Python, en s\'erie, sur un seul c\oe ur (TBLite/GFN2-xTB
-in-process, aucune parall\'elisation par candidat n'est encore
-impl\'ement\'ee) -- sans commune mesure avec l'infrastructure
-SLURM/MPI des campagnes DFT/CCSD(T) de ce rapport.
+est la piste la plus directe. Mise \`a jour post\'erieure \`a la r\'edaction
+initiale de cette section~: le pool~2 (\texttt{GenerPolyN}) dispose
+d\'esormais d'une \'evaluation parall\'elis\'ee par candidat
+(\texttt{ProcessPoolExecutor}, jusqu'\`a 40 c\oe urs utilis\'es en
+pratique) -- l'affirmation initiale d'une \'evaluation strictement
+s\'equentielle mono-c\oe ur ne tient plus.
+
+\textbf{Premi\`ere contribution confirm\'ee du pool~2 au jeu de
+structures DFT} (nuit du 6 au 7 septembre 2026) : une campagne DFTB+
+ind\'ependante (SCC-DFTB, \texttt{polynitrogen\_charged\_explore.py},
+rapatri\'ee d'une exploration ant\'erieure sur Mac) a identifi\'e 13
+topologies N$_5$/N$_7$/N$_9$ (charges $\pm1$) absentes du pool DFT
+existant (comparaison par isomorphisme de graphe, pas seulement
+l'\'etiquette de topologie). Un contr\^ole crois\'e syst\'ematique par
+GFN2-xTB (m\^eme protocole que le reste de ce projet, jamais les
+\'energies DFTB+ elles-m\^emes) n'en a laiss\'e survivre que 2 sur 13~:
+11 pr\'esentaient une fr\'equence imaginaire ou un r\'earrangement d\`es
+ce niveau -- confirmation que DFTB+ et GFN2-xTB divergent fortement sur
+la stabilit\'e de ces topologies. Des 2 survivantes, soumises en DFT
+WB97X-D4 (Opt+Freq, 16~c\oe urs, N$_9^+$)~: l'une n'a pas converg\'e
+(limite de cycles atteinte, m\^eme statut que les candidats non
+convergés d\'ej\`a exclus de ce rapport), l'autre a converg\'e proprement
+mais vers une g\'eom\'etrie \textbf{fragment\'ee} (2+7 atomes) -- aucune
+des deux n'int\`egre donc le pool confirm\'e. En parall\`ele, le pipeline
+s\'equentiel propre \`a \texttt{GenerPolyN} (croissance par paires
+N$_2$ depuis l'archive xTB, \S\ref{sec:pools}) a produit ind\'ependamment
+une nouvelle topologie N$_9^-$ (\texttt{N9\_anion\_anion\_021}), confirm\'ee
+par le m\^eme protocole DFT complet~: convergence propre, z\'ero
+fr\'equence imaginaire, structure intacte. Le pool de structures DFT
+confirm\'ees passe ainsi de 110 \`a \textbf{111}. Bilan honn\^ete~: sur
+cette premi\`ere nuit, la voie DFTB+$\to$xTB$\to$DFT n'a produit aucune
+structure confirm\'ee (0/13), tandis que la croissance interne du
+pool~2 en a produit une -- l'exploration ind\'ependante par une
+seconde m\'ethode de g\'en\'eration a surtout servi, ici, \`a
+\'eliminer des candidats plut\^ot qu'\`a en confirmer.
 
 \section{Limites et prochaines \'etapes}
 \label{sec:limites}
