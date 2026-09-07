@@ -541,6 +541,50 @@ pool~2 en a produit une -- l'exploration ind\'ependante par une
 seconde m\'ethode de g\'en\'eration a surtout servi, ici, \`a
 \'eliminer des candidats plut\^ot qu'\`a en confirmer.
 
+\textbf{Correctif et campagne \'elargie du pool~2} (nuit du 6 au 7
+septembre 2026) : un diagnostic sur la campagne N$_{15}^-$ (\texttt{geng},
+seul trou de couverture \`a z\'ero candidat identifi\'e ci-dessus) a
+r\'ev\'el\'e une sursouscription OpenMP -- \texttt{evaluation/xtb\_bridge.py}
+initialise le runtime OpenMP de \texttt{tblite} dans le processus parent
+avant que \texttt{ProcessPoolExecutor} ne cr\'ee ses workers (mode
+\texttt{fork}), chaque worker h\'eritant alors d'un runtime d\'ej\`a
+configur\'e sur "tous les c\oe urs disponibles" -- mesur\'e : $\sim$30
+candidats \'evalu\'es en 13h30 au lieu de quelques minutes attendues.
+Corrig\'e par un contexte \texttt{spawn} pour \texttt{ProcessPoolExecutor}
+(chaque worker est un interpr\`ete neuf, les variables d'environnement de
+threading sont prises en compte d\`es le premier import de \texttt{tblite}),
+avec ajout d'un m\'ecanisme de point de sauvegarde/reprise par
+g\'en\'eration compl\`ete et d'un suivi d'\'etapes en temps r\'eel. Six
+campagnes ont ensuite \'et\'e lanc\'ees en parall\`ele sur autant de
+n\oe uds SLURM libres, ciblant N$_{15}^-$ (trou de couverture) et les
+groupes \`a rendement faible identifi\'es plus haut (N$_5^-$, N$_7^+$,
+N$_9^+$, N$_{11}^-$, N$_{13}^-$). Deux campagnes achev\'ees \`a ce stade,
+toutes deux valid\'ees par isomorphisme de graphe contre le pool DFT
+confirm\'e : N$_5^-$ retrouve exactement le cycle \texttt{ring-5} d\'ej\`a
+connu ; N$_7^+$ retrouve exactement les deux topologies d\'ej\`a
+confirm\'ees (\texttt{chain} et \texttt{ring-5-subst}) -- aucune nouvelle
+structure sur ces deux compositions, mais une validation nette de la
+m\'ethode (\'enum\'eration exhaustive de tout l'espace des graphes
+possibles, sans faux positif ni structure manqu\'ee).
+
+\textbf{Nouvelle composition couverte~: N$_3^-$ lin\'eaire (azoture)}.
+Absent du pool DFT jusqu'ici (z\'ero structure N$_3$, toutes charges
+confondues) -- le seul candidat N$_3^-$ rencontr\'e par ailleurs cette
+nuit (g\'en\'er\'e par \texttt{GenerPolyN}, cyclique) pr\'esentait une
+fr\'equence imaginaire et n'est donc qu'un point-selle, pas le minimum
+r\'eel. La forme lin\'eaire centrosym\'etrique (l'azoture, bien connu en
+chimie) a \'et\'e construite directement (pas par \'enum\'eration de
+graphe) et relax\'ee par GFN2-xTB~: reste exactement lin\'eaire
+(180,000$^\circ$) et centrosym\'etrique (deux distances N--N \'egales \`a
+1,159~\AA), z\'ero fr\'equence imaginaire (modes r\'eels~:
+510,6/510,6/1458,3/2539,9~cm$^{-1}$). Confirm\'ee ensuite par DFT
+WB97X-D4/aug-cc-pVTZ complet (8~c\oe urs)~: convergence propre, groupe
+ponctuel $D_{\infty h}$ d\'etect\'e automatiquement, un seul fragment,
+z\'ero fr\'equence imaginaire (modes~:
+682,4/682,4/1409,6/2116,8~cm$^{-1}$), distance N--N optimis\'ee
+1,174~\AA. Le pool de structures DFT confirm\'ees passe ainsi de 111
+\`a \textbf{112}.
+
 \section{Limites et prochaines \'etapes}
 \label{sec:limites}
 
