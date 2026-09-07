@@ -55,7 +55,21 @@ polyN_adapt/
     archive.py                 # dedoublonnage par isomorphisme, fenetre
                               # glissante recalculee sur le meilleur connu
   pipeline/
-    population_loop.py          # orchestrateur generation par generation
+    population_loop.py          # orchestrateur generation par generation --
+                              # n_workers>1 parallelise l'evaluation d'une
+                              # generation sur ProcessPoolExecutor (contexte
+                              # spawn, cf. section OpenMP Linux/cluster
+                              # ci-dessous) ; run_campaign (sources figees
+                              # a l'avance, ex. geng) et run_campaign_mutation
+                              # (source resynchronisee avec l'archive a
+                              # chaque generation) partagent la meme boucle
+                              # d'evaluation/archivage/reentrainement
+    checkpoint.py                # point de sauvegarde/reprise PAR GENERATION
+                              # COMPLETE (pas par candidat) : ecriture atomique
+                              # apres chaque generation, reprise automatique
+                              # si un checkpoint existe deja au meme
+                              # work_dir -- passer checkpoint_dir= a
+                              # run_campaign/run_campaign_mutation
   refinement/
     config.py                  # RefinementConfig charge depuis YAML -- backend
                                  # (gaussian/orca), sequence d'etapes (methode,
@@ -104,6 +118,29 @@ crash au chargement quand PyTorch (conda-forge) et des paquets pip
 compilés coexistent dans le même process. Si un script externe importe
 `tblite`/`mace` directement AVANT d'importer ce module, préfixer la
 commande : `KMP_DUPLICATE_LIB_OK=TRUE python votre_script.py`.
+
+## Sursouscription OpenMP en parallèle (Linux/cluster, `n_workers>1`)
+
+Piège rencontré en production (campagne N15⁻ réelle, cf. section
+production ci-dessous) : `evaluation/xtb_bridge.py` importe `tblite` (donc
+initialise son runtime OpenMP) **dans le processus parent**, avant que
+`ProcessPoolExecutor` ne crée ses workers. Avec le mode `fork` (défaut sous
+Linux), chaque worker hérite d'un runtime OpenMP déjà initialisé sur "tous
+les cœurs disponibles" dans le parent — sursouscription massive mesurée en
+conditions réelles : ~1200 % CPU par worker au lieu de 100 %, un facteur
+~30-40× de ralentissement par rapport à l'attendu.
+
+Positionner `OMP_NUM_THREADS=1` (et équivalents MKL/OPENBLAS/etc.) dans un
+`initializer` de `ProcessPoolExecutor` **ne suffit pas** en mode `fork` :
+ça arrive après que le runtime du parent a déjà été hérité. `population_loop.py`
+utilise donc un **contexte `spawn`** (`multiprocessing.get_context("spawn")`)
+pour `ProcessPoolExecutor` : chaque worker est un interprète Python neuf qui
+n'a pas encore importé `tblite`, donc les variables d'environnement fixées
+par l'initializer sont prises en compte dès le premier import. Contrepartie
+du mode `spawn` : le script appelant DOIT protéger son point d'entrée par
+`if __name__ == "__main__":` (sans quoi chaque worker ré-exécute le module
+`__main__` depuis le début à son démarrage — `RuntimeError` explicite de
+`multiprocessing` si oublié).
 
 ## Seuil énumération exhaustive vs mutation
 
@@ -168,7 +205,7 @@ géométrie DFT optimisée.
 
 ## Ce qui a été testé RÉELLEMENT dans cet environnement de développement
 
-- `nauty-geng` réel (installé via apt) : streaming, comptage, règle de parité
+- `nauty-geng` réel (installé via apt/conda-forge) : streaming, comptage, règle de parité
 - Tous les opérateurs de mutation (invariants vérifiés : n constant, degré
   respecté, connexité préservée, séquence de degrés inchangée pour le swap)
 - `AdaptiveSurrogate` sur données synthétiques à relation connue (discrimine
@@ -181,26 +218,44 @@ géométrie DFT optimisée.
   charge/multiplicité correctement propagées) et ORCA (chaînage `*
   xyzfile`, `sp_ccsdt` référence bien la géométrie de `opt_dft` à travers
   `freq_dft`) sur une géométrie `.xyz` synthétique ; `guess_multiplicity`
-  vérifié sur N4/N4⁺/N5⁺/N5⁻. **Pas de calcul Gaussian/ORCA réel lancé**
-  (aucun des deux n'est installé dans cet environnement de développement)
-  -- seule la génération des fichiers d'entrée est validée, pas leur
-  exécution effective par le solveur.
+  vérifié sur N4/N4⁺/N5⁺/N5⁻.
 - `embed_graph_3d_ff` (import réel depuis `polynitrogen_charged_explore.py`)
   sur un vrai graphe `geng`
-- **`xtb_bridge.relax_and_evaluate` avec un VRAI calculateur GFN2-xTB
-  (tblite réellement installé)** sur le pentazolate N5- : intégrité OK,
-  topologie classée `ring-5` correctement, 0 fréquence imaginaire confirmée
-  (vrai minimum, pas un point-selle)
-- **`run_campaign` bout-en-bout avec `xtb_bridge` réel** (pas un évaluateur
-  simulé) sur une mini-campagne n=6, 2 générations : le pipeline complet
-  génération -> filtre -> relaxation xTB réelle -> archive -> ré-entraînement
-  s'exécute sans erreur
+- `xtb_bridge.relax_and_evaluate` avec un VRAI calculateur GFN2-xTB (tblite
+  réellement installé) sur le pentazolate N5⁻ : intégrité OK, topologie
+  classée `ring-5` correctement, 0 fréquence imaginaire confirmée (vrai
+  minimum, pas un point-selle)
 
-Contrairement à la première version (DFTB+), qui n'avait pu être testée
-qu'en mécanique isolée (binaire non disponible dans ce bac à sable), cette
-version xTB a été validée en conditions quasi réelles de bout en bout.
+## Utilisation réelle en production (cluster SLURM)
 
-**Avant un premier vrai run de production** : lancer `relax_and_evaluate`
-sur quelques graphes connus supplémentaires (N7+, N4 neutre) pour élargir
-la couverture de validation avant de lancer une campagne complète à grande
-échelle.
+Ce package est utilisé en production sur `yargla.cluster.local` pour le
+criblage combinatoire (pool 2) en complément du pool 1 (substitution
+isolobale sur squelettes d'hydrocarbures connus, décrit dans le rapport
+`orca_jobs/report/`). Campagnes réelles lancées, une par composition
+(N, charge), chacune sur un nœud SLURM dédié avec `n_workers` = nombre de
+cœurs réels du nœud (toujours vérifié via `scontrol show node`/`sinfo`
+avant soumission, jamais un nombre rond deviné) :
+
+| Composition | Espace (degré≤3, mesuré `geng`) | Résultat |
+|---|---|---|
+| N5⁻  | 10 graphes      | `ring-5` retrouvé (déjà connu du pool 1) -- validation méthode |
+| N7⁺  | 64 graphes      | en cours / terminé selon la campagne |
+| N9⁺  | 531 graphes     | en cours / terminé selon la campagne |
+| N11⁻ | 5 524 graphes   | en cours / terminé selon la campagne |
+| N13⁻ | 69 322 graphes  | en cours / terminé selon la campagne |
+| N15⁻ | 1 016 740 graphes (tronqué à 20 000/génération) | seul trou de couverture à zéro candidat du pool 1 |
+
+Chaque script de campagne (`pool2_n{N}_{anion,cation}.py`, hors dépôt --
+un par composition, appelle `run_campaign` avec `checkpoint_dir=` pointant
+vers son propre `work_dir`) suit le même patron : `validate_n_for_charge`
+puis 3 générations de 200 candidats réellement évalués (`multiseed_seeds`
+par défaut), soumis via `sbatch --wrap` avec le contexte conda/PATH
+explicite (`tblite`/`ase` ne sont pas dans le Python système).
+
+**Piège découvert et corrigé en production** : une campagne N15⁻ à 32
+workers n'évaluait qu'~30 candidats en 13h30 au lieu des quelques minutes
+attendues -- cf. section OpenMP ci-dessus pour le diagnostic et le
+correctif (contexte `spawn`). Validé après correctif sur un test réduit
+(N7⁻, 4 workers, 2 générations) : 62,6 s au lieu de l'équivalent
+proportionnel de plusieurs heures ; reprise sur checkpoint testée
+séparément (0,6 s, ne refait aucune génération déjà complétée).
