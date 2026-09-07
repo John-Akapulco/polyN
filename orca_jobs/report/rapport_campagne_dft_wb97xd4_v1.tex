@@ -15,6 +15,7 @@
 \usepackage{parskip}
 \usepackage{helvet}
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{caption}
 \captionsetup{font=small,justification=raggedright,singlelinecheck=false}
 \renewcommand{\tablename}{Tableau}
@@ -340,6 +341,101 @@ est compar\'e. Cette section est r\'eg\'en\'er\'ee automatiquement \`a
 mesure que la campagne CCSD(T) avance.
 
 \input{table_ccsdt_comparison.tex}
+
+\section{R\'eactions quasi-isodesmiques}
+\label{sec:isodesmic}
+
+Cinq sch\'emas de r\'eaction (demand\'es explicitement, 2026-09-07),
+appliqu\'es \`a l'isom\`ere DFT-le-plus-stable de chaque formule
+$N_x^{q}$ -- la M\^EME structure aux trois niveaux de th\'eorie (son
+\'energie GFN2-xTB, DFT et, quand disponible, CCSD(T)-F12), pour isoler
+l'effet de la m\'ethode \'electronique de celui d'un changement
+d'isom\`ere entre niveaux~:
+\begin{align*}
+  \text{neutre} &: N_x \to \tfrac{x}{2}\,N_2 \\
+  \text{anion (H}_2\text{)} &: N_x^- + H_2 \to NH_2^- + \tfrac{x-1}{2}\,N_2 \\
+  \text{cation (H}_2\text{)} &: N_x^+ + 2\,H_2 \to NH_4^+ + \tfrac{x-1}{2}\,N_2 \\
+  \text{anion (N}_5^-\text{)} &: N_x^- \to N_5^- + \tfrac{x-5}{2}\,N_2 \\
+  \text{cation (N}_5^+\text{)} &: N_x^+ \to N_5^+ + \tfrac{x-5}{2}\,N_2
+\end{align*}
+Les r\'ef\'erences N$_5^-$ et N$_5^+$ sont les structures d'ancrage
+d\'ej\`a \'etablies \S\ref{sec:provenance} (\texttt{N5\_anion\_anion\_001},
+$D_{5h}$~; \texttt{N5\_cation\_cation\_001}, $C_{2v}$, correspondance
+litt\'erature -- pas \texttt{N5\_cation\_cation\_004}, la r\'ef\'erence
+interne diff\'erente du pipeline). H$_2$ a d\^u \^etre calcul\'e
+sp\'ecifiquement pour cette analyse (absent des campagnes pr\'ec\'edentes)~:
+GFN2-xTB, DFT WB97X-D4/aug-cc-pVTZ, et CCSD(T)-F12 \textbf{canonique}
+(pas DLPNO) \`a 1 seul c\oe ur -- DLPNO-CCSD(T)-F12 \'echoue explicitement
+sur H$_2$ (\texttt{Error (ORCA\_MDCI): Number of processes exceeds number
+of pairs}~: une seule paire d'\'electrons ne peut pas \^etre distribu\'ee
+sur plusieurs c\oe urs par l'approximation de localisation par paires).
+
+\textbf{Constat marquant}~: DFT et CCSD(T)-F12 s'accordent qualitativement
+sur les cinq sch\'emas -- r\'eactions fortement exothermiques
+($\Delta H<0$, la formation de N$_2$ lib\`ere de l'\'energie), d'autant
+plus n\'egatives que $x$ croît, et les deux niveaux se suivent d'assez
+pr\`es en amplitude. \textbf{GFN2-xTB, en revanche, se trompe
+qualitativement}~: le signe de $\Delta H$ est souvent invers\'e par
+rapport \`a DFT/CCSD(T) (ex.\ neutre $N_6$~: xTB $+63{,}7$ contre DFT
+$-171{,}9$~kcal/mol) et la tendance avec $x$ n'est pas monotone -- une
+limite connue des m\'ethodes tight-binding semi-empiriques pour d\'ecrire
+la formation/rupture de la triple liaison N$\equiv$N, \`a garder en
+t\^ete pour toute conclusion tir\'ee du criblage GFN2-xTB seul (pool~1 et
+pool~2) sur la stabilit\'e THERMODYNAMIQUE ABSOLUE (le classement RELATIF
+entre isom\`eres d'une m\^eme formule, en revanche, reste globalement
+fiable \`a ce niveau, cf.\ \S\ref{sec:ccsdt}).
+
+\textbf{Couverture partielle} des courbes CCSD(T)-F12~: seuls les $x$ dont
+l'isom\`ere DFT-le-plus-stable pr\'ecis a \'et\'e recalcul\'e au niveau
+CCSD(T) (81/193 structures \`a ce jour, \S\ref{sec:ccsdt}) apparaissent
+sur cette courbe -- absence de point = donn\'ee non disponible, jamais
+interpol\'ee.
+
+\textbf{R\'eserve sur NH$_2^-$ et NH$_4^+$ au niveau GFN2-xTB}~: la
+relaxation GFN2-xTB de ces deux esp\`eces converge vers un point
+stationnaire pr\'esentant respectivement 1 et 3 fr\'equences imaginaires
+de faible amplitude ($-42$~cm$^{-1}$ pour NH$_2^-$~; trois modes
+d\'eg\'en\'er\'es \`a $-34$~cm$^{-1}$ pour NH$_4^+$) -- non retrouv\'e au
+niveau DFT (0 fr\'equence imaginaire dans les deux cas, \S\ref{sec:minima}).
+Utilis\'ees telles quelles pour la courbe xTB des r\'eactions H$_2$
+(meilleure estimation xTB disponible), cette r\'eserve m\'ethodologique
+est signal\'ee explicitement plut\^ot que dissimul\'ee.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figures/isodesmic_neutral_N2.pdf}
+  \caption{Neutre~: $N_x \to (x/2)\,N_2$.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figures/isodesmic_anion_H2.pdf}
+  \caption{Anion, r\'ef\'erence H$_2$/NH$_2^-$.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figures/isodesmic_cation_H2.pdf}
+  \caption{Cation, r\'ef\'erence H$_2$/NH$_4^+$.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figures/isodesmic_anion_N5.pdf}
+  \caption{Anion, r\'ef\'erence N$_5^-$ ($D_{5h}$).}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figures/isodesmic_cation_N5.pdf}
+  \caption{Cation, r\'ef\'erence N$_5^+$ ($C_{2v}$).}
+\end{figure}
+
+Reproductible via
+\texttt{orca\_jobs/report/scripts/build\_isodesmic\_reactions.py}
+(lecture seule, aucune d\'ependance \`a un \'etat interm\'ediaire~: \`a
+relancer d\`es que la campagne CCSD(T) avance pour \'etendre la
+couverture des courbes).
 
 \section{V\'erification des minima}
 \label{sec:minima}
